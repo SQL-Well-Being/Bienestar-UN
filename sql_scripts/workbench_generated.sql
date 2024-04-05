@@ -12,6 +12,70 @@ USE bienestar_UN ;
 -- Table bienestar_UN.PERSONA
 -- -----------------------------------------------------
 
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_TALLER_CULTURAL ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_ACOMPANAMIENTO ;
+DROP TABLE IF EXISTS bienestar_UN.PROYECTO_TIENE_FACULTAD ;
+DROP TABLE IF EXISTS bienestar_UN.SESION_CURSO_LIBRE ;
+DROP TABLE IF EXISTS bienestar_UN.PERSONA_INSCRIBE_CURSO_LIBRE ;
+DROP TABLE IF EXISTS bienestar_UN.CURSO_LIBRE ;
+DROP TABLE IF EXISTS bienestar_UN.ENCUENTRO_DEPORTIVO_TIENE_EQUIPO ;
+DROP TABLE IF EXISTS bienestar_UN.EQUIPO_TIENE_ESTUDIANTE ;
+DROP TABLE IF EXISTS bienestar_UN.EQUIPO ;
+DROP TABLE IF EXISTS bienestar_UN.ENCUENTRO_DEPORTIVO ;
+DROP TABLE IF EXISTS bienestar_UN.TORNEO ;
+DROP TABLE IF EXISTS bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE ;
+DROP TABLE IF EXISTS bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA ;
+DROP TABLE IF EXISTS bienestar_UN.ENTRENAMIENTO_SELECCION ;
+DROP TABLE IF EXISTS bienestar_UN.ENTRENAMIENTO_SEMILLERO ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA ;
+DROP TABLE IF EXISTS bienestar_UN.SEMILLERO_DEPORTIVO ;
+DROP TABLE IF EXISTS bienestar_UN.SELECCION_DEPORTIVA ;
+DROP TABLE IF EXISTS bienestar_UN.DEPORTE ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_GAI ;
+DROP TABLE IF EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE ;
+DROP TABLE IF EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL ;
+DROP TABLE IF EXISTS bienestar_UN.TALLER_CULTURAL ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_TALLER ;
+DROP TABLE IF EXISTS bienestar_UN.CITA_DE_ASESORIA ;
+DROP TABLE IF EXISTS bienestar_UN.SESION_DE_ACOMPANAMIENTO ;
+DROP TABLE IF EXISTS bienestar_UN.SESION_DE_TALLER ;
+DROP TABLE IF EXISTS bienestar_UN.PROYECTO_TIENE_ESTUDIANTES ;
+DROP TABLE IF EXISTS bienestar_UN.PARTICIPACION_PGP ;
+DROP TABLE IF EXISTS bienestar_UN.PROYECTO ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_PGP ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_EVENTO_SALUD ;
+DROP TABLE IF EXISTS bienestar_UN.CITA_INDIVIDUAL ;
+DROP TABLE IF EXISTS bienestar_UN.SESION_EVENTO_SALUD ;
+DROP TABLE IF EXISTS bienestar_UN.PERFIL_DE_SALUD_TIENE_DISCAPACIDAD ;
+DROP TABLE IF EXISTS bienestar_UN.DISCAPACIDAD ;
+DROP TABLE IF EXISTS bienestar_UN.INCAPACIDAD ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_ESPECIFICA ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_GENERAL ;
+DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO ;
+DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ECONOMICA ;
+DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_TRANSPORTE ;
+DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA ;
+DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION ;
+DROP TABLE IF EXISTS bienestar_UN.EVENTO_GENERAL ;
+DROP TABLE IF EXISTS bienestar_UN.RESERVACION ;
+DROP TABLE IF EXISTS bienestar_UN.ESPACIO ;
+DROP TABLE IF EXISTS bienestar_UN.EDIFICIO ;
+DROP TABLE IF EXISTS bienestar_UN.ASIGNATURA_CURSADA ;
+DROP TABLE IF EXISTS bienestar_UN.HISTORIA_ACADEMICA ;
+DROP TABLE IF EXISTS bienestar_UN.PROGRAMA_CURRICULAR ;
+DROP TABLE IF EXISTS bienestar_UN.ASIGNATURA ;
+DROP TABLE IF EXISTS bienestar_UN.DOCENTE_ACTIVIDAD_EXTRACURRICULAR ;
+DROP TABLE IF EXISTS bienestar_UN.DOCENTE ;
+DROP TABLE IF EXISTS bienestar_UN.DEPARTAMENTO ;
+DROP TABLE IF EXISTS bienestar_UN.FACULTAD ;
+DROP TABLE IF EXISTS bienestar_UN.FUNCIONARIO ;
+DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE ;
+DROP TABLE IF EXISTS bienestar_UN.PERFIL_DE_SALUD ;
 DROP TABLE IF EXISTS bienestar_UN.PERSONA ;
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PERSONA (
@@ -38,7 +102,7 @@ COMMENT = 'El centro de nuestra base de datos. Se define persona como cualquier 
 -- -----------------------------------------------------
 -- Table bienestar_UN.PERFIL_DE_SALUD
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PERFIL_DE_SALUD ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PERFIL_DE_SALUD (
   perfsalud_id INT NOT NULL,
@@ -53,7 +117,7 @@ COMMENT = 'Perfil de salud de un estudiante.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE (
   est_per_DNI INT NOT NULL COMMENT 'Relación de herencia con persona.',
@@ -81,7 +145,7 @@ COMMENT = 'Una persona que estudia algún programa académico en la universidad.
 -- -----------------------------------------------------
 -- Table bienestar_UN.FUNCIONARIO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.FUNCIONARIO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.FUNCIONARIO (
   fun_per_id INT NOT NULL,
@@ -98,7 +162,7 @@ COMMENT = 'Cualquier persona vinculada laboralmente con la universidad que no es
 -- -----------------------------------------------------
 -- Table bienestar_UN.FACULTAD
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.FACULTAD ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.FACULTAD (
   fac_id INT NOT NULL,
@@ -111,7 +175,7 @@ COMMENT = 'Facultad que incluye departamentos de un área de conocimiento.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.DEPARTAMENTO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.DEPARTAMENTO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DEPARTAMENTO (
   dep_id INT NOT NULL,
@@ -132,7 +196,7 @@ COMMENT = 'Departamento relacionado a alguna facultad.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.DOCENTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.DOCENTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DOCENTE (
   doc_per_DNI INT NOT NULL,
@@ -158,7 +222,7 @@ COMMENT = 'Docente vinculado a la parte académica de la universidad.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.DOCENTE_ACTIVIDAD_EXTRACURRICULAR
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.DOCENTE_ACTIVIDAD_EXTRACURRICULAR ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DOCENTE_ACTIVIDAD_EXTRACURRICULAR (
   doc_per_id INT NOT NULL,
@@ -175,7 +239,7 @@ COMMENT = 'Docente que dirige actividades extracurriculares, como deportes y gru
 -- -----------------------------------------------------
 -- Table bienestar_UN.ASIGNATURA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ASIGNATURA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ASIGNATURA (
   asi_codigo INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -197,7 +261,7 @@ COMMENT = 'Asignatura ofertada por  un departamento. Afecta el progreso en la hi
 -- -----------------------------------------------------
 -- Table bienestar_UN.PROGRAMA_CURRICULAR
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PROGRAMA_CURRICULAR ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PROGRAMA_CURRICULAR (
   pro_codigo INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -219,12 +283,12 @@ COMMENT = 'Programa curricular ofertado por un departamento.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.HISTORIA_ACADEMICA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.HISTORIA_ACADEMICA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.HISTORIA_ACADEMICA (
   hist_codigo INT NOT NULL COMMENT 'Codigo de la historia académica.',
  -- hist_porcentaje_avance DECIMAL(2) GENERATED ALWAYS AS ()  COMMENT 'Porcentaje calculado de avance.',
-  hist_porcentaje_avance DECIMAL(2) NOT NULL COMMENT 'Porcentaje calculado de avance.',
+  hist_porcentaje_avance DECIMAL(2)  COMMENT 'Porcentaje calculado de avance.',
   hist_papa DECIMAL(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Promedio academico ponderado acumulado.',
   hist_es_activa TINYINT NOT NULL DEFAULT 1 COMMENT 'Booleano: El estudiante se encuentra cursando el programa o no.',
   hist_pro_codigo INT UNSIGNED NOT NULL COMMENT 'Relación al programa curricular.',
@@ -243,7 +307,7 @@ COMMENT = 'Historia académica específica a un estudiante.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ASIGNATURA_CURSADA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ASIGNATURA_CURSADA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ASIGNATURA_CURSADA (
   asic_id INT NOT NULL,
@@ -273,7 +337,7 @@ COMMENT = 'El registro de una asignatura cursada por un estudiante, específican
 -- -----------------------------------------------------
 -- Table bienestar_UN.EDIFICIO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.EDIFICIO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.EDIFICIO (
   edi_id VARCHAR(45) NOT NULL,
@@ -287,7 +351,7 @@ COMMENT = 'Infraestructura de la universidad en la que se realizan actividades.'
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESPACIO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESPACIO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESPACIO (
   esp_id INT NOT NULL,
@@ -309,7 +373,7 @@ COMMENT = 'Espacio de la universidad, puede estar relacionado a un edificio o no
 -- -----------------------------------------------------
 -- Table bienestar_UN.RESERVACION
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.RESERVACION ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.RESERVACION (
   res_id INT NOT NULL,
@@ -331,7 +395,7 @@ COMMENT = 'Reservación de un espacio universitario, en el que se específica el
 -- -----------------------------------------------------
 -- Table bienestar_UN.EVENTO_GENERAL
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.EVENTO_GENERAL ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.EVENTO_GENERAL (
   eve_id INT NOT NULL,
@@ -352,7 +416,7 @@ COMMENT = 'La relación en donde se almacenan todos los eventos en los que es ne
 -- -----------------------------------------------------
 -- Table bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION (
   ben_id INT NOT NULL,
@@ -373,7 +437,7 @@ COMMENT = 'Guarda a los estudiantes beneficiarios en un periodo académico.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA (
   ben_alim_tipo ENUM("DESAYUNO", "ALMUERZO", "CENA") NOT NULL COMMENT 'Tipo de beneficio de alimento brindado.',
@@ -391,7 +455,7 @@ COMMENT = 'Beneficio especifico de gestión alimentaria, relación debil con res
 -- -----------------------------------------------------
 -- Table bienestar_UN.BENEFICIARIO_DE_GESTION_DE_TRANSPORTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_TRANSPORTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_TRANSPORTE (
   ben_tran_numero_tarjeta_sitp VARCHAR(16) NOT NULL COMMENT 'Número de tarjeta del sitp del beneficiario.',
@@ -409,7 +473,7 @@ COMMENT = 'Beneficiario de gestión de transporte, debil con respecto a Benefici
 -- -----------------------------------------------------
 -- Table bienestar_UN.BENEFICIARIO_DE_GESTION_ECONOMICA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ECONOMICA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ECONOMICA (
   ben_eco_porcentaje_salario_minimo DECIMAL(2) NOT NULL COMMENT 'Porcentaje de salario minimo otorgado al estudiante.',
@@ -427,7 +491,7 @@ COMMENT = 'Se le da un porcentaje de salario mínimo a los beneficiarios.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO (
   ben_aloj_entidad_prestadora VARCHAR(120) NOT NULL COMMENT 'Entidad prestadora del servicio.',
@@ -446,10 +510,11 @@ COMMENT = 'Se le otorga una residencia estudiantil externa al estudiante.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.CONVOCATORIA_GENERAL
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_GENERAL ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_GENERAL (
-  con_gen_codigo VARCHAR(50) GENERATED ALWAYS AS () COMMENT 'Id de la tabla Convocatoria general.',
+  -- con_gen_codigo VARCHAR(50) GENERATED ALWAYS AS () COMMENT 'Id de la tabla Convocatoria general.',
+  con_gen_codigo VARCHAR(50) COMMENT 'Id de la tabla Convocatoria general.',
   con_gen_periodo_academico VARCHAR(6) NOT NULL COMMENT 'El periodo académico del cual la convocatoria hace parte.',
   con_gen_horas_de_corresponsabilidad INT NOT NULL COMMENT 'Las horas de corresponsabilidad las cuales los estudiantes beneficiarios deben cumplir.',
   PRIMARY KEY (con_gen_codigo))
@@ -460,7 +525,7 @@ COMMENT = 'Es el tipo de convocatoria que lanza la universidad, que a su vez pue
 -- -----------------------------------------------------
 -- Table bienestar_UN.CONVOCATORIA_ESPECIFICA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_ESPECIFICA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_ESPECIFICA (
   con_esp_id INT NOT NULL,
@@ -480,37 +545,31 @@ COMMENT = 'La subdivisión de la convocatoria general, que determina las caracte
 
 
 -- -----------------------------------------------------
--- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA
+-- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA ;
 
-CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA (
-  con_gai_id INT NOT NULL,
-  est_per_DNI INT NOT NULL,
-  es_admitido TINYINT NOT NULL DEFAULT 0,
-  PRIMARY KEY (con_gai_id, est_per_DNI),
-  CONSTRAINT fk_CONVOCATORIA_GAI_has_ESTUDIANTE_CONVOCATORIA_GAI1
-    FOREIGN KEY (con_gai_id)
-    REFERENCES bienestar_UN.CONVOCATORIA_GAI (con_gai_codigo)
+CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION (
+  con_esp_id INT NOT NULL COMMENT 'ID de la convocatoría específica.',
+  est_per_DNI INT NOT NULL COMMENT 'DNI del estudiante.',
+  con_esp_estado ENUM("PREADJUDICADO", "ELEGIBLE", "ADJUDICADO", "INVALIDADO", "FORMALIZADO") NOT NULL DEFAULT 'ELEGIBLE' COMMENT 'Estado de la participación.',
+  PRIMARY KEY (con_esp_id, est_per_DNI),
+  INDEX fk_CONVOCATORIA_ESPECIFICA_has_ESTUDIANTE_ESTUDIANTE1_idx (est_per_DNI ASC) VISIBLE,
+  INDEX fk_CONVOCATORIA_ESPECIFICA_has_ESTUDIANTE_CONVOCATORIA_ESPE_idx (con_esp_id ASC) VISIBLE,
+  CONSTRAINT fk_CONVOCATORIA_ESPECIFICA_has_ESTUDIANTE_CONVOCATORIA_ESPECI1
+    FOREIGN KEY (con_esp_id)
+    REFERENCES bienestar_UN.CONVOCATORIA_ESPECIFICA (con_esp_id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT fk_CONVOCATORIA_GAI_has_ESTUDIANTE_ESTUDIANTE1
+  CONSTRAINT fk_CONVOCATORIA_ESPECIFICA_has_ESTUDIANTE_ESTUDIANTE1
     FOREIGN KEY (est_per_DNI)
     REFERENCES bienestar_UN.ESTUDIANTE (est_per_DNI)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-
-COMMENT = 'Relación muchos a muchos entre estudiante y convocatoria.';
-
--- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_ESPECIFICA_has_ESTUDIANTE_ESTUDIANTE1_idx ON bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA (est_per_DNI ASC) VISIBLE; --
-
--- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_ESPECIFICA_has_ESTUDIANTE_CONVOCATORIA_ESPE_idx ON bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA (con_esp_id ASC) VISIBLE; --
-
+COMMENT = 'Participación del estudiante en convocatoría específica. Relación muchos a muchos.';
 
 -- -----------------------------------------------------
 -- Table bienestar_UN.INCAPACIDAD
--- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.INCAPACIDAD ;
+-- -----------------------------------------------------c
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.INCAPACIDAD (
   inc_id INT NOT NULL,
@@ -532,7 +591,7 @@ COMMENT = 'Incapacidad de un estudiante en un periodo de tiempo definido.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.DISCAPACIDAD
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.DISCAPACIDAD ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DISCAPACIDAD (
   dis_id INT NOT NULL,
@@ -545,7 +604,7 @@ COMMENT = 'Tipo de discapacidad.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.PERFIL_DE_SALUD_TIENE_DISCAPACIDAD
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PERFIL_DE_SALUD_TIENE_DISCAPACIDAD ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PERFIL_DE_SALUD_TIENE_DISCAPACIDAD (
   dis_id INT NOT NULL COMMENT 'Foreign key a la discapacidad.',
@@ -572,7 +631,7 @@ COMMENT = 'Relación muchos a muchos entre discapacidad y perfil de salud.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.SESION_EVENTO_SALUD
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SESION_EVENTO_SALUD ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_EVENTO_SALUD (
   ses_salud_eve_id INT NOT NULL COMMENT 'Primary key del evento salud.',
@@ -590,7 +649,7 @@ COMMENT = 'Sesión evento en salud grupal.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.CITA_INDIVIDUAL
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CITA_INDIVIDUAL ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CITA_INDIVIDUAL (
   cit_tipo VARCHAR(45) NOT NULL COMMENT 'Tipo de cita.',
@@ -624,7 +683,7 @@ COMMENT = 'Cita individual asignada a un estudiante.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_EVENTO_SALUD
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_EVENTO_SALUD ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_EVENTO_SALUD (
   ses_salud_ses_id INT NOT NULL COMMENT 'Foreign key al evento.',
@@ -651,13 +710,13 @@ COMMENT = 'Asistencia del estudiante a evento salud.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.CONVOCATORIA_PGP
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_PGP ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_PGP (
   con_pgp_codigo INT NOT NULL COMMENT 'Codigo de la convocatoria PGP.',
   con_pgp_descripcion MEDIUMTEXT NOT NULL,
   con_pgp_terminos MEDIUMTEXT NOT NULL COMMENT 'Terminos específicos de la convocatoria.',
-  con_pgp_esta_activo TINYTEXT NOT NULL DEFAULT 0 COMMENT 'Estado de la convocatoria general, Activa, o no Activa.',
+  con_pgp_esta_activo TINYINT NOT NULL DEFAULT 0 COMMENT 'Estado de la convocatoria general, Activa, o no Activa.',
   con_pgp_fecha_inicio DATETIME NOT NULL,
   con_pgp_fecha_fin DATETIME NOT NULL,
   con_pgp_periodo_academico VARCHAR(6) NOT NULL COMMENT 'Periodo académico en la que sale la convocatoria.',
@@ -669,7 +728,7 @@ COMMENT = 'Convocatoria al programa de gestión de proyectos en un periodo acad�
 -- -----------------------------------------------------
 -- Table bienestar_UN.PROYECTO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PROYECTO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PROYECTO (
   pro_id INT NOT NULL COMMENT 'Primary key del proyecto.',
@@ -684,7 +743,7 @@ COMMENT = 'Proyecto armado a partir de mínimo 3 estudiantes de una facultad.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.PARTICIPACION_PGP
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PARTICIPACION_PGP ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PARTICIPACION_PGP (
   par_pgp_pro_id INT NOT NULL COMMENT 'Foreign key al proyecto.',
@@ -711,7 +770,7 @@ COMMENT = 'Participación por parte de un proyecto en PGP, relación debil.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.PROYECTO_TIENE_ESTUDIANTES
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PROYECTO_TIENE_ESTUDIANTES ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PROYECTO_TIENE_ESTUDIANTES (
   pro_id INT NOT NULL,
@@ -738,7 +797,7 @@ COMMENT = 'Relación muchos a muchos entre estudiantes y proyectos.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.SESION_DE_TALLER
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SESION_DE_TALLER ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_DE_TALLER (
   ses_taller_nombre VARCHAR(45) NOT NULL DEFAULT 0 COMMENT 'Nombre del taller.',
@@ -766,10 +825,11 @@ COMMENT = 'Sesión dada a la comunidad, en la que pueden participar varios estud
 -- -----------------------------------------------------
 -- Table bienestar_UN.SESION_DE_ACOMPANAMIENTO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SESION_DE_ACOMPANAMIENTO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_DE_ACOMPANAMIENTO (
-  ses_acom_nombre VARCHAR(45) GENERATED ALWAYS AS ()  COMMENT 'Nombre autogenerado.',
+  -- ses_acom_nombre VARCHAR(45) GENERATED ALWAYS AS ()  COMMENT 'Nombre autogenerado.',
+  ses_acom_nombre VARCHAR(45) COMMENT 'Nombre autogenerado.',
   ses_acom_eve_id INT NOT NULL COMMENT 'Evento primary key.',
   ses_acom_fun_per_DNI_encargado INT NOT NULL COMMENT 'Foreign key al funcionario encargado.',
   PRIMARY KEY (ses_acom_eve_id),
@@ -794,10 +854,11 @@ COMMENT = 'Sesión de acompañamiento pedidad por un estudiante 1 a 1 con un fun
 -- -----------------------------------------------------
 -- Table bienestar_UN.CITA_DE_ASESORIA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CITA_DE_ASESORIA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CITA_DE_ASESORIA (
-  cit_ase_nombre VARCHAR(45) GENERATED ALWAYS AS ()  COMMENT 'Nombre autogenerado.',
+  -- cit_ase_nombre VARCHAR(45) GENERATED ALWAYS AS ()  COMMENT 'Nombre autogenerado.',
+  cit_ase_nombre VARCHAR(45) COMMENT 'Nombre autogenerado.',
   cit_ase_eve_id INT NOT NULL COMMENT 'Primary key al evento.',
   cit_ase_tipo ENUM("CRISIS EMOCIONAL", "TRAMITES", "ACADEMICO") NOT NULL COMMENT 'Tipo de la cita de asesoria.',
   cit_ase_est_per_DNI INT NOT NULL COMMENT 'Foreign key al estudiante.',
@@ -823,7 +884,7 @@ COMMENT = 'Cita de asesoría pedida por un estudiante sobre tramites de la unive
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_TALLER
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_TALLER ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_TALLER (
   ses_eve_id INT NOT NULL,
@@ -850,7 +911,7 @@ COMMENT = 'Relación muchos a muchos, asistencia del estudiante a la sesión tal
 -- -----------------------------------------------------
 -- Table bienestar_UN.TALLER_CULTURAL
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.TALLER_CULTURAL ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.TALLER_CULTURAL (
   tall_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre del taller.',
@@ -876,7 +937,7 @@ COMMENT = 'Taller cultural realizado por un tallerista. Hereda de evento general
 -- -----------------------------------------------------
 -- Table bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL (
   gru_id INT NOT NULL COMMENT 'Estructuras',
@@ -898,7 +959,7 @@ COMMENT = 'Un grupo artistico tiene un director y varios estudiantes participand
 -- -----------------------------------------------------
 -- Table bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE (
   gru_id INT NOT NULL,
@@ -925,7 +986,7 @@ COMMENT = 'Relación muchos a muchos entre el grupo artístico y estudiantes.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.CONVOCATORIA_GAI
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_GAI ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_GAI (
   con_gai_codigo INT NOT NULL,
@@ -945,11 +1006,11 @@ COMMENT = 'Convocatoria a Grupo artistico institucional.';
 
 
 -- -----------------------------------------------------
--- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA
+-- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA ;
 
-CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA (
+
+CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI (
   con_gai_id INT NOT NULL,
   est_per_DNI INT NOT NULL,
   es_admitido TINYINT NOT NULL DEFAULT 0,
@@ -975,7 +1036,7 @@ COMMENT = 'Relación muchos a muchos entre estudiante y convocatoria.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.DEPORTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.DEPORTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DEPORTE (
   depo_id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary key del deporte.',
@@ -988,7 +1049,7 @@ COMMENT = 'Deporte practicado por estudiantes.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.SELECCION_DEPORTIVA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SELECCION_DEPORTIVA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SELECCION_DEPORTIVA (
   sel_id INT NOT NULL,
@@ -1019,7 +1080,7 @@ COMMENT = 'Selección deportiva que representa a la universidad en algún deport
 -- -----------------------------------------------------
 -- Table bienestar_UN.SEMILLERO_DEPORTIVO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SEMILLERO_DEPORTIVO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SEMILLERO_DEPORTIVO (
   sem_id INT NOT NULL COMMENT 'Primary key semillero deportivo.',
@@ -1049,7 +1110,7 @@ COMMENT = 'El semillero se encarga de realizar entrenamientos a los estudiantes 
 -- -----------------------------------------------------
 -- Table bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA (
   con_sel_codigo INT NOT NULL,
@@ -1071,7 +1132,7 @@ COMMENT = 'Convocatoria especifica para aplicar a selección deportiva.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO (
   con_sem_codigo INT NOT NULL COMMENT 'Codigo que define al semillero.',
@@ -1093,7 +1154,7 @@ COMMENT = 'En la convocatoria de semillero deportivo se decide si un estudiante 
 -- -----------------------------------------------------
 -- Table bienestar_UN.ENTRENAMIENTO_SEMILLERO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ENTRENAMIENTO_SEMILLERO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ENTRENAMIENTO_SEMILLERO (
   ent_sem_eve_id INT NOT NULL,
@@ -1118,7 +1179,7 @@ COMMENT = 'Evento que define el entrenamiento de un semillero.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ENTRENAMIENTO_SELECCION
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ENTRENAMIENTO_SELECCION ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ENTRENAMIENTO_SELECCION (
   ent_sel_eve_id INT NOT NULL,
@@ -1143,7 +1204,7 @@ COMMENT = 'Evento de entrenamiento de una selección.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA (
   con_sel_sel_id INT NOT NULL,
@@ -1171,7 +1232,7 @@ COMMENT = 'Tabla pivote entre seleccion deportiva y estudiante.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO (
   con_sem_id INT NOT NULL,
@@ -1199,7 +1260,7 @@ COMMENT = 'Relación muchos a muchos estudiante convocatoria semillero.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE (
   sem_id INT NOT NULL,
@@ -1226,7 +1287,7 @@ COMMENT = 'Relación muchos a muchos entre estudiante y semillero deportivo.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE (
   sel_id INT NOT NULL,
@@ -1253,7 +1314,7 @@ COMMENT = 'Relación muchos a muchos entre estudiante y selección deportiva.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.TORNEO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.TORNEO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.TORNEO (
   tor_id INT NOT NULL,
@@ -1274,7 +1335,7 @@ COMMENT = 'Torneo realizado en un deporte específico.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ENCUENTRO_DEPORTIVO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ENCUENTRO_DEPORTIVO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ENCUENTRO_DEPORTIVO (
   enc_resultado VARCHAR(45) NOT NULL COMMENT 'Resultado del encuentro.',
@@ -1300,7 +1361,7 @@ COMMENT = 'Evento deportivo entre dos equipos.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.EQUIPO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.EQUIPO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.EQUIPO (
   equi_id INT NOT NULL,
@@ -1313,7 +1374,7 @@ COMMENT = 'Equipo representando a una selección.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.EQUIPO_TIENE_ESTUDIANTE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.EQUIPO_TIENE_ESTUDIANTE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.EQUIPO_TIENE_ESTUDIANTE (
   equi_id INT NOT NULL,
@@ -1340,7 +1401,7 @@ COMMENT = 'Relación muchos a muchos entre estudiantes y equipo.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ENCUENTRO_DEPORTIVO_TIENE_EQUIPO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ENCUENTRO_DEPORTIVO_TIENE_EQUIPO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ENCUENTRO_DEPORTIVO_TIENE_EQUIPO (
   equi_id INT NOT NULL,
@@ -1367,7 +1428,7 @@ COMMENT = 'Registra los equipos que participan en un encuentro deportivo.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.CURSO_LIBRE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.CURSO_LIBRE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CURSO_LIBRE (
   curlib_id INT NOT NULL,
@@ -1390,7 +1451,7 @@ COMMENT = 'El curso libre se oferta a cualquier persona sin importar si es estud
 -- -----------------------------------------------------
 -- Table bienestar_UN.PERSONA_INSCRIBE_CURSO_LIBRE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PERSONA_INSCRIBE_CURSO_LIBRE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PERSONA_INSCRIBE_CURSO_LIBRE (
   curlib_id INT NOT NULL,
@@ -1417,7 +1478,7 @@ COMMENT = 'Relación muchos a muchos curso libre.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.SESION_CURSO_LIBRE
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.SESION_CURSO_LIBRE ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_CURSO_LIBRE (
   ses_curlib_cur_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre de la sesión.',
@@ -1445,7 +1506,7 @@ COMMENT = 'Evento singular involucrando un curso libre. Relación debil';
 -- -----------------------------------------------------
 -- Table bienestar_UN.PROYECTO_TIENE_FACULTAD
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.PROYECTO_TIENE_FACULTAD ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PROYECTO_TIENE_FACULTAD (
   pro_id INT NOT NULL,
@@ -1472,7 +1533,7 @@ COMMENT = 'Relación muchos a muchos entre el proyecto y la facultad.';
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_ACOMPANAMIENTO
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_ACOMPANAMIENTO ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_ACOMPANAMIENTO (
   ses_acom_eve_id INT NOT NULL,
@@ -1499,7 +1560,7 @@ COMMENT = 'Relación muchos a muchos entre sesión de acompañamiento de estudia
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE_ASISTE_A_TALLER_CULTURAL
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_TALLER_CULTURAL ;
+
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_TALLER_CULTURAL (
   tall_eve_id INT NOT NULL,
