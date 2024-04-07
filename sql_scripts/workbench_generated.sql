@@ -288,7 +288,7 @@ COMMENT = 'Programa curricular ofertado por un departamento.';
 CREATE TABLE IF NOT EXISTS bienestar_UN.HISTORIA_ACADEMICA (
   hist_codigo INT NOT NULL COMMENT 'Codigo de la historia académica.',
  -- hist_porcentaje_avance DECIMAL(2) GENERATED ALWAYS AS ()  COMMENT 'Porcentaje calculado de avance.',
-  hist_porcentaje_avance DECIMAL(2)  COMMENT 'Porcentaje calculado de avance.',
+  hist_porcentaje_avance DECIMAL(2)  NOT NULL DEFAULT 0 COMMENT 'Porcentaje calculado de avance.',
   hist_papa DECIMAL(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Promedio academico ponderado acumulado.',
   hist_es_activa TINYINT NOT NULL DEFAULT 1 COMMENT 'Booleano: El estudiante se encuentra cursando el programa o no.',
   hist_pro_codigo INT UNSIGNED NOT NULL COMMENT 'Relación al programa curricular.',
