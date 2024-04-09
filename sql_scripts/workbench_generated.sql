@@ -513,8 +513,8 @@ COMMENT = 'Se le otorga una residencia estudiantil externa al estudiante.';
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_GENERAL (
-  -- con_gen_codigo VARCHAR(50) GENERATED ALWAYS AS () COMMENT 'Id de la tabla Convocatoria general.',
-  con_gen_codigo VARCHAR(50) COMMENT 'Id de la tabla Convocatoria general.',
+  con_gen_codigo VARCHAR(13) GENERATED ALWAYS AS (CONCAT("PG", con_gen_tipo, "-", con_gen_periodo_academico)) STORED COMMENT 'Id de la tabla Convocatoria general.',
+  con_gen_tipo ENUM("AL", "AJ", "TR", "E") NOT NULL COMMENT 'Tipo del programa de gestion (Alimentacion, alojamiento, transporte, economica)',
   con_gen_periodo_academico VARCHAR(6) NOT NULL COMMENT 'El periodo académico del cual la convocatoria hace parte.',
   con_gen_horas_de_corresponsabilidad INT NOT NULL COMMENT 'Las horas de corresponsabilidad las cuales los estudiantes beneficiarios deben cumplir.',
   PRIMARY KEY (con_gen_codigo))
