@@ -1,0 +1,1 @@
+SELECT * FROM bienestar_un.perfil_de_salud

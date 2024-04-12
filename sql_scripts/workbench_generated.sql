@@ -9,7 +9,7 @@ USE bienestar_UN ;
 -- replace: $1
 
 -- -----------------------------------------------------
--- Table bienestar_UN.PERSONA
+-- Table bienestar_UN.PERSONAvariable
 -- -----------------------------------------------------
 
 DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_ASISTE_A_TALLER_CULTURAL ;
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.PERSONA (
   per_segundo_apellido VARCHAR(45) NULL COMMENT 'El segundo apellido de una persona. No es extrictamente requerido para la creación en la base de datos.',
   per_direccion VARCHAR(45) NULL COMMENT 'Dirección de vivienda de la persona. No requerido.',
   per_correo VARCHAR(100) NOT NULL COMMENT 'Correo electrónico de la persona.',
-  per_telefono INT NOT NULL COMMENT 'Número de telefono celular de la persona.',
+  per_telefono BIGINT NOT NULL COMMENT 'Número de telefono celular de la persona.',
   per_sexo_biologico ENUM("F", "M") NULL COMMENT 'Sexo biologico de la persona.',
   PRIMARY KEY (per_DNI))
 
@@ -106,9 +106,9 @@ COMMENT = 'El centro de nuestra base de datos. Se define persona como cualquier 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PERFIL_DE_SALUD (
   perfsalud_id INT NOT NULL,
-  perfsalud_peso DECIMAL(2) NOT NULL COMMENT 'Peso del estudiante al realizar el proceso de perfil de salud.',
-  perfsalud_RH VARCHAR(2) NOT NULL COMMENT 'Tipo de sangre.',
-  perfsalud_estatura DECIMAL(2) NOT NULL COMMENT 'Estatura del estudiante en metros.',
+  perfsalud_peso DECIMAL(5, 3) NOT NULL COMMENT 'Peso del estudiante al realizar el proceso de perfil de salud.',
+  perfsalud_RH VARCHAR(4) NOT NULL COMMENT 'Tipo de sangre.',
+  perfsalud_estatura DECIMAL(4, 3) NOT NULL COMMENT 'Estatura del estudiante en metros.',
   PRIMARY KEY (perfsalud_id))
 
 COMMENT = 'Perfil de salud de un estudiante.';
