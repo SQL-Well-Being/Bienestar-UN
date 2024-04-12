@@ -17,15 +17,15 @@ INSERT INTO bienestar_UN.CONVOCATORIA_ESPECIFICA
 VALUES
     ("Programa de Gestion Alimentaria - Desayuno", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) desayuno.",
-    "PGAL-2024-1"
+    "PGAL-2023-2"
     ),
     ("Programa de Gestion Alimentaria - Almuerzo", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) almuerzo.",
-    "PGAL-2024-1"
+    "PGAL-2023-2"
     ),
     ("Programa de Gestion Alimentaria - Cena", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) cena",
-    "PGAL-2024-1"
+    "PGAL-2023-2"
     ),
     ("Programa de Gestion Alimentaria - Desayuno", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) desayuno.",
@@ -37,7 +37,7 @@ VALUES
     ),
     ("Programa de Gestion Alimentaria - Cena", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) cena",
-    "PGAL-2023-2"
+    "PGAL-2024-1"
     ),
     ("Programa Gestion Alojamiento - CRU",
     ": Cupo de alojamiento para hombres y mujeres solteros/as sin hijos/as, en habitaciones compartidas por hasta 3 estudiantes. Bano
@@ -50,7 +50,7 @@ VALUES
     "PGAJ-2024-1"
     ),
     ("Programa Gestion Alojamiento - The Spot",
-    "Spot: Cupo de alojamiento para hombres y mujeres solteros/as sin hijos/as. En habitaciones compartidas hasta 2 estudiantes. Baño compartido por hasta 2
+    "Spot: Cupo de alojamiento para hombres y mujeres solteros/as sin hijos/as. En habitaciones compartidas hasta 2 estudiantes. Bano compartido por hasta 2
     estudiantes. Sujeto al manual de convivencia del alojamiento.",
     "PGAJ-2024-1"
     ),
@@ -58,4 +58,57 @@ VALUES
     "Consiste en recargas de unidades de transporte a la tarjeta personalizada “Tullave”, para cubrir el desplazamiento
     diario (ida y vuelta) hacia el campus de la Universidad", 
     "PGTR-2024-1"
-    );
+    ),
+    ("Programa Gestion Economica",
+    "Se otorga un porcentaje de salario minimo mensual",
+    "PGE-2024-1");
+
+
+INSERT INTO bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
+    (con_esp_id, est_per_DNI, con_esp_estado)
+VALUES
+    (1, 111111100, "ELEGIBLE"),
+    (1, 111111101, "ADJUDICADO"),
+    (2, 111111102, "ADJUDICADO"),
+    (2, 111111103, "ADJUDICADO"),
+    (2,111111104, "ELEGIBLE" ),
+    (3, 111111105, "ADJUDICADO" ),
+    (4,111111106, "ADJUDICADO" ),
+    (4, 111111107, "ELEGIBLE"),
+    (7, 111111107, "ADJUDICADO"),
+    (7, 111111103, "ADJUDICADO"),
+    (8, 111111104, "ELEGIBLE"),
+    (8, 111111108, "ADJUDICADO"),
+    (9, 111111102, "ELEGIBLE");
+
+
+-- Registro de Beneficiarios
+
+INSERT INTO bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION
+    (ben_id, ben_periodo_academico, ben_est_per_DNI)
+VALUES
+    (00001, "2023-2", 111111101),
+    (00002, "2023-2", 111111102),
+    (00003, "2023-2", 111111103),
+    (00004, "2023-2", 111111105),
+    (00005, "2023-2", 111111106),
+    (00006, "2024-1", 111111103),
+    (00007, "2024-1", 111111107),
+    (00008, "2024-1", 111111108);
+
+
+INSERT INTO bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA
+    (ben_alim_id, ben_alim_tipo)
+VALUES
+    (00001,"DESAYUNO"),
+    (00002,"ALMUERZO"),
+    (00003,"ALMUERZO"),
+    (00004,"CENA"),
+    (00005,"DESAYUNO");
+
+INSERT INTO bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO
+    (ben_aloj_id, ben_aloj_entidad_prestadora)
+VALUES
+    (00006,"CRU"),
+    (00007,"CRU"),
+    (00008,"Iglesia San Rafael");
