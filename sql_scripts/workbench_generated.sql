@@ -166,7 +166,7 @@ COMMENT = 'Cualquier persona vinculada laboralmente con la universidad que no es
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.FACULTAD (
   fac_id INT NOT NULL,
-  fac_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre de facultad.',
+  fac_nombre VARCHAR(200) NOT NULL COMMENT 'Nombre de facultad.',
   PRIMARY KEY (fac_id))
 
 COMMENT = 'Facultad que incluye departamentos de un área de conocimiento.';
@@ -179,7 +179,7 @@ COMMENT = 'Facultad que incluye departamentos de un área de conocimiento.';
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DEPARTAMENTO (
   dep_id INT NOT NULL,
-  dep_nombre VARCHAR(45) NOT NULL,
+  dep_nombre VARCHAR(300) NOT NULL,
   dep_fac_id INT NOT NULL COMMENT 'Facultad relacionada.',
   PRIMARY KEY (dep_id),
   CONSTRAINT fk_DEPARTAMENTO_FACULTAD1
