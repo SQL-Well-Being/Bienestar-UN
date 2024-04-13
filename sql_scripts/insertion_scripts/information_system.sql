@@ -329,3 +329,33 @@ INSERT INTO bienestar_UN.DOCENTE_ACTIVIDAD_EXTRACURRICULAR (doc_per_id) VALUES
 (200000043),
 (200000044);
 
+-- Asignaturas: Departamento de Ingeniería de sistemas y computación
+INSERT INTO bienestar_UN.ASIGNATURA (asi_codigo, asi_nombre, asi_numero_de_creditos, asi_dep_id) VALUES 
+(1, 'Sistemas Operativos', 3, 2),
+(2, 'Bases de Datos', 3, 2),
+(3, 'Ingeniería de Software I', 3, 2),
+(4, 'Inteligencia Artificial', 4, 2),
+(5, 'Ingeniería de Software I', 3, 2),
+(6, 'Elementos de computadores', 3, 2),
+(7, 'Redes de Computadores', 4, 2),
+(8, 'Algoritmos', 4, 2),
+(9, 'Sistemas Distribuidos', 4, 2),
+(10, 'Programación Orientada a Objetos', 3, 2),
+(11, 'Pensamiento sistemico', 3, 2),
+(12, 'Gestión de Proyectos', 3, 2),
+(13, 'Introducción a la Ingeniería de Sistemas', 3, 2),
+(14, 'Métodos númericos', 3, 2),
+(15, 'Big Data', 4, 2);
+
+-- Programas académicos:
+INSERT INTO bienestar_UN.PROGRAMA_CURRICULAR (pro_nombre, pro_numero_de_creditos, pro_dep_id) VALUES 
+('Ingeniería Agrícola', 160, 1),
+('Ingeniería Civil', 160, 1),
+('Ingeniería de Sistemas y Computación', 165, 2),
+('Ingeniería Eléctrica', 160, 3),
+('Ingeniería Electrónica', 189, 3),
+('Ingeniería Industrial', 170, 2),
+('Ingeniería Mecánica', 180, 4),
+('Ingeniería Mecatrónica', 184, 4),
+('Ingeniería Química', 160, 5);
+
