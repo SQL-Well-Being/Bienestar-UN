@@ -15,13 +15,13 @@ GROUP BY est_per_DNI;
 
 -- Informacion academica completa de todos los estudiantes
 
-SELECT hist_codigo, hist_es_activa, hist_pro_codigo, pro_nombre, 
-	   hist_est_per_DNI, 
+SELECT hist_codigo, hist_es_activa, pro_codigo, pro_nombre, 
+	   hist_est_per_DNI AS 'est_per_DNI',
        creditos_cursados, creditos_aprobados, 
-       (ROUND(ponderado/creditos_cursados, 1)) AS 'P.A.P.A', (ROUND(creditos_aprobados*100/pro_numero_de_creditos, 2)) AS 'porcentaje_avance'
+       (ROUND(ponderado/creditos_cursados, 1)) AS 'PAPA', (ROUND(creditos_aprobados*100/pro_numero_de_creditos, 2)) AS 'porcentaje_avance'
 	
     FROM
-    
+
     HISTORIA_ACADEMICA 
     INNER JOIN PROGRAMA_CURRICULAR ON hist_pro_codigo = pro_codigo
     
