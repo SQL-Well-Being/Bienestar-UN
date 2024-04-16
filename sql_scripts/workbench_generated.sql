@@ -288,14 +288,20 @@ COMMENT = 'Programa curricular ofertado por un departamento.';
 CREATE TABLE IF NOT EXISTS bienestar_UN.HISTORIA_ACADEMICA (
   hist_codigo INT NOT NULL COMMENT 'Codigo de la historia académica.',
  -- hist_porcentaje_avance DECIMAL(2) GENERATED ALWAYS AS ()  COMMENT 'Porcentaje calculado de avance.',
-  hist_porcentaje_avance DECIMAL(2)  NOT NULL DEFAULT 0 COMMENT 'Porcentaje calculado de avance.',
-  hist_papa DECIMAL(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Promedio academico ponderado acumulado.',
+  -- hist_porcentaje_avance DECIMAL(2)  NOT NULL DEFAULT 0 COMMENT 'Porcentaje calculado de avance.',
+  -- hist_papa DECIMAL(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Promedio academico ponderado acumulado.',
   hist_es_activa TINYINT NOT NULL DEFAULT 1 COMMENT 'Booleano: El estudiante se encuentra cursando el programa o no.',
   hist_pro_codigo INT UNSIGNED NOT NULL COMMENT 'Relación al programa curricular.',
+  hist_est_per_DNI INT NOT NULL COMMENT 'Relacion al estudiante.', 
   PRIMARY KEY (hist_codigo),
   CONSTRAINT fk_HISTORIA_ACADEMICA_PROGRAMA_CURRICULAR1
     FOREIGN KEY (hist_pro_codigo)
     REFERENCES bienestar_UN.PROGRAMA_CURRICULAR (pro_codigo)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_HISORIA_ACADEMICA_ESTUDIANTE1
+    FOREIGN KEY (hist_est_per_DNI)
+    REFERENCES bienestar_UN.ESTUDIANTE (est_per_DNI)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 

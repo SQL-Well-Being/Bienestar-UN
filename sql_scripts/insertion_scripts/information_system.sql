@@ -335,7 +335,7 @@ INSERT INTO bienestar_UN.ASIGNATURA (asi_codigo, asi_nombre, asi_numero_de_credi
 (2, 'Bases de Datos', 3, 2),
 (3, 'Ingeniería de Software I', 3, 2),
 (4, 'Inteligencia Artificial', 4, 2),
-(5, 'Ingeniería de Software I', 3, 2),
+(5, 'Ingeniería de Software II', 3, 2),
 (6, 'Elementos de computadores', 3, 2),
 (7, 'Redes de Computadores', 4, 2),
 (8, 'Algoritmos', 4, 2),
