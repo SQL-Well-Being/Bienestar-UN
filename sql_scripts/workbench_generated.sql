@@ -1043,7 +1043,7 @@ COMMENT = 'Relación muchos a muchos entre estudiante y convocatoria.';
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DEPORTE (
-  depo_id INT NOT NULL AUTO_INCREMENT COMMENT 'Primary key del deporte.',
+  depo_id INT NOT NULL COMMENT 'Primary key del deporte.',
   depo_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre del deporte.',
   PRIMARY KEY (depo_id))
 
@@ -1080,50 +1080,19 @@ COMMENT = 'Selección deportiva que representa a la universidad en algún deport
 
 -- (INDEX) -- CREATE INDEX fk_SELECCION_DEPORTIVA_DOCENTE_ACTIVIDAD_EXTRACURRICULAR1_idx ON bienestar_UN.SELECCION_DEPORTIVA (sel_doc_per_DNI_entrenador ASC) VISIBLE; --
 
-
--- -----------------------------------------------------
--- Table bienestar_UN.SEMILLERO_DEPORTIVO
--- -----------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS bienestar_UN.SEMILLERO_DEPORTIVO (
-  sem_id INT NOT NULL COMMENT 'Primary key semillero deportivo.',
-  sem_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre del semillero.',
-  sem_cupos INT NOT NULL COMMENT 'Cupos disponibles en el semillero.',
-  sem_depo_id INT NOT NULL COMMENT 'Deporte del semillero.',
-  sem_doc_per_DNI_entrenador INT NOT NULL COMMENT 'Entrenador del semillero deporitvo.',
-  PRIMARY KEY (sem_id),
-  CONSTRAINT fk_SEMILLERO_DEPORTIVO_DEPORTE1
-    FOREIGN KEY (sem_depo_id)
-    REFERENCES bienestar_UN.DEPORTE (depo_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_SEMILLERO_DEPORTIVO_DOCENTE_ACTIVIDAD_EXTRACURRICULAR1
-    FOREIGN KEY (sem_doc_per_DNI_entrenador)
-    REFERENCES bienestar_UN.DOCENTE_ACTIVIDAD_EXTRACURRICULAR (doc_per_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-
-COMMENT = 'El semillero se encarga de realizar entrenamientos a los estudiantes incritos y formarlos en el deporte de este. Sin embargo no representa a la universidad en eventos deportivos.';
-
--- (INDEX) -- CREATE INDEX fk_SEMILLERO_DEPORTIVO_DEPORTE1_idx ON bienestar_UN.SEMILLERO_DEPORTIVO (sem_depo_id ASC) VISIBLE; --
-
--- (INDEX) -- CREATE INDEX fk_SEMILLERO_DEPORTIVO_DOCENTE_ACTIVIDAD_EXTRACURRICULAR1_idx ON bienestar_UN.SEMILLERO_DEPORTIVO (sem_doc_per_DNI_entrenador ASC) VISIBLE; --
-
-
 -- -----------------------------------------------------
 -- Table bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA
 -- -----------------------------------------------------
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA (
-  con_sel_codigo INT NOT NULL,
+  con_sel_codigo INT NOT NULL AUTO_INCREMENT,
   con_sel_descripcion MEDIUMTEXT NOT NULL,
   con_sel_periodo_academico VARCHAR(6) NOT NULL,
-  con_sel_sel_id INT NOT NULL,
+  con_sel_id INT NOT NULL,
   PRIMARY KEY (con_sel_codigo),
   CONSTRAINT fk_CONVOCATORIA_SELECCION_DEPORTIVA_SELECCION_DEPORTIVA1
-    FOREIGN KEY (con_sel_sel_id)
+    FOREIGN KEY (con_sel_id)
     REFERENCES bienestar_UN.SELECCION_DEPORTIVA (sel_id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -1131,54 +1100,6 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA (
 COMMENT = 'Convocatoria especifica para aplicar a selección deportiva.';
 
 -- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_SELECCION_DEPORTIVA_SELECCION_DEPORTIVA1_idx ON bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA (con_sel_sel_id ASC) VISIBLE; --
-
-
--- -----------------------------------------------------
--- Table bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO
--- -----------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO (
-  con_sem_codigo INT NOT NULL COMMENT 'Codigo que define al semillero.',
-  con_sem_descripcion MEDIUMTEXT NOT NULL COMMENT 'Descripción de la convocatoria del semillero.',
-  con_sem_periodo_academico VARCHAR(6) NOT NULL COMMENT 'Periodo académico en el que se realiza la convocatoria.',
-  con_sem_sem_id INT NOT NULL,
-  PRIMARY KEY (con_sem_codigo),
-  CONSTRAINT fk_CONVOCATORIA_SEMILLERO_DEPORTIVO_SEMILLERO_DEPORTIVO1
-    FOREIGN KEY (con_sem_sem_id)
-    REFERENCES bienestar_UN.SEMILLERO_DEPORTIVO (sem_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-
-COMMENT = 'En la convocatoria de semillero deportivo se decide si un estudiante puede participar en un semillero deportivo.';
-
--- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_SEMILLERO_DEPORTIVO_SEMILLERO_DEPORTIVO1_idx ON bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO (con_sem_sem_id ASC) VISIBLE; --
-
-
--- -----------------------------------------------------
--- Table bienestar_UN.ENTRENAMIENTO_SEMILLERO
--- -----------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS bienestar_UN.ENTRENAMIENTO_SEMILLERO (
-  ent_sem_eve_id INT NOT NULL,
-  sem_id INT NOT NULL,
-  PRIMARY KEY (ent_sem_eve_id),
-  CONSTRAINT fk_ENTRENAMIENTO_SEMILLERO_EVENTO_GENERAL1
-    FOREIGN KEY (ent_sem_eve_id)
-    REFERENCES bienestar_UN.EVENTO_GENERAL (eve_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_ENTRENAMIENTO_SEMILLERO_SEMILLERO_DEPORTIVO1
-    FOREIGN KEY (sem_id)
-    REFERENCES bienestar_UN.SEMILLERO_DEPORTIVO (sem_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-
-COMMENT = 'Evento que define el entrenamiento de un semillero.';
-
--- (INDEX) -- CREATE INDEX fk_ENTRENAMIENTO_SEMILLERO_SEMILLERO_DEPORTIVO1_idx ON bienestar_UN.ENTRENAMIENTO_SEMILLERO (sem_id ASC) VISIBLE; --
-
 
 -- -----------------------------------------------------
 -- Table bienestar_UN.ENTRENAMIENTO_SELECCION
@@ -1211,12 +1132,12 @@ COMMENT = 'Evento de entrenamiento de una selección.';
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA (
-  con_sel_sel_id INT NOT NULL,
+  con_sel_codigo INT NOT NULL,
   est_per_DNI INT NOT NULL,
   es_admitido TINYINT NULL DEFAULT 0,
-  PRIMARY KEY (con_sel_sel_id, est_per_DNI),
+  PRIMARY KEY (con_sel_codigo, est_per_DNI),
   CONSTRAINT fk_CONVOCATORIA_SELECCION_DEPORTIVA_has_ESTUDIANTE_CONVOCATOR1
-    FOREIGN KEY (con_sel_sel_id)
+    FOREIGN KEY (con_sel_codigo)
     REFERENCES bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA (con_sel_codigo)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -1234,76 +1155,21 @@ COMMENT = 'Tabla pivote entre seleccion deportiva y estudiante.';
 
 
 -- -----------------------------------------------------
--- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO
--- -----------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO (
-  con_sem_id INT NOT NULL,
-  est_per_DNI INT NOT NULL,
-  es_admitido TINYINT NOT NULL DEFAULT 0 COMMENT 'Booleano, se define si es admitido (True), o no admitido (False).',
-  PRIMARY KEY (con_sem_id, est_per_DNI),
-  CONSTRAINT fk_CONVOCATORIA_SEMILLERO_DEPORTIVO_has_ESTUDIANTE_CONVOCATOR1
-    FOREIGN KEY (con_sem_id)
-    REFERENCES bienestar_UN.CONVOCATORIA_SEMILLERO_DEPORTIVO (con_sem_codigo)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_CONVOCATORIA_SEMILLERO_DEPORTIVO_has_ESTUDIANTE_ESTUDIANTE1
-    FOREIGN KEY (est_per_DNI)
-    REFERENCES bienestar_UN.ESTUDIANTE (est_per_DNI)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-
-COMMENT = 'Relación muchos a muchos estudiante convocatoria semillero.';
-
--- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_SEMILLERO_DEPORTIVO_has_ESTUDIANTE_ESTUDIAN_idx ON bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO (est_per_DNI ASC) VISIBLE; --
-
--- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_SEMILLERO_DEPORTIVO_has_ESTUDIANTE_CONVOCAT_idx ON bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SEMILLERO_DEPORTIVO (con_sem_id ASC) VISIBLE; --
-
-
--- -----------------------------------------------------
--- Table bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE
--- -----------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE (
-  sem_id INT NOT NULL,
-  est_per_DNI INT NOT NULL,
-  PRIMARY KEY (sem_id, est_per_DNI),
-  CONSTRAINT fk_SEMILLERO_DEPORTIVO_has_ESTUDIANTE_SEMILLERO_DEPORTIVO1
-    FOREIGN KEY (sem_id)
-    REFERENCES bienestar_UN.SEMILLERO_DEPORTIVO (sem_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE_ESTUDIANTE1
-    FOREIGN KEY (est_per_DNI)
-    REFERENCES bienestar_UN.ESTUDIANTE (est_per_DNI)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-
-COMMENT = 'Relación muchos a muchos entre estudiante y semillero deportivo.';
-
--- (INDEX) -- CREATE INDEX fk_SEMILLERO_DEPORTIVO_has_ESTUDIANTE_SEMILLERO_DEPORTIVO1_idx ON bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE (sem_id ASC) VISIBLE; --
-
--- (INDEX) -- CREATE INDEX fk_SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE_ESTUDIANTE1_idx ON bienestar_UN.SEMILLERO_DEPORTIVO_TIENE_ESTUDIANTE (est_per_DNI ASC) VISIBLE; --
-
-
--- -----------------------------------------------------
 -- Table bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE
 -- -----------------------------------------------------
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE (
   sel_id INT NOT NULL,
-  est_per_id INT NOT NULL,
-  PRIMARY KEY (sel_id, est_per_id),
+  est_per_DNI INT NOT NULL,
+  PRIMARY KEY (sel_id, est_per_DNI),
   CONSTRAINT fk_SELECCION_DEPORTIVA_has_ESTUDIANTE_SELECCION_DEPORTIVA1
     FOREIGN KEY (sel_id)
     REFERENCES bienestar_UN.SELECCION_DEPORTIVA (sel_id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_SELECCION_DEPORTIVA_TIENE_ESTUDIANTE_ESTUDIANTE1
-    FOREIGN KEY (est_per_id)
+    FOREIGN KEY (est_per_DNI)
     REFERENCES bienestar_UN.ESTUDIANTE (est_per_DNI)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
