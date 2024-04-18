@@ -317,7 +317,7 @@ COMMENT = 'Historia académica específica a un estudiante.';
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.ASIGNATURA_CURSADA (
   asic_id INT NOT NULL,
-  asic_nota_final DECIMAL(1) NOT NULL COMMENT 'Nota final registrada en el sistema.',
+  asic_nota_final DECIMAL(2, 1) NOT NULL COMMENT 'Nota final registrada en el sistema.',
   asic_periodo_academico VARCHAR(6) NOT NULL COMMENT 'Periodo académico en la que el estudiante curso la asignatura.',
   asic_hist_codigo INT NOT NULL COMMENT 'Relación a la historia académica del estudiante.',
   asic_asi_codigo INT UNSIGNED NOT NULL COMMENT 'Código de la asignatura que se cursó.',
@@ -344,11 +344,10 @@ COMMENT = 'El registro de una asignatura cursada por un estudiante, específican
 -- Table bienestar_UN.EDIFICIO
 -- -----------------------------------------------------
 
-
 CREATE TABLE IF NOT EXISTS bienestar_UN.EDIFICIO (
   edi_id VARCHAR(45) NOT NULL,
-  edi_nombre VARCHAR(45) COMMENT 'Nombre del edificio.',
-  edi_direccion VARCHAR(45) NOT NULL COMMENT 'Dirección del edificio.',
+  edi_nombre VARCHAR(320) COMMENT 'Nombre del edificio.',
+  edi_direccion VARCHAR(450) NOT NULL COMMENT 'Dirección del edificio.',
   PRIMARY KEY (edi_id))
 
 COMMENT = 'Infraestructura de la universidad en la que se realizan actividades.';
