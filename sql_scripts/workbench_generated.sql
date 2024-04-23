@@ -599,7 +599,7 @@ COMMENT = 'Incapacidad de un estudiante en un periodo de tiempo definido.';
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.DISCAPACIDAD (
   dis_id INT NOT NULL,
-  dis_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre de la discapacidad.',
+  dis_nombre VARCHAR(300) NOT NULL COMMENT 'Nombre de la discapacidad.',
   PRIMARY KEY (dis_id))
 
 COMMENT = 'Tipo de discapacidad.';
@@ -639,7 +639,7 @@ COMMENT = 'Relación muchos a muchos entre discapacidad y perfil de salud.';
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_EVENTO_SALUD (
   ses_salud_eve_id INT NOT NULL COMMENT 'Primary key del evento salud.',
-  ses_salud_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre del evento de salud.',
+  ses_salud_nombre VARCHAR(200) NOT NULL COMMENT 'Nombre del evento de salud.',
   PRIMARY KEY (ses_salud_eve_id),
   CONSTRAINT fk_SESION_EVENTO_SALUD_EVENTO_GENERAL1
     FOREIGN KEY (ses_salud_eve_id)
@@ -656,7 +656,7 @@ COMMENT = 'Sesión evento en salud grupal.';
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CITA_INDIVIDUAL (
-  cit_tipo VARCHAR(45) NOT NULL COMMENT 'Tipo de cita.',
+  cit_tipo VARCHAR(120) NOT NULL COMMENT 'Tipo de cita.',
   cit_est_per_DNI INT NOT NULL COMMENT 'Foreign key al estudiante.',
   cit_fun_per_DNI INT NOT NULL COMMENT 'Foreign key al funcionario que realiza la cita individual.',
   cit_eve_id INT NOT NULL,
@@ -736,7 +736,7 @@ COMMENT = 'Convocatoria al programa de gestión de proyectos en un periodo acad�
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.PROYECTO (
   pro_id INT NOT NULL COMMENT 'Primary key del proyecto.',
-  pro_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre del proyecto.',
+  pro_nombre VARCHAR(100) NOT NULL COMMENT 'Nombre del proyecto.',
   pro_descripcion MEDIUMTEXT NOT NULL COMMENT 'Descripción del proyecto.',
   pro_objetivos MEDIUMTEXT NOT NULL COMMENT 'Lista de objetivos del proyecto.',
   PRIMARY KEY (pro_id))
@@ -918,7 +918,7 @@ COMMENT = 'Relación muchos a muchos, asistencia del estudiante a la sesión tal
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.TALLER_CULTURAL (
-  tall_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre del taller.',
+  tall_nombre VARCHAR(200) NOT NULL COMMENT 'Nombre del taller.',
   tall_eve_id INT NOT NULL COMMENT 'Primary key del evento del taller.',
   doc_per_DNI_tallerista INT NOT NULL COMMENT 'Foreign key del tallerista.',
   PRIMARY KEY (tall_eve_id),
@@ -945,7 +945,7 @@ COMMENT = 'Taller cultural realizado por un tallerista. Hereda de evento general
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL (
   gru_id INT NOT NULL COMMENT 'Estructuras',
-  gru_nombre VARCHAR(45) NOT NULL COMMENT 'Nombre del grupo.',
+  gru_nombre VARCHAR(220) NOT NULL COMMENT 'Nombre del grupo.',
   gru_cupos INT UNSIGNED NOT NULL COMMENT 'Número de cupos disponibles en el grupo artístico.',
   gru_doc_per_DNI_director INT NOT NULL COMMENT 'Director del proyecto.',
   PRIMARY KEY (gru_id, gru_doc_per_DNI_director),

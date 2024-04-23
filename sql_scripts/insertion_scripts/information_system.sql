@@ -688,6 +688,15 @@ VALUES
 ('910', 'Instituto Colombiano de Normas Técnicas y Certificación: Icontec', 'Ciudad Universitaria'),
 ('935', 'Sede Sector CAN', 'Ciudad Universitaria');
 
+-- Inserciones de espacios:
+-- Medicina:
+INSERT INTO bienestar_UN.ESPACIO (esp_id, esp_nombre, esp_capacidad, esp_edi_id) VALUES
+(10, 'Consultorio A', 5, '471'),
+(11, 'Consultorio B', 3, '471'),
+(12, 'Consultorio C', 5, '471'),
+(13, 'Consultorio D', 3, '471'),
+(14, 'Consultorio E', 3, '471'),
+(15, 'Consultorio F', 3, '471');
 
 -- Inserciones de salones para el edificio "401" Facultad de ingeniería
 -- Primer piso
@@ -699,22 +708,16 @@ VALUES
 (24, 'Salón 104', 50, '401'),
 (25, 'Salón 105', 50, '401'),
 (26, 'Salón 106', 50, '401'),
-(27, 'Salón 107', 50, '401');
-
+(27, 'Salón 107', 50, '401'),
 -- Segundo piso
-INSERT INTO bienestar_UN.ESPACIO (esp_id, esp_nombre, esp_capacidad, esp_edi_id) 
-VALUES 
 (28, 'Salón 201', 50, '401'),
 (29, 'Salón 202', 50, '401'),
 (30, 'Salón 203', 50, '401'),
 (31, 'Salón 204', 50, '401'),
 (32, 'Salón 205', 50, '401'),
 (33, 'Salón 206', 50, '401'),
-(34, 'Salón 207', 50, '401');
-
+(34, 'Salón 207', 50, '401'),
 -- Tercer piso
-INSERT INTO bienestar_UN.ESPACIO (esp_id, esp_nombre, esp_capacidad, esp_edi_id) 
-VALUES 
 (35, 'Salón 301', 50, '401'),
 (36, 'Salón 302', 50, '401'),
 (37, 'Salón 303', 50, '401'),
