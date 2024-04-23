@@ -753,7 +753,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.PARTICIPACION_PGP (
   par_pgp_pro_id INT NOT NULL COMMENT 'Foreign key al proyecto.',
   par_pgp_con_pgp_codigo INT NOT NULL COMMENT 'Foreign key a la convocatoria.',
   par_pgp_esta_aprobado TINYINT NOT NULL DEFAULT 0 COMMENT 'Estado: Aprobado o no aprobado.',
-  par_pgp_presupuesto DECIMAL(2) NOT NULL COMMENT 'Presupuesto aprobado para el proyecto.',
+  par_pgp_presupuesto DECIMAL(10, 1) NOT NULL COMMENT 'Presupuesto aprobado para el proyecto.',
   PRIMARY KEY (par_pgp_pro_id, par_pgp_con_pgp_codigo),
   CONSTRAINT fk_PARTICIPACION_PGP_PROYECTO1
     FOREIGN KEY (par_pgp_pro_id)
@@ -765,7 +765,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.PARTICIPACION_PGP (
     REFERENCES bienestar_UN.CONVOCATORIA_PGP (con_pgp_codigo)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-
+ 
 COMMENT = 'Participación por parte de un proyecto en PGP, relación debil.';
 
 -- (INDEX) -- CREATE INDEX fk_PARTICIPACION_PGP_CONVOCATORIA_PGP1_idx ON bienestar_UN.PARTICIPACION_PGP (par_pgp_con_pgp_codigo ASC) VISIBLE; --
@@ -804,7 +804,7 @@ COMMENT = 'Relación muchos a muchos entre estudiantes y proyectos.';
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_DE_TALLER (
-  ses_taller_nombre VARCHAR(45) NOT NULL DEFAULT 0 COMMENT 'Nombre del taller.',
+  ses_taller_nombre VARCHAR(250) NOT NULL DEFAULT 0 COMMENT 'Nombre del taller.',
   ses_taller_eve_id INT NOT NULL,
   ses_taller_per_tallerista_DNI INT NOT NULL COMMENT 'Tallerista encargado de la sesión.',
   PRIMARY KEY (ses_taller_eve_id),
@@ -833,7 +833,7 @@ COMMENT = 'Sesión dada a la comunidad, en la que pueden participar varios estud
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_DE_ACOMPANAMIENTO (
   -- ses_acom_nombre VARCHAR(45) GENERATED ALWAYS AS ()  COMMENT 'Nombre autogenerado.',
-  ses_acom_nombre VARCHAR(45) COMMENT 'Nombre autogenerado.',
+  ses_acom_nombre VARCHAR(100) COMMENT 'Nombre autogenerado.',
   ses_acom_eve_id INT NOT NULL COMMENT 'Evento primary key.',
   ses_acom_fun_per_DNI_encargado INT NOT NULL COMMENT 'Foreign key al funcionario encargado.',
   PRIMARY KEY (ses_acom_eve_id),
@@ -848,7 +848,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.SESION_DE_ACOMPANAMIENTO (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 
-COMMENT = 'Sesión de acompañamiento pedidad por un estudiante 1 a 1 con un funcionaria.';
+COMMENT = 'Sesión de acompañamiento pedida por un estudiante 1 a 1 con un funcionaria.';
 
 -- (INDEX) -- CREATE INDEX fk_SESION_DE_TALLER_EVENTO_GENERAL1_idx ON bienestar_UN.SESION_DE_ACOMPANAMIENTO (ses_acom_eve_id ASC) VISIBLE; --
 
@@ -862,7 +862,7 @@ COMMENT = 'Sesión de acompañamiento pedidad por un estudiante 1 a 1 con un fun
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CITA_DE_ASESORIA (
   -- cit_ase_nombre VARCHAR(45) GENERATED ALWAYS AS ()  COMMENT 'Nombre autogenerado.',
-  cit_ase_nombre VARCHAR(45) COMMENT 'Nombre autogenerado.',
+  cit_ase_nombre VARCHAR(100) COMMENT 'Nombre autogenerado.',
   cit_ase_eve_id INT NOT NULL COMMENT 'Primary key al evento.',
   cit_ase_tipo ENUM("CRISIS EMOCIONAL", "TRAMITES", "ACADEMICO") NOT NULL COMMENT 'Tipo de la cita de asesoria.',
   cit_ase_est_per_DNI INT NOT NULL COMMENT 'Foreign key al estudiante.',

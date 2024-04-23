@@ -698,6 +698,12 @@ INSERT INTO bienestar_UN.ESPACIO (esp_id, esp_nombre, esp_capacidad, esp_edi_id)
 (14, 'Consultorio E', 3, '471'),
 (15, 'Consultorio F', 3, '471');
 
+-- Oficinas atención
+INSERT INTO bienestar_UN.ESPACIO (esp_id, esp_nombre, esp_capacidad, esp_edi_id) VALUES
+(16, 'Oficina A', 4, '508'),
+(17, 'Oficina B', 5, '508'),
+(18, 'Oficina C', 3, '508');
+
 -- Inserciones de salones para el edificio "401" Facultad de ingeniería
 -- Primer piso
 INSERT INTO bienestar_UN.ESPACIO (esp_id, esp_nombre, esp_capacidad, esp_edi_id) 
