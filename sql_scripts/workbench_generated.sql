@@ -54,13 +54,13 @@ DROP TABLE IF EXISTS bienestar_UN.PERFIL_DE_SALUD_TIENE_DISCAPACIDAD ;
 DROP TABLE IF EXISTS bienestar_UN.DISCAPACIDAD ;
 DROP TABLE IF EXISTS bienestar_UN.INCAPACIDAD ;
 DROP TABLE IF EXISTS bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION ;
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_ESPECIFICA ;
-DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_GENERAL ;
 DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO ;
 DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ECONOMICA ;
 DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_TRANSPORTE ;
 DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA ;
 DROP TABLE IF EXISTS bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_ESPECIFICA ;
+DROP TABLE IF EXISTS bienestar_UN.CONVOCATORIA_GENERAL ;
 DROP TABLE IF EXISTS bienestar_UN.EVENTO_GENERAL ;
 DROP TABLE IF EXISTS bienestar_UN.RESERVACION ;
 DROP TABLE IF EXISTS bienestar_UN.ESPACIO ;
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.DEPARTAMENTO (
 
 COMMENT = 'Departamento relacionado a alguna facultad.';
 
--- (INDEX) -- CREATE INDEX fk_DEPARTAMENTO_FACULTAD1_idx ON bienestar_UN.DEPARTAMENTO (dep_fac_id ASC) VISIBLE; --
+CREATE INDEX fk_DEPARTAMENTO_FACULTAD1_idx ON bienestar_UN.DEPARTAMENTO (dep_fac_id ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.ASIGNATURA (
 
 COMMENT = 'Asignatura ofertada por  un departamento. Afecta el progreso en la historia académica de un estudiante.';
 
--- (INDEX) -- CREATE INDEX fk_ASIGNATURA_DEPARTAMENTO1_idx ON bienestar_UN.ASIGNATURA (asi_dep_id ASC) VISIBLE; --
+CREATE INDEX fk_ASIGNATURA_DEPARTAMENTO1_idx ON bienestar_UN.ASIGNATURA (asi_dep_id ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -277,7 +277,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.PROGRAMA_CURRICULAR (
 
 COMMENT = 'Programa curricular ofertado por un departamento.';
 
--- (INDEX) -- CREATE INDEX fk_PROGRAMA_CURRICULAR_DEPARTAMENTO1_idx ON bienestar_UN.PROGRAMA_CURRICULAR (pro_dep_id ASC) VISIBLE; --
+CREATE INDEX fk_PROGRAMA_CURRICULAR_DEPARTAMENTO1_idx ON bienestar_UN.PROGRAMA_CURRICULAR (pro_dep_id ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -307,8 +307,8 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.HISTORIA_ACADEMICA (
 
 COMMENT = 'Historia académica específica a un estudiante.';
 
--- (INDEX) -- CREATE INDEX fk_HISTORIA_ACADEMICA_PROGRAMA_CURRICULAR1_idx ON bienestar_UN.HISTORIA_ACADEMICA (hist_pro_codigo ASC) VISIBLE; --
-
+CREATE INDEX fk_HISTORIA_ACADEMICA_PROGRAMA_CURRICULAR1_idx ON bienestar_UN.HISTORIA_ACADEMICA (hist_pro_codigo ASC) VISIBLE;
+CREATE INDEX fk_HISTORIA_ACADEMICA_ESTUDIANTE_idx ON  bienestar_UN.HISTORIA_ACADEMICA (hist_est_per_DNI ASC) VISIBLE;
 
 -- -----------------------------------------------------
 -- Table bienestar_UN.ASIGNATURA_CURSADA
@@ -335,9 +335,9 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.ASIGNATURA_CURSADA (
 
 COMMENT = 'El registro de una asignatura cursada por un estudiante, específicando su nota.';
 
--- (INDEX) -- CREATE INDEX fk_ASIGNATURA_CURSADA_HISTORIA_ACADEMICA1_idx ON bienestar_UN.ASIGNATURA_CURSADA (asic_hist_codigo ASC) VISIBLE; --
+CREATE INDEX fk_ASIGNATURA_CURSADA_HISTORIA_ACADEMICA1_idx ON bienestar_UN.ASIGNATURA_CURSADA (asic_hist_codigo ASC) VISIBLE; --
 
--- (INDEX) -- CREATE INDEX fk_ASIGNATURA_CURSADA_ASIGNATURA1_idx ON bienestar_UN.ASIGNATURA_CURSADA (asic_asi_codigo ASC) VISIBLE; --
+CREATE INDEX fk_ASIGNATURA_CURSADA_ASIGNATURA1_idx ON bienestar_UN.ASIGNATURA_CURSADA (asic_asi_codigo ASC) VISIBLE; --
 
 
 -- -----------------------------------------------------
@@ -372,7 +372,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.ESPACIO (
 
 COMMENT = 'Espacio de la universidad, puede estar relacionado a un edificio o no.';
 
--- (INDEX) -- CREATE INDEX fk_ESPACIO_EDIFICIO1_idx ON bienestar_UN.ESPACIO (esp_edi_id ASC) VISIBLE; --
+CREATE INDEX fk_ESPACIO_EDIFICIO1_idx ON bienestar_UN.ESPACIO (esp_edi_id ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -394,7 +394,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.RESERVACION (
 
 COMMENT = 'Reservación de un espacio universitario, en el que se específica el espacio, fecha inicial y fecha final en el que esta reservado un espacio.';
 
--- (INDEX) -- CREATE INDEX fk_RESERVACION_EDIFICIO1_idx ON bienestar_UN.RESERVACION (res_esp_id ASC) VISIBLE; --
+CREATE INDEX fk_RESERVACION_EDIFICIO1_idx ON bienestar_UN.RESERVACION (res_esp_id ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -417,6 +417,42 @@ COMMENT = 'La relación en donde se almacenan todos los eventos en los que es ne
 
 -- (INDEX) -- CREATE INDEX fk_EVENTO_GENERAL_RESERVACION1_idx ON bienestar_UN.EVENTO_GENERAL (eve_res_id ASC) VISIBLE; --
 
+-- -----------------------------------------------------
+-- Table bienestar_UN.CONVOCATORIA_GENERAL
+-- -----------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_GENERAL (
+  con_gen_codigo VARCHAR(13) GENERATED ALWAYS AS (CONCAT("PG", con_gen_tipo, "-", con_gen_periodo_academico)) STORED COMMENT 'Id de la tabla Convocatoria general.',
+  con_gen_tipo ENUM("AL", "AJ", "TR", "E") NOT NULL COMMENT 'Tipo del programa de gestion (Alimentacion, alojamiento, transporte, economica)',
+  con_gen_periodo_academico VARCHAR(6) NOT NULL COMMENT 'El periodo académico del cual la convocatoria hace parte.',
+  con_gen_horas_de_corresponsabilidad INT NOT NULL COMMENT 'Las horas de corresponsabilidad las cuales los estudiantes beneficiarios deben cumplir.',
+  PRIMARY KEY (con_gen_codigo))
+
+COMMENT = 'Es el tipo de convocatoria que lanza la universidad, que a su vez puede tener convocatorias específicas en las que los estudiantes pueden participar.';
+
+
+-- -----------------------------------------------------
+-- Table bienestar_UN.CONVOCATORIA_ESPECIFICA
+-- -----------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_ESPECIFICA (
+  con_esp_id INT NOT NULL AUTO_INCREMENT,
+  con_esp_nombre VARCHAR(100) NOT NULL COMMENT 'Nombre de convocatoría específica.',
+  con_esp_descripcion LONGTEXT NOT NULL COMMENT 'Descripción de convocatoria específica.',
+  con_esp_con_gen_codigo VARCHAR(50) NOT NULL COMMENT 'Foreign key a la convocatoria general.',
+  PRIMARY KEY (con_esp_id),
+  CONSTRAINT fk_CONVOCATORIA_ESPECIFICA_CONVOCATORIA_GENERAL1
+    FOREIGN KEY (con_esp_con_gen_codigo)
+    REFERENCES bienestar_UN.CONVOCATORIA_GENERAL (con_gen_codigo)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+
+COMMENT = 'La subdivisión de la convocatoria general, que determina las características del apoyo.';
+
+-- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_ESPECIFICA_CONVOCATORIA_GENERAL1_idx ON bienestar_UN.CONVOCATORIA_ESPECIFICA (con_esp_con_gen_codigo ASC) VISIBLE; --
+
 
 -- -----------------------------------------------------
 -- Table bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION
@@ -427,7 +463,13 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION (
   ben_id INT NOT NULL,
   ben_periodo_academico VARCHAR(6) NOT NULL COMMENT 'Periodo academico en el que el beneficio es brindado al estudiante.',
   ben_est_per_DNI INT NOT NULL COMMENT 'DNI del estudiante beneficiario.',
+  con_esp_id INT NOT NULL COMMENT 'Id de la convocatoria en la cual se le otorgo el beneficio',
   PRIMARY KEY (ben_id),
+  CONSTRAINT fk_BENEFICIARIO_PROGRAMA_DE_GESTION_CONVOCATORIA_ESP
+    FOREIGN KEY (con_esp_id)
+    REFERENCES bienestar_UN.CONVOCATORIA_ESPECIFICA (con_esp_id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT fk_BENEFICIARIO_PROGRAMA_DE_GESTION_ESTUDIANTE1
     FOREIGN KEY (ben_est_per_DNI)
     REFERENCES bienestar_UN.ESTUDIANTE (est_per_DNI)
@@ -436,7 +478,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION (
 
 COMMENT = 'Guarda a los estudiantes beneficiarios en un periodo académico.';
 
--- (INDEX) -- CREATE INDEX fk_BENEFICIARIO_PROGRAMA_DE_GESTION_ESTUDIANTE1_idx ON bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION (ben_est_per_DNI ASC) VISIBLE; --
+CREATE INDEX fk_BENEFICIARIO_PROGRAMA_DE_GESTION_ESTUDIANTE1_idx ON bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION (ben_est_per_DNI ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -511,44 +553,6 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO (
 
 COMMENT = 'Se le otorga una residencia estudiantil externa al estudiante.';
 
-
--- -----------------------------------------------------
--- Table bienestar_UN.CONVOCATORIA_GENERAL
--- -----------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_GENERAL (
-  con_gen_codigo VARCHAR(13) GENERATED ALWAYS AS (CONCAT("PG", con_gen_tipo, "-", con_gen_periodo_academico)) STORED COMMENT 'Id de la tabla Convocatoria general.',
-  con_gen_tipo ENUM("AL", "AJ", "TR", "E") NOT NULL COMMENT 'Tipo del programa de gestion (Alimentacion, alojamiento, transporte, economica)',
-  con_gen_periodo_academico VARCHAR(6) NOT NULL COMMENT 'El periodo académico del cual la convocatoria hace parte.',
-  con_gen_horas_de_corresponsabilidad INT NOT NULL COMMENT 'Las horas de corresponsabilidad las cuales los estudiantes beneficiarios deben cumplir.',
-  PRIMARY KEY (con_gen_codigo))
-
-COMMENT = 'Es el tipo de convocatoria que lanza la universidad, que a su vez puede tener convocatorias específicas en las que los estudiantes pueden participar.';
-
-
--- -----------------------------------------------------
--- Table bienestar_UN.CONVOCATORIA_ESPECIFICA
--- -----------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_ESPECIFICA (
-  con_esp_id INT NOT NULL AUTO_INCREMENT,
-  con_esp_nombre VARCHAR(100) NOT NULL COMMENT 'Nombre de convocatoría específica.',
-  con_esp_descripcion LONGTEXT NOT NULL COMMENT 'Descripción de convocatoria específica.',
-  con_esp_con_gen_codigo VARCHAR(50) NOT NULL COMMENT 'Foreign key a la convocatoria general.',
-  PRIMARY KEY (con_esp_id),
-  CONSTRAINT fk_CONVOCATORIA_ESPECIFICA_CONVOCATORIA_GENERAL1
-    FOREIGN KEY (con_esp_con_gen_codigo)
-    REFERENCES bienestar_UN.CONVOCATORIA_GENERAL (con_gen_codigo)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-
-COMMENT = 'La subdivisión de la convocatoria general, que determina las características del apoyo.';
-
--- (INDEX) -- CREATE INDEX fk_CONVOCATORIA_ESPECIFICA_CONVOCATORIA_GENERAL1_idx ON bienestar_UN.CONVOCATORIA_ESPECIFICA (con_esp_con_gen_codigo ASC) VISIBLE; --
-
-
 -- -----------------------------------------------------
 -- Table bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
 -- -----------------------------------------------------
@@ -576,7 +580,7 @@ COMMENT = 'Participación del estudiante en convocatoría específica. Relación
 -- -----------------------------------------------------c
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.INCAPACIDAD (
-  inc_id INT NOT NULL,
+  inc_id INT NOT NULL AUTO_INCREMENT,
   inc_fecha_inicio DATETIME NULL COMMENT 'Fecha de inicio de la incapacidad.',
   inc_fecha_fin DATETIME NULL COMMENT 'Fecha final de la incapacidad del estudiante.',
   inc_est_per_DNI INT NOT NULL COMMENT 'Foreign key al estudiante.',
@@ -679,7 +683,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.CITA_INDIVIDUAL (
 
 COMMENT = 'Cita individual asignada a un estudiante.';
 
--- (INDEX) -- CREATE INDEX fk_CITA_INDIVIDUAL_ESTUDIANTE1_idx ON bienestar_UN.CITA_INDIVIDUAL (cit_est_per_DNI ASC) VISIBLE; --
+CREATE INDEX fk_CITA_INDIVIDUAL_ESTUDIANTE1_idx ON bienestar_UN.CITA_INDIVIDUAL (cit_est_per_DNI ASC) VISIBLE;
 
 -- (INDEX) -- CREATE INDEX fk_CITA_INDIVIDUAL_FUNCIONARIO1_idx ON bienestar_UN.CITA_INDIVIDUAL (cit_fun_per_DNI ASC) VISIBLE; --
 
@@ -982,7 +986,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTU
 
 COMMENT = 'Relación muchos a muchos entre el grupo artístico y estudiantes.';
 
--- (INDEX) -- CREATE INDEX fk_GRUPO_ARTISTICO_INSTITUCIONAL_has_ESTUDIANTE_ESTUDIANTE1_idx ON bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE (est_per_DNI ASC) VISIBLE; --
+CREATE INDEX fk_GRUPO_ARTISTICO_INSTITUCIONAL_has_ESTUDIANTE_ESTUDIANTE1_idx ON bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE (est_per_DNI ASC) VISIBLE;
 
 -- (INDEX) -- CREATE INDEX fk_GRUPO_ARTISTICO_INSTITUCIONAL_has_ESTUDIANTE_GRUPO_ARTIS_idx ON bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE (gru_id ASC) VISIBLE; --
 
@@ -1178,7 +1182,7 @@ COMMENT = 'Relación muchos a muchos entre estudiante y selección deportiva.';
 
 -- (INDEX) -- CREATE INDEX fk_SELECCION_DEPORTIVA_has_ESTUDIANTE_SELECCION_DEPORTIVA1_idx ON bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE (sel_id ASC) VISIBLE; --
 
--- (INDEX) -- CREATE INDEX fk_SELECCION_DEPORTIVA_TIENE_ESTUDIANTE_ESTUDIANTE1_idx ON bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE (est_per_id ASC) VISIBLE; --
+CREATE INDEX fk_SELECCION_DEPORTIVA_TIENE_ESTUDIANTE_ESTUDIANTE1_idx ON bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE (est_per_DNI ASC) VISIBLE;
 
 
 -- -----------------------------------------------------

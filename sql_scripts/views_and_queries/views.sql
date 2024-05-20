@@ -1,3 +1,5 @@
+USE bienestar_UN;
+
 DROP VIEW IF EXISTS vw_info_academica_estudiante;
 
 CREATE VIEW vw_info_academica_estudiante 

@@ -15,27 +15,27 @@ VALUES
 INSERT INTO bienestar_UN.CONVOCATORIA_ESPECIFICA
     (con_esp_nombre, con_esp_descripcion, con_esp_con_gen_codigo)
 VALUES
-    ("Programa de Gestion Alimentaria - Desayuno", 
+    ("Programa de Gestion Alimentaria - DESAYUNO", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) desayuno.",
     "PGAL-2023-2"
     ),
-    ("Programa de Gestion Alimentaria - Almuerzo", 
+    ("Programa de Gestion Alimentaria - ALMUERZO", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) almuerzo.",
     "PGAL-2023-2"
     ),
-    ("Programa de Gestion Alimentaria - Cena", 
+    ("Programa de Gestion Alimentaria - CENA", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) cena",
     "PGAL-2023-2"
     ),
-    ("Programa de Gestion Alimentaria - Desayuno", 
+    ("Programa de Gestion Alimentaria - DESAYUNO", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) desayuno.",
     "PGAL-2023-2"
     ),
-    ("Programa de Gestion Alimentaria - Almuerzo", 
+    ("Programa de Gestion Alimentaria - ALMUERZO", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) almuerzo.",
     "PGAL-2023-2"
     ),
-    ("Programa de Gestion Alimentaria - Cena", 
+    ("Programa de Gestion Alimentaria - CENA", 
     "Consiste en un apoyo en especie que se otorga paracubrir el 100% del valor de un (1) cena",
     "PGAL-2024-1"
     ),
@@ -85,16 +85,16 @@ VALUES
 -- Registro de Beneficiarios
 
 INSERT INTO bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION
-    (ben_id, ben_periodo_academico, ben_est_per_DNI)
+    (ben_id, ben_periodo_academico, ben_est_per_DNI, con_esp_id)
 VALUES
-    (00001, "2023-2", 111111101),
-    (00002, "2023-2", 111111102),
-    (00003, "2023-2", 111111103),
-    (00004, "2023-2", 111111105),
-    (00005, "2023-2", 111111106),
-    (00006, "2024-1", 111111103),
-    (00007, "2024-1", 111111107),
-    (00008, "2024-1", 111111108);
+    (00001, "2023-2", 111111101, 1),
+    (00002, "2023-2", 111111102, 2),
+    (00003, "2023-2", 111111103, 2),
+    (00004, "2023-2", 111111105, 3),
+    (00005, "2023-2", 111111106, 4),
+    (00006, "2024-1", 111111103, 7),
+    (00007, "2024-1", 111111107, 7),
+    (00008, "2024-1", 111111108, 8);
 
 
 INSERT INTO bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA
