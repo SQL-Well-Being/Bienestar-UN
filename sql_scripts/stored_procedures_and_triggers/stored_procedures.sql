@@ -1,6 +1,7 @@
 USE bienestar_UN;
 
 -- Area de informacion --
+
 DROP PROCEDURE IF EXISTS obtener_info_academica_estudiante;
 DELIMITER $$
 CREATE PROCEDURE obtener_info_academica_estudiante(DNI INT)
@@ -11,6 +12,16 @@ CREATE PROCEDURE obtener_info_academica_estudiante(DNI INT)
 DELIMITER ;
 
 -- Area de salud --
+
+DROP PROCEDURE IF EXISTS obtener_info_salud_estudiante;
+DELIMITER $$
+CREATE PROCEDURE obtener_info_salud_estudiante(DNI INT)
+	-- Obtiene toda la info de salud de un estudiante en concreto
+    BEGIN
+		SELECT * FROM vw_info_salud_estudiante WHERE est_per_DNI = DNI;
+    END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS cargar_incapacidad;
 DELIMITER $$
 CREATE PROCEDURE cargar_incapacidad(fecha_inicio DATE, fecha_fin DATE, DNI INT)
