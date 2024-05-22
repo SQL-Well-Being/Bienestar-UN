@@ -460,7 +460,7 @@ COMMENT = 'La subdivisión de la convocatoria general, que determina las caracte
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION (
-  ben_id INT NOT NULL,
+  ben_id INT NOT NULL AUTO_INCREMENT,
   ben_periodo_academico VARCHAR(6) NOT NULL COMMENT 'Periodo academico en el que el beneficio es brindado al estudiante.',
   ben_est_per_DNI INT NOT NULL COMMENT 'DNI del estudiante beneficiario.',
   con_esp_id INT NOT NULL COMMENT 'Id de la convocatoria en la cual se le otorgo el beneficio',

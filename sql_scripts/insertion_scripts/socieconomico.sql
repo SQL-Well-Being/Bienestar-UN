@@ -85,30 +85,13 @@ VALUES
 -- Registro de Beneficiarios
 
 INSERT INTO bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION
-    (ben_id, ben_periodo_academico, ben_est_per_DNI, con_esp_id)
+    (ben_periodo_academico, ben_est_per_DNI, con_esp_id)
 VALUES
-    (00001, "2023-2", 111111101, 1),
-    (00002, "2023-2", 111111102, 2),
-    (00003, "2023-2", 111111103, 2),
-    (00004, "2023-2", 111111105, 3),
-    (00005, "2023-2", 111111106, 4),
-    (00006, "2024-1", 111111103, 7),
-    (00007, "2024-1", 111111107, 7),
-    (00008, "2024-1", 111111108, 8);
-
-
-INSERT INTO bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA
-    (ben_alim_id, ben_alim_tipo)
-VALUES
-    (00001,"DESAYUNO"),
-    (00002,"ALMUERZO"),
-    (00003,"ALMUERZO"),
-    (00004,"CENA"),
-    (00005,"DESAYUNO");
-
-INSERT INTO bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO
-    (ben_aloj_id, ben_aloj_entidad_prestadora)
-VALUES
-    (00006,"CRU"),
-    (00007,"CRU"),
-    (00008,"Iglesia San Rafael");
+    ("2023-2", 111111101, 1),
+    ("2023-2", 111111102, 2),
+    ( "2023-2", 111111103, 2),
+    ( "2023-2", 111111105, 3),
+    ( "2023-2", 111111106, 4),
+    ( "2024-1", 111111103, 7),
+    ( "2024-1", 111111107, 7),
+    ( "2024-1", 111111108, 8);
