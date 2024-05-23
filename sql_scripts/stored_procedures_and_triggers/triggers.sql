@@ -1,9 +1,36 @@
 USE bienestar_UN;
 
 -- Area Socioeconomica --
+
+DROP TRIGGER IF EXISTS validar_participacion_convocatoria_gestion;
+DELIMITER $$
+CREATE TRIGGER validar_participacion_convocatoria_gestion BEFORE INSERT ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
+	-- Verifica que la participacion en convocatoria sea valida --
+    FOR EACH ROW BEGIN
+		DECLARE msg VARCHAR(128);
+        DECLARE es_activo TINYINT;
+        DECLARE participaciones INT;
+        
+        SELECT hist_es_activa INTO es_activo FROM vw_info_academica_estudiante WHERE est_per_DNI = NEW.est_per_DNI;
+        SELECT COUNT(*) INTO participaciones FROM ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION 
+			WHERE est_per_DNI = NEW.est_per_DNI AND con_esp_id = NEW.con_esp_id;
+		
+        IF es_activo = 0 THEN
+			SET msg = CONCAT('El estudiante con DNI ', NEW.est_per_DNI, ' no se encuentra activo.');
+            SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = msg;
+		ELSEIF participaciones > 0 THEN
+			SET msg = CONCAT('El estudiante con DNI ', NEW.est_per_DNI, ' ya participa en la convocatoria con id ', NEW.con_esp_id );
+			SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = msg;
+		END IF;
+    END $$
+DELIMITER ;
+
 DROP TRIGGER IF EXISTS adjudicar_beneficio;
 DELIMITER $$
 CREATE TRIGGER adjudicar_beneficio AFTER UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
+	-- Detecta cuando un beneficio fué adjudicado y agrega el estudiante a la tabla de beneficiarios --
 	FOR EACH ROW BEGIN
 		DECLARE periodo VARCHAR(6);
         DECLARE codigo_gen VARCHAR(50);
@@ -21,6 +48,7 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS clasificar_beneficiario;
 DELIMITER $$
 CREATE TRIGGER clasificar_beneficiario AFTER INSERT ON BENEFICIARIO_PROGRAMA_DE_GESTION
+	-- Se encarga de agregar el nuevo beneficiario a la tabla de beneficio especifico a la que pertenece -- 
 	FOR EACH ROW BEGIN
 		DECLARE codigo_general VARCHAR(50);
         DECLARE nombre_esp VARCHAR(100);
