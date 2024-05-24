@@ -376,7 +376,7 @@ CREATE INDEX fk_ESPACIO_EDIFICIO1_idx ON bienestar_UN.ESPACIO (esp_edi_id ASC) V
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.RESERVACION (
-  res_id INT NOT NULL,
+  res_id INT NOT NULL AUTO_INCREMENT,
   res_fecha_inicial DATETIME NOT NULL,
   res_fecha_fin DATETIME NOT NULL,
   res_esp_id INT NOT NULL,
@@ -398,7 +398,7 @@ CREATE INDEX fk_RESERVACION_EDIFICIO1_idx ON bienestar_UN.RESERVACION (res_esp_i
 
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.EVENTO_GENERAL (
-  eve_id INT NOT NULL,
+  eve_id INT NOT NULL AUTO_INCREMENT,
   eve_descripcion MEDIUMTEXT NULL COMMENT 'Descripción del evento.',
   eve_res_id INT NOT NULL COMMENT 'Reservación de espacio asignada.',
   PRIMARY KEY (eve_id),
