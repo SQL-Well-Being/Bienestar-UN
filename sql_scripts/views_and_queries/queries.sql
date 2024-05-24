@@ -14,7 +14,6 @@ LEFT JOIN BENEFICIARIO_PROGRAMA_DE_GESTION ON est_per_DNI = ben_est_per_DNI
 GROUP BY est_per_DNI;
 
 -- Informacion academica completa de todos los estudiantes
-
 SELECT hist_codigo, hist_es_activa, pro_codigo, pro_nombre, 
 	   hist_est_per_DNI AS 'est_per_DNI',
        creditos_cursados, creditos_aprobados, 
@@ -37,3 +36,24 @@ SELECT hist_codigo, hist_es_activa, pro_codigo, pro_nombre,
     INNER JOIN (SELECT asic_hist_codigo, SUM(asic_nota_final * asi_numero_de_creditos) AS 'ponderado'  FROM 
 	ASIGNATURA_CURSADA INNER JOIN ASIGNATURA ON asic_asi_codigo = asi_codigo
 	GROUP BY asic_hist_codigo) AS SUB3  ON hist_codigo = SUB3.asic_hist_codigo;
+
+-- Lista cuantas discapacidades tiene cada estudiante
+-- AR: γ est_per_DNI; count(dis_id)→'numero_discapacidades' (ESTUDIANTE ⨝ est_perfsalud_id = perfsalud_id PERFIL_DE_SALUD ⟕ PERFIL_DE_SALUD.perfsalud_id = PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.perfsalud_id PERFIL_DE_SALUD_TIENE_DISCAPACIDAD)
+SELECT est_per_DNI, COUNT(dis_id) AS 'numero_discapacidades'
+	FROM 
+    ESTUDIANTE 
+    INNER JOIN PERFIL_DE_SALUD ON est_perfsalud_id = perfsalud_id
+    LEFT JOIN PERFIL_DE_SALUD_TIENE_DISCAPACIDAD ON PERFIL_DE_SALUD.perfsalud_id = PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.perfsalud_id
+    
+    GROUP BY est_per_DNI;
+
+-- Lista estudiantes con al menos una discapacidad
+-- AR: σ 'numero_discapacidades'>= 1(γ est_per_DNI; count(dis_id)→'numero_discapacidades' (ESTUDIANTE ⨝ est_perfsalud_id = perfsalud_id PERFIL_DE_SALUD ⟕ PERFIL_DE_SALUD.perfsalud_id = PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.perfsalud_id PERFIL_DE_SALUD_TIENE_DISCAPACIDAD))
+SELECT est_per_DNI
+	FROM 
+    ESTUDIANTE 
+    INNER JOIN PERFIL_DE_SALUD ON est_perfsalud_id = perfsalud_id
+    LEFT JOIN PERFIL_DE_SALUD_TIENE_DISCAPACIDAD ON PERFIL_DE_SALUD.perfsalud_id = PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.perfsalud_id
+    
+    GROUP BY est_per_DNI
+    HAVING COUNT(dis_id) >= 1;
