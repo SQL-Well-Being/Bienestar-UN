@@ -1,5 +1,9 @@
 USE bienestar_UN;
 
+-- -----------------------------------------------------
+-- Inserción de convocatorias generales
+-- -----------------------------------------------------
+
 INSERT INTO bienestar_UN.CONVOCATORIA_GENERAL
     (con_gen_tipo, con_gen_periodo_academico, con_gen_horas_de_corresponsabilidad)
 VALUES
@@ -11,6 +15,11 @@ VALUES
     ("AJ", "2023-2", 42),
     ("TR", "2023-2", 12),
     ("E", "2023-2", 32);
+
+
+-- -----------------------------------------------------
+-- Inserción de convocatorias específicas
+-- -----------------------------------------------------
 
 INSERT INTO bienestar_UN.CONVOCATORIA_ESPECIFICA
     (con_esp_nombre, con_esp_descripcion, con_esp_con_gen_codigo)
@@ -64,6 +73,10 @@ VALUES
     "PGE-2024-1");
 
 
+-- -----------------------------------------------------
+-- Inserción de estudiantes a convocatorias de gestión socioeconómica
+-- -----------------------------------------------------
+
 INSERT INTO bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
     (con_esp_id, est_per_DNI, con_esp_estado)
 VALUES
@@ -82,7 +95,9 @@ VALUES
     (9, 111111102, "ELEGIBLE");
 
 
--- Registro de Beneficiarios
+-- -----------------------------------------------------
+-- Inserción de estudiantes a beneficios de gestión socieconómica
+-- -----------------------------------------------------
 
 INSERT INTO bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION
     (ben_periodo_academico, ben_est_per_DNI, con_esp_id)
@@ -95,3 +110,4 @@ VALUES
     ( "2024-1", 111111103, 7),
     ( "2024-1", 111111107, 7),
     ( "2024-1", 111111108, 8);
+    
