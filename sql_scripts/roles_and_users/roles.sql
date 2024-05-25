@@ -72,6 +72,7 @@ GRANT EXECUTE ON PROCEDURE bienestar_UN.cargar_incapacidad TO  'funcionario_bien
 GRANT EXECUTE ON PROCEDURE bienestar_UN.registrar_participacion_convocatoria_gestion TO  'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE bienestar_UN.actualizar_estado_participacion_convocatoria_gestion TO  'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_individual TO  'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_asesoria TO  'funcionario_bienestar';
 
 -- Creacion y asignacion de permisos para administrador ---
 DROP ROLE IF EXISTS 'administrador';

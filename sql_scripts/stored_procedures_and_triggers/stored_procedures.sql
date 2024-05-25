@@ -34,16 +34,36 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS agendar_cita_individual;
 DELIMITER $$
-CREATE PROCEDURE agendar_cita_individual(est_DNI INT, fun_DNI INT, tipo_cita VARCHAR(120),  id_espacio INT, fecha DATETIME)
+CREATE PROCEDURE agendar_cita_individual(est_DNI INT, fun_DNI INT, tipo_cita VARCHAR(120), fecha DATETIME)
 	-- Se encarga de agendar una cita, con su respectiva reservacion de espaci y evento
 	BEGIN
+		DECLARE id_espacio INT;
 		DECLARE id_reservacion INT;
         DECLARE id_evento INT;
+        
+        -- Seleccion espacio libre
+        SELECT esp_id  INTO id_espacio FROM ESPACIO
+			WHERE esp_id IN (10,11,12,13,14,15) 
+			AND 
+			esp_id NOT IN (SELECT res_esp_id FROM RESERVACION
+				WHERE 
+				(fecha <= res_fecha_inicial AND DATE_ADD(fecha, INTERVAL 30 MINUTE) > res_fecha_inicial)
+				OR
+				(fecha < res_fecha_fin AND DATE_ADD(fecha, INTERVAL 30 MINUTE) >= res_fecha_fin)
+				OR
+				(fecha <= res_fecha_inicial AND DATE_ADD(fecha, INTERVAL 30 MINUTE) >= res_fecha_fin)) LIMIT 1;
+
+        IF id_espacio IS NULL THEN
+			SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = 'No hay espacios disponibles en la fecha y hora solicitadas.';
+        END IF;
+        
         -- Creacion reservacion
         INSERT INTO RESERVACION(res_fecha_inicial, res_fecha_fin, res_esp_id)
-			VALUES (fecha, fecha, id_espacio);
+			VALUES (fecha, DATE_ADD(fecha, INTERVAL 30 MINUTE), id_espacio);
 		
         SELECT LAST_INSERT_ID() INTO id_reservacion;
+        
         -- Creacion evento
         INSERT INTO EVENTO_GENERAL(eve_descripcion, eve_res_id)
 			VALUES ('Cita individual', id_reservacion);
@@ -83,4 +103,50 @@ CREATE PROCEDURE actualizar_estado_participacion_convocatoria_gestion
 			UPDATE ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION SET con_esp_estado = estado
 			WHERE con_esp_id = id_convocatoria_especifica AND est_per_DNI = DNI;
         END $$
+DELIMITER ;
+
+-- Area de acompanamiento integral --
+
+DROP PROCEDURE IF EXISTS agendar_cita_asesoria;
+DELIMITER $$
+CREATE PROCEDURE agendar_cita_asesoria(tipo ENUM("CRISIS EMOCIONAL", "TRAMITES", "ACADEMICO"), fecha DATETIME, est_DNI INT)
+	BEGIN
+		DECLARE id_espacio INT;
+        DECLARE id_reservacion INT;
+        DECLARE id_evento INT;
+        
+        -- Seleccion espacio libre
+		SELECT esp_id  INTO id_espacio FROM ESPACIO
+			WHERE esp_id IN (16,17,18) 
+            AND 
+            esp_id NOT IN (SELECT res_esp_id FROM RESERVACION
+				WHERE 
+				(fecha <= res_fecha_inicial AND DATE_ADD(fecha, INTERVAL 2 HOUR) > res_fecha_inicial)
+				OR
+				(fecha < res_fecha_fin AND DATE_ADD(fecha, INTERVAL 2 HOUR) >= res_fecha_fin)
+				OR
+				(fecha <= res_fecha_inicial AND DATE_ADD(fecha, INTERVAL 2 HOUR) >= res_fecha_fin)) LIMIT 1;
+		
+        IF id_espacio IS NULL THEN
+			SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = 'No hay espacios disponibles en la fecha y hora solicitadas.';
+        END IF;
+        
+        -- Creacion reservacion
+        INSERT INTO RESERVACION(res_fecha_inicial, res_fecha_fin, res_esp_id)
+			VALUES (fecha, DATE_ADD(fecha, INTERVAL 2 HOUR), id_espacio);
+		
+        SELECT LAST_INSERT_ID() INTO id_reservacion;
+        
+        -- Creacion evento
+        INSERT INTO EVENTO_GENERAL(eve_descripcion, eve_res_id)
+			VALUES ('Cita de Asesoria', id_reservacion);
+            
+		SELECT LAST_INSERT_ID() INTO id_evento;
+        
+        -- Creacion cita
+        INSERT INTO bienestar_UN.CITA_DE_ASESORIA (cit_ase_eve_id, cit_ase_tipo, cit_ase_est_per_DNI) 
+			VALUES (id_evento, tipo, est_DNI);
+        
+    END $$
 DELIMITER ;

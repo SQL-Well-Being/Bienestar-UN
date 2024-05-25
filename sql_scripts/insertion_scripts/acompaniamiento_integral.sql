@@ -188,13 +188,13 @@ VALUES
     (115, 'Cita de Asesoría 10', 115);
 
 INSERT INTO bienestar_UN.CITA_DE_ASESORIA 
-    (cit_ase_nombre, cit_ase_eve_id, cit_ase_tipo, cit_ase_est_per_DNI) 
+    (cit_ase_eve_id, cit_ase_tipo, cit_ase_est_per_DNI) 
 VALUES
-    ('Asesoría Estudiante 1', 111, 'ACADEMICO', 111111147),
-    ('Asesoría Estudiante 2', 112, 'CRISIS EMOCIONAL', 111111149),
-    ('Asesoría Estudiante 3', 113, 'TRAMITES', 111111150),
-    ('Asesoría Estudiante 4', 114, 'ACADEMICO', 111111132),
-    ('Asesoría Estudiante 5', 115, 'CRISIS EMOCIONAL', 111111143);
+    (111, 'ACADEMICO', 111111147),
+    (112, 'CRISIS EMOCIONAL', 111111149),
+    (113, 'TRAMITES', 111111150),
+    (114, 'ACADEMICO', 111111132),
+    (115, 'CRISIS EMOCIONAL', 111111143);
 
 
 -- -----------------------------------------------------

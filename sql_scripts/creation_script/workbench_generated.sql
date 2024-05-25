@@ -772,7 +772,6 @@ COMMENT = 'Sesión de acompañamiento pedida por un estudiante 1 a 1 con un func
 
 CREATE TABLE IF NOT EXISTS bienestar_UN.CITA_DE_ASESORIA (
   -- cit_ase_nombre VARCHAR(45) GENERATED ALWAYS AS ()  COMMENT 'Nombre autogenerado.',
-  cit_ase_nombre VARCHAR(100) COMMENT 'Nombre autogenerado.',
   cit_ase_eve_id INT NOT NULL COMMENT 'Primary key al evento.',
   cit_ase_tipo ENUM("CRISIS EMOCIONAL", "TRAMITES", "ACADEMICO") NOT NULL COMMENT 'Tipo de la cita de asesoria.',
   cit_ase_est_per_DNI INT NOT NULL COMMENT 'Foreign key al estudiante.',
