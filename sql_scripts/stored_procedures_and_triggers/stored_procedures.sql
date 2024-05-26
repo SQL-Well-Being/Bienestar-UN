@@ -147,7 +147,7 @@ DELIMITER ;
 -- Se encarga de agendar una cita, con su respectiva reservacion de espacio y evento
 DROP PROCEDURE IF EXISTS agendar_cita_individual;
 DELIMITER $$
-CREATE PROCEDURE agendar_cita_individual(est_DNI INT, fun_DNI INT, tipo_cita VARCHAR(120), fecha DATETIME)
+CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fecha DATETIME)
 	BEGIN
 		DECLARE id_espacio INT;
 		DECLARE id_reservacion INT;
@@ -182,8 +182,8 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, fun_DNI INT, tipo_cita VAR
 		SELECT LAST_INSERT_ID() INTO id_evento;
         
         -- Creación cita
-        INSERT INTO CITA_INDIVIDUAL(cit_tipo, cit_est_per_DNI, cit_fun_per_DNI, cit_eve_id)
-		VALUES (tipo_cita, est_DNI, fun_DNI, id_evento);
+        INSERT INTO CITA_INDIVIDUAL(cit_tipo, cit_est_per_DNI, cit_eve_id)
+		VALUES (tipo_cita, est_DNI, id_evento);
     END $$
 DELIMITER ;
 

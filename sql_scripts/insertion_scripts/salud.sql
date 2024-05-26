@@ -126,20 +126,20 @@ VALUES
     (311, 'Cita individual en consultorio D para Elena Pérez Martínez a las 11:00 am', 311);
 
 INSERT INTO bienestar_UN.CITA_INDIVIDUAL 
-    (cit_tipo, cit_est_per_DNI, cit_fun_per_DNI, cit_eve_id)
+    (cit_tipo, cit_est_per_DNI,  cit_eve_id)
 VALUES
-    ('Examen médico', 111111100, 200000020, 300),
-    ('Consulta médica', 111111101, 200000021, 301),
-    ('Consulta psicológica', 111111102, 200000022, 302),
-    ('Consulta médica', 111111103, 200000023, 303),
-    ('Consulta nutricional', 111111104, 200000024, 304),
-    ('Consulta médica', 111111105, 200000025, 305),
-    ('Examen médico', 111111106, 200000026, 306),
-    ('Consulta médica', 111111107, 200000027, 307),
-    ('Consulta psicológica', 111111108, 200000028, 308),
-    ('Consulta médica', 111111109, 200000029, 309),
-    ('Consulta nutricional', 111111110, 200000030, 310),
-    ('Consulta médica', 111111111, 200000031, 311);
+    ('Examen médico', 111111100, 300),
+    ('Consulta médica', 111111101, 301),
+    ('Consulta psicológica', 111111102, 302),
+    ('Consulta médica', 111111103, 303),
+    ('Consulta nutricional', 111111104, 304),
+    ('Consulta médica', 111111105, 305),
+    ('Examen médico', 111111106, 306),
+    ('Consulta médica', 111111107,  307),
+    ('Consulta psicológica', 111111108, 308),
+    ('Consulta médica', 111111109,  309),
+    ('Consulta nutricional', 111111110,  310),
+    ('Consulta médica', 111111111, 311);
 
 
 -- -----------------------------------------------------

@@ -598,17 +598,11 @@ COMMENT = 'Sesión evento en salud grupal.';
 CREATE TABLE IF NOT EXISTS bienestar_UN.CITA_INDIVIDUAL (
   cit_tipo VARCHAR(120) NOT NULL COMMENT 'Tipo de cita.',
   cit_est_per_DNI INT NOT NULL COMMENT 'Foreign key al estudiante.',
-  cit_fun_per_DNI INT NOT NULL COMMENT 'Foreign key al funcionario que realiza la cita individual.',
   cit_eve_id INT NOT NULL,
   PRIMARY KEY (cit_eve_id),
   CONSTRAINT fk_CITA_INDIVIDUAL_ESTUDIANTE1
     FOREIGN KEY (cit_est_per_DNI)
     REFERENCES bienestar_UN.ESTUDIANTE (est_per_DNI)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_CITA_INDIVIDUAL_FUNCIONARIO1
-    FOREIGN KEY (cit_fun_per_DNI)
-    REFERENCES bienestar_UN.FUNCIONARIO (fun_per_id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_CITA_INDIVIDUAL_EVENTO_GENERAL1
@@ -1090,14 +1084,12 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.ENCUENTRO_DEPORTIVO (
     FOREIGN KEY (enc_tor_id)
     REFERENCES bienestar_UN.TORNEO (tor_id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-  /*
+    ON UPDATE NO ACTION,
   CONSTRAINT fk_ENCUENTRO_DEPORTIVO_EQUIPO1
     FOREIGN KEY (enc_equi_gan_id)
     REFERENCES bienestar_UN.EQUIPO (equi_id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-  */
 
 COMMENT = 'Evento deportivo entre dos equipos.';
 
