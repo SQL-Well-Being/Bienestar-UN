@@ -117,20 +117,20 @@ VALUES
 INSERT INTO bienestar_UN.EVENTO_GENERAL 
     (eve_id, eve_descripcion, eve_res_id) 
 VALUES
-    (101, 'Exposición de Fotografía', 101),
-    (102, 'Taller de Escritura Creativa', 102),
-    (103, 'Clase de Yoga', 103),
-    (104, 'Hackathon de Programación', 104),
-    (105, 'Demostración de Cocina Saludable', 105);
+    (101, 'Taller de Manejo de Ansiedad', 101),
+    (102, 'Taller de Métodos de Estudio', 102),
+    (103, 'Taller de Trabajo en equipo', 103),
+    (104, 'Taller de Comunicación asertiva', 104),
+    (105, 'Taller de Manejo de estrés durante parciales', 105);
 
 INSERT INTO bienestar_UN.SESION_DE_TALLER 
     (ses_taller_nombre, ses_taller_eve_id, ses_taller_per_tallerista_DNI) 
 VALUES
-    ('Taller de Fotografía Digital', 101, 111111101),
-    ('Taller de Escritura Creativa', 102, 111111108),
-    ('Taller de Yoga', 103, 111111114),
-    ('Taller de Programación Básica', 104, 111111126),
-    ('Taller de Cocina Saludable', 105, 111111136);
+    ('Taller de Manejo de Ansiedad', 101, 111111101),
+    ('Taller de Métodos de Estudio', 102, 111111108),
+    ('Taller de Trabajo en equipo', 103, 111111114),
+    ('Taller de Comunicación asertiva', 104, 111111126),
+    ('Taller de Manejo de estrés durante parciales', 105, 111111136);
 
 
 -- -----------------------------------------------------
