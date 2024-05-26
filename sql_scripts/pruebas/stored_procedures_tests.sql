@@ -23,7 +23,7 @@ INNER JOIN convocatoria_especifica ON beneficiario_programa_de_gestion.con_esp_i
 
 -- Prueba agendacion cita salud --
 SELECT * FROM CITA_INDIVIDUAL INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
-CALL agendar_cita_individual(111111105, 'Consulta psicologica', '2024-05-28 22:30:00');
+CALL agendar_cita_individual(111111105, 'Consulta psicologica', '2024-05-29 22:35:00');
 SELECT * FROM CITA_INDIVIDUAL INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
 
 

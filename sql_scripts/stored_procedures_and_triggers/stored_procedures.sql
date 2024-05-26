@@ -152,6 +152,8 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fe
 		DECLARE id_espacio INT;
 		DECLARE id_reservacion INT;
         DECLARE id_evento INT;
+        DECLARE nombre_est VARCHAR(100);
+        DECLARE nombre_esp VARCHAR(45);
         
         -- Selección espacio libre
         SELECT esp_id  INTO id_espacio FROM ESPACIO
@@ -169,6 +171,9 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fe
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No hay espacios disponibles en la fecha y hora solicitadas.';
         END IF;
         
+        SELECT CONCAT(per_primer_nombre, ' ', per_primer_apellido) INTO nombre_est FROM PERSONA WHERE per_DNI = est_DNI;
+        SELECT esp_nombre INTO nombre_esp FROM ESPACIO WHERE esp_id = id_espacio;
+        
         -- Creación reservación
         INSERT INTO RESERVACION(res_fecha_inicial, res_fecha_fin, res_esp_id)
 		VALUES (fecha, DATE_ADD(fecha, INTERVAL 30 MINUTE), id_espacio);
@@ -177,7 +182,7 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fe
         
         -- Creación evento
         INSERT INTO EVENTO_GENERAL (eve_descripcion, eve_res_id)
-		VALUES ('Cita individual', id_reservacion);
+		VALUES (CONCAT('Cita individual en ', nombre_esp, ' para ', nombre_est), id_reservacion);
             
 		SELECT LAST_INSERT_ID() INTO id_evento;
         
