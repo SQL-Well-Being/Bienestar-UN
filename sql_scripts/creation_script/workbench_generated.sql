@@ -361,12 +361,12 @@ COMMENT = 'Reservación de un espacio universitario, en el que se específica el
 CREATE TABLE IF NOT EXISTS bienestar_UN.EVENTO_GENERAL (
   eve_id INT NOT NULL AUTO_INCREMENT,
   eve_descripcion MEDIUMTEXT NULL COMMENT 'Descripción del evento.',
-  eve_res_id INT NOT NULL COMMENT 'Reservación de espacio asignada.',
+  eve_res_id INT NULL COMMENT 'Reservación de espacio asignada.',
   PRIMARY KEY (eve_id),
   CONSTRAINT fk_EVENTO_GENERAL_RESERVACION1
     FOREIGN KEY (eve_res_id)
     REFERENCES bienestar_UN.RESERVACION (res_id)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 
 COMMENT = 'La relación en donde se almacenan todos los eventos en los que es necesario la asignación de un espacio en una fecha específica. Todos los demás eventos se relacionan con un evento general.';
