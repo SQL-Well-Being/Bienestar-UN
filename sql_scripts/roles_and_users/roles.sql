@@ -1,85 +1,154 @@
 USE bienestar_UN;
 
--- Creacion y asignacion de permisos para funcionario bienestar ---
+-- -----------------------------------------------------
+-- Funcionario bienestar
+-- -----------------------------------------------------
 
 DROP ROLE IF EXISTS 'funcionario_bienestar';
 CREATE ROLE 'funcionario_bienestar';
 
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE_ASISTE_A_TALLER_CULTURAL TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_ACOMPANAMIENTO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PROYECTO_TIENE_FACULTAD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.SESION_CURSO_LIBRE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PERSONA_INSCRIBE_CURSO_LIBRE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CURSO_LIBRE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ENCUENTRO_DEPORTIVO_TIENE_EQUIPO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.EQUIPO_TIENE_ESTUDIANTE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.EQUIPO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ENCUENTRO_DEPORTIVO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.TORNEO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.SELECCION_DEPORTIVA_TIENE_ESTUDIANTE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ENTRENAMIENTO_SELECCION TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CONVOCATORIA_SELECCION_DEPORTIVA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.SELECCION_DEPORTIVA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.DEPORTE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CONVOCATORIA_GAI TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.GRUPO_ARTISTICO_INSTITUCIONAL TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.TALLER_CULTURAL TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_DE_TALLER TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CITA_DE_ASESORIA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.SESION_DE_ACOMPANAMIENTO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.SESION_DE_TALLER TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PROYECTO_TIENE_ESTUDIANTES TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PARTICIPACION_PGP TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PROYECTO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CONVOCATORIA_PGP TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE_ASISTE_A_SESION_EVENTO_SALUD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CITA_INDIVIDUAL TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.SESION_EVENTO_SALUD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PERFIL_DE_SALUD_TIENE_DISCAPACIDAD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.DISCAPACIDAD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.INCAPACIDAD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.BENEFICIARIO_DE_GESTION_ECONOMICA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.BENEFICIARIO_DE_GESTION_DE_TRANSPORTE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.BENEFICIARIO_DE_GESTION_ALIMENTARIA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.BENEFICIARIO_PROGRAMA_DE_GESTION TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CONVOCATORIA_ESPECIFICA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.CONVOCATORIA_GENERAL TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.EVENTO_GENERAL TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.RESERVACION TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESPACIO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.EDIFICIO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ASIGNATURA_CURSADA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.HISTORIA_ACADEMICA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PROGRAMA_CURRICULAR TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ASIGNATURA TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.DOCENTE_ACTIVIDAD_EXTRACURRICULAR TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.DOCENTE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.DEPARTAMENTO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.FACULTAD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.FUNCIONARIO TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.ESTUDIANTE TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PERFIL_DE_SALUD TO  'funcionario_bienestar';
-GRANT SELECT, INSERT, UPDATE ON bienestar_UN.PERSONA TO  'funcionario_bienestar';
+-- Tablas
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE_ASISTE_A_TALLER_CULTURAL TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE_ASISTE_A_SESION_DE_ACOMPANAMIENTO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PROYECTO_TIENE_FACULTAD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON SESION_CURSO_LIBRE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PERSONA_INSCRIBE_CURSO_LIBRE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CURSO_LIBRE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ENCUENTRO_DEPORTIVO_TIENE_EQUIPO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON EQUIPO_TIENE_ESTUDIANTE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON EQUIPO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ENCUENTRO_DEPORTIVO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON TORNEO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON SELECCION_DEPORTIVA_TIENE_ESTUDIANTE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ENTRENAMIENTO_SELECCION TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CONVOCATORIA_SELECCION_DEPORTIVA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON SELECCION_DEPORTIVA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON DEPORTE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CONVOCATORIA_GAI TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON GRUPO_ARTISTICO_INSTITUCIONAL TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON TALLER_CULTURAL TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE_ASISTE_A_SESION_DE_TALLER TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CITA_DE_ASESORIA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON SESION_DE_ACOMPANAMIENTO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON SESION_DE_TALLER TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PROYECTO_TIENE_ESTUDIANTES TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PARTICIPACION_PGP TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PROYECTO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CONVOCATORIA_PGP TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE_ASISTE_A_SESION_EVENTO_SALUD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CITA_INDIVIDUAL TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON SESION_EVENTO_SALUD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PERFIL_DE_SALUD_TIENE_DISCAPACIDAD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON DISCAPACIDAD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON INCAPACIDAD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON BENEFICIARIO_DE_GESTION_ECONOMICA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON BENEFICIARIO_DE_GESTION_DE_TRANSPORTE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON BENEFICIARIO_DE_GESTION_ALIMENTARIA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON BENEFICIARIO_PROGRAMA_DE_GESTION TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CONVOCATORIA_ESPECIFICA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON CONVOCATORIA_GENERAL TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON EVENTO_GENERAL TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON RESERVACION TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESPACIO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON EDIFICIO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ASIGNATURA_CURSADA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON HISTORIA_ACADEMICA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PROGRAMA_CURRICULAR TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ASIGNATURA TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON DOCENTE_ACTIVIDAD_EXTRACURRICULAR TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON DOCENTE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON DEPARTAMENTO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON FACULTAD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON FUNCIONARIO TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON ESTUDIANTE TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PERFIL_DE_SALUD TO 'funcionario_bienestar';
+GRANT SELECT, INSERT, UPDATE ON PERSONA TO 'funcionario_bienestar';
 
-GRANT EXECUTE ON PROCEDURE bienestar_UN.obtener_info_academica_estudiante TO  'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.obtener_info_salud_estudiante TO  'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.cargar_incapacidad TO  'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.registrar_participacion_convocatoria_gestion TO  'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.actualizar_estado_participacion_convocatoria_gestion TO  'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_individual TO  'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_asesoria TO  'funcionario_bienestar';
+-- Vistas
+GRANT SELECT ON vw_info_academica_estudiante TO 'funcionario_bienestar';
+GRANT SELECT ON vw_reservaciones_espacios_proxima_semana TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_salud_estudiante TO 'funcionario_bienestar';
 
--- Creacion y asignacion de permisos para administrador ---
+-- Procedimientos almacenados
+GRANT EXECUTE ON PROCEDURE bienestar_UN.obtener_info_academica_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE bienestar_UN.obtener_info_salud_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE bienestar_UN.cargar_incapacidad TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE bienestar_UN.registrar_participacion_convocatoria_gestion TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE bienestar_UN.actualizar_estado_participacion_convocatoria_gestion TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_individual TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_asesoria TO 'funcionario_bienestar';
+
+
+-- -----------------------------------------------------
+-- Estudiante
+-- -----------------------------------------------------
+
+DROP ROLE IF EXISTS 'estudiante';
+CREATE ROLE 'estudiante';
+
+-- Tablas
+GRANT SELECT, INSERT ON ESTUDIANTE_ASISTE_A_TALLER_CULTURAL TO 'estudiante';
+GRANT SELECT, INSERT ON ESTUDIANTE_ASISTE_A_SESION_DE_ACOMPANAMIENTO TO 'estudiante';
+GRANT SELECT ON PROYECTO_TIENE_FACULTAD TO 'estudiante';
+GRANT SELECT ON SESION_CURSO_LIBRE TO 'estudiante';
+GRANT SELECT ON PERSONA_INSCRIBE_CURSO_LIBRE TO 'estudiante';
+GRANT SELECT ON CURSO_LIBRE TO 'estudiante';
+GRANT SELECT ON ENCUENTRO_DEPORTIVO_TIENE_EQUIPO TO 'estudiante';
+GRANT SELECT ON EQUIPO_TIENE_ESTUDIANTE TO 'estudiante';
+GRANT SELECT, INSERT, UPDATE ON EQUIPO TO 'estudiante';
+GRANT SELECT ON ENCUENTRO_DEPORTIVO TO 'estudiante';
+GRANT SELECT ON TORNEO TO 'estudiante';
+GRANT SELECT, INSERT ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_SELECCION_DEPORTIVA TO 'estudiante';
+GRANT SELECT ON ENTRENAMIENTO_SELECCION TO 'estudiante';
+GRANT SELECT ON CONVOCATORIA_SELECCION_DEPORTIVA TO 'estudiante';
+GRANT SELECT ON SELECCION_DEPORTIVA TO 'estudiante';
+GRANT SELECT, INSERT ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI TO 'estudiante';
+GRANT SELECT ON CONVOCATORIA_GAI TO 'estudiante';
+GRANT SELECT ON GRUPO_ARTISTICO_INSTITUCIONAL TO 'estudiante';
+GRANT SELECT ON TALLER_CULTURAL TO 'estudiante';
+GRANT SELECT, INSERT ON ESTUDIANTE_ASISTE_A_SESION_DE_TALLER TO 'estudiante';
+GRANT SELECT ON CITA_DE_ASESORIA TO 'estudiante';
+GRANT SELECT ON SESION_DE_ACOMPANAMIENTO TO 'estudiante';
+GRANT SELECT ON SESION_DE_TALLER TO 'estudiante';
+GRANT SELECT, INSERT ON PROYECTO_TIENE_ESTUDIANTES TO 'estudiante';
+GRANT SELECT, INSERT ON PARTICIPACION_PGP TO 'estudiante';
+GRANT SELECT, INSERT ON PROYECTO TO 'estudiante';
+GRANT SELECT ON CONVOCATORIA_PGP TO 'estudiante';
+GRANT SELECT, INSERT ON ESTUDIANTE_ASISTE_A_SESION_EVENTO_SALUD TO 'estudiante';
+GRANT SELECT, INSERT, UPDATE ON CITA_INDIVIDUAL TO 'estudiante';
+GRANT SELECT ON SESION_EVENTO_SALUD TO 'estudiante';
+GRANT SELECT, UPDATE ON PERFIL_DE_SALUD_TIENE_DISCAPACIDAD TO 'estudiante';
+GRANT SELECT ON DISCAPACIDAD TO 'estudiante';
+GRANT SELECT ON INCAPACIDAD TO 'estudiante';
+GRANT SELECT, INSERT ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION TO 'estudiante';
+GRANT SELECT ON BENEFICIARIO_DE_GESTION_DE_ALOJAMIENTO TO 'estudiante';
+GRANT SELECT ON BENEFICIARIO_DE_GESTION_ECONOMICA TO 'estudiante';
+GRANT SELECT ON BENEFICIARIO_DE_GESTION_DE_TRANSPORTE TO 'estudiante';
+GRANT SELECT ON BENEFICIARIO_DE_GESTION_ALIMENTARIA TO 'estudiante';
+GRANT SELECT ON BENEFICIARIO_PROGRAMA_DE_GESTION TO 'estudiante';
+GRANT SELECT ON CONVOCATORIA_ESPECIFICA TO 'estudiante';
+GRANT SELECT ON CONVOCATORIA_GENERAL TO 'estudiante';
+GRANT SELECT ON EVENTO_GENERAL TO 'estudiante';
+GRANT SELECT ON RESERVACION TO 'estudiante';
+GRANT SELECT, INSERT ON ESTUDIANTE TO 'estudiante';
+GRANT SELECT, UPDATE ON PERFIL_DE_SALUD TO 'estudiante';
+GRANT SELECT, INSERT ON PERSONA TO 'estudiante';
+
+-- Vistas
+GRANT SELECT ON vw_info_academica_estudiante TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_salud_estudiante TO 'funcionario_bienestar';
+
+
+-- -----------------------------------------------------
+-- Administrador
+-- -----------------------------------------------------
+
 DROP ROLE IF EXISTS 'administrador';
 CREATE ROLE 'administrador';
 
-GRANT ALL ON bienestar_UN.* TO 'administrador';
-
--- Creacion y asignacion de permisos para estudiante --
-DROP ROLE IF EXISTS 'estudiante';
-CREATE ROLE 'estudiante';
+GRANT ALL ON * TO 'administrador';
