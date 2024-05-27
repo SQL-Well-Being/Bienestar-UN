@@ -75,13 +75,15 @@ GRANT SELECT ON vw_reservaciones_espacios_proxima_semana TO 'funcionario_bienest
 GRANT SELECT ON vw_info_salud_estudiante TO 'funcionario_bienestar';
 
 -- Procedimientos almacenados
-GRANT EXECUTE ON PROCEDURE bienestar_UN.obtener_info_academica_estudiante TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.obtener_info_salud_estudiante TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.cargar_incapacidad TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.registrar_participacion_convocatoria_gestion TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.actualizar_estado_participacion_convocatoria_gestion TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_individual TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE bienestar_UN.agendar_cita_asesoria TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE registrar_participacion_convocatoria_gestion TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE actualizar_estado_participacion_convocatoria_gestion TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_info_salud_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE cargar_incapacidad TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE agendar_cita_individual TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE agendar_cita_asesoria TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE asignar_ganador_encuentro_deportivo TO 'funcionario_bienestar';
 
 
 -- -----------------------------------------------------
@@ -142,6 +144,14 @@ GRANT SELECT, INSERT ON PERSONA TO 'estudiante';
 -- Vistas
 GRANT SELECT ON vw_info_academica_estudiante TO 'funcionario_bienestar';
 GRANT SELECT ON vw_info_salud_estudiante TO 'funcionario_bienestar';
+
+-- Procedimientos almacendados
+GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE registrar_participacion_convocatoria_gestion TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_info_salud_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE agendar_cita_individual TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE agendar_cita_asesoria TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico TO 'funcionario_bienestar';
 
 
 -- -----------------------------------------------------
