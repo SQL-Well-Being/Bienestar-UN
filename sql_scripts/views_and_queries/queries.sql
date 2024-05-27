@@ -5,7 +5,7 @@ USE bienestar_UN;
 -- -----------------------------------------------------
 
 -- Muestra el número de documento del tallerista y cantidad de asistentes de cada taller cultural
--- AR:
+-- AR: γ tall_eve_id, tall_nombre, doc_per_DNI_tallerista; COUNT(est_per_DNI) → 'Cantidad de asistentes' (ESTUDIANTE_ASISTE_A_TALLER_CULTURAL ⨝ ESTUDIANTE_ASISTE_A_TALLER_CULTURAL.tall_eve_id = TALLER_CULTURAL.tall_eve_id TALLER_CULTURAL)
 SELECT tall_nombre, doc_per_DNI_tallerista, COUNT(*) AS 'Cantidad de asistentes'
 FROM ESTUDIANTE_ASISTE_A_TALLER_CULTURAL
 INNER JOIN TALLER_CULTURAL ON ESTUDIANTE_ASISTE_A_TALLER_CULTURAL.tall_eve_id = TALLER_CULTURAL.tall_eve_id
@@ -13,7 +13,7 @@ GROUP BY ESTUDIANTE_ASISTE_A_TALLER_CULTURAL.tall_eve_id;
 
 
 -- Muestra los estudiantes que se presentaron más de una vez a una convocatoria de un mismo grupo artístico institucional y en ninguna pasaron
--- AR: 
+-- AR: σ COUNT(*) > 1 ∧ SUM(es_admitido) = 0 (γ est_per_DNI, per_primer_nombre, per_primer_apellido, gru_nombre; COUNT(*), SUM(es_admitido) (ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI ⨝ est_per_DNI = per_DNI PERSONA ⨝ con_gai_id = con_gai_codigo CONVOCATORIA_GAI ⨝ con_gai_gru_id = gru_id GRUPO_ARTISTICO_INSTITUCIONAL))
 SELECT est_per_DNI, per_primer_nombre, per_primer_apellido, gru_nombre , COUNT(*) AS 'Número de participaciones'
 FROM ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI
 INNER JOIN CONVOCATORIA_GAI ON con_gai_id = con_gai_codigo
@@ -37,6 +37,10 @@ HAVING SUM(es_admitido) = 0 AND COUNT(*) > 1;
 
 -- Muestra el equipo con más encuentros ganados de cada torneo en el que ya se haya jugado al menos un partido
 -- AR:
+-- victorias_por_equipo := γ enc_tor_id, enc_equi_gan_id; COUNT(*) → victorias (σ enc_equi_gan_id IS NOT NULL (ENCUENTRO_DEPORTIVO))
+-- max_victorias_por_torneo := γ enc_tor_id; MAX(victorias) → max_victorias (victorias_por_equipo)
+-- resultado := (victorias_por_equipo ⨝ enc_tor_id = tor_id TORNEO) ⨝ enc_equi_gan_id = equi_id EQUIPO
+-- resultado_final := σ victorias = max_victorias (resultado ⨝ victorias_por_equipo.enc_tor_id = max_victorias_por_torneo.enc_tor_id max_victorias_por_torneo)
 WITH victorias_por_equipo AS (
     SELECT enc_tor_id, enc_equi_gan_id, COUNT(*) AS victorias
     FROM ENCUENTRO_DEPORTIVO 
