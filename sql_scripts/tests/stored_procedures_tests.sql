@@ -25,11 +25,15 @@ INNER JOIN convocatoria_especifica ON beneficiario_programa_de_gestion.con_esp_i
 
 -- Prueba agendamiento cita salud
 SELECT * FROM CITA_INDIVIDUAL INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
-CALL agendar_cita_individual(111111105, 'Consulta psicologica', '2024-05-29 22:35:00');
+CALL agendar_cita_individual(111111109, 'Consulta Nutricional', '2024-05-29 22:35:00');
 SELECT * FROM CITA_INDIVIDUAL INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
 
+-- Prueba cancelacion cita salud
+SELECT * FROM CITA_INDIVIDUAL INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
+CALL cancelar_cita_individual(312);
+SELECT * FROM CITA_INDIVIDUAL INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
 
 -- Prueba agendacion cita asesoria
 SELECT * FROM CITA_DE_ASESORIA INNER JOIN EVENTO_GENERAL ON cit_ase_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
-CALL agendar_cita_asesoria('TRAMITES', '2024-05-27 15:00:00', 111111110);
+CALL agendar_cita_asesoria(111111110, 'TRAMITES', '2024-05-27 15:00:00');
 SELECT * FROM CITA_DE_ASESORIA INNER JOIN EVENTO_GENERAL ON cit_ase_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;

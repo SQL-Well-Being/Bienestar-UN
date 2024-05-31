@@ -7,7 +7,7 @@ USE bienestar_UN;
 --
 DROP PROCEDURE IF EXISTS agendar_cita_asesoria;
 DELIMITER $$
-CREATE PROCEDURE agendar_cita_asesoria(tipo ENUM("CRISIS EMOCIONAL", "TRAMITES", "ACADEMICO"), fecha DATETIME, est_DNI INT)
+CREATE PROCEDURE agendar_cita_asesoria(est_DNI INT, tipo ENUM("CRISIS EMOCIONAL", "TRAMITES", "ACADEMICO"), fecha DATETIME)
 	BEGIN
 		DECLARE id_espacio INT;
         DECLARE id_reservacion INT;
@@ -91,7 +91,7 @@ CREATE PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico(DN
 DELIMITER ;
 
 -- -----------------------------------------------------
--- Gestión y Fomento
+-- Gestion y Fomento
 -- -----------------------------------------------------
 
 -- Agrega un estudiante a la lista de participantes de una convocatoria en especifico
@@ -191,6 +191,16 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fe
 		VALUES (tipo_cita, est_DNI, id_evento);
     END $$
 DELIMITER ;
+
+-- Se encarga de cancelar una cita (la eliminacion de su evento asociada esta implementada en un trigger)
+DROP PROCEDURE IF EXISTS cancelar_cita_individual;
+DELIMITER $$
+CREATE PROCEDURE cancelar_cita_individual(id_evento INT)
+	BEGIN
+		DELETE FROM CITA_INDIVIDUAL WHERE cit_eve_id=id_evento;
+    END $$
+DELIMITER ;
+
 
 
 -- -----------------------------------------------------

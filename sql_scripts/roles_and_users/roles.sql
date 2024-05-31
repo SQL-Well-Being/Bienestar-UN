@@ -142,16 +142,17 @@ GRANT SELECT, UPDATE ON PERFIL_DE_SALUD TO 'estudiante';
 GRANT SELECT, INSERT ON PERSONA TO 'estudiante';
 
 -- Vistas
-GRANT SELECT ON vw_info_academica_estudiante TO 'funcionario_bienestar';
-GRANT SELECT ON vw_info_salud_estudiante TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_academica_estudiante TO 'estudiante';
+GRANT SELECT ON vw_info_salud_estudiante TO 'estudiante';
 
 -- Procedimientos almacendados
-GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE registrar_participacion_convocatoria_gestion TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE obtener_info_salud_estudiante TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE agendar_cita_individual TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE agendar_cita_asesoria TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE registrar_participacion_convocatoria_gestion TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_info_salud_estudiante TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE agendar_cita_individual TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE agendar_cita_asesoria TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE cancelar_cita_individual TO 'estudiante';
 
 
 -- -----------------------------------------------------

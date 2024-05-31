@@ -1,11 +1,14 @@
 USE bienestar_UN;
 
--- Area Socioeconomica --
+-- -----------------------------------------------------
+-- Gestion y fomento
+-- -----------------------------------------------------
 
+-- Verifica que la participacion en convocatoria sea valida --
 DROP TRIGGER IF EXISTS validar_participacion_convocatoria_gestion;
 DELIMITER $$
 CREATE TRIGGER validar_participacion_convocatoria_gestion BEFORE INSERT ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
-	-- Verifica que la participacion en convocatoria sea valida --
+	
     FOR EACH ROW BEGIN
 		DECLARE msg VARCHAR(128);
         DECLARE es_activo TINYINT;
@@ -27,10 +30,11 @@ CREATE TRIGGER validar_participacion_convocatoria_gestion BEFORE INSERT ON ESTUD
     END $$
 DELIMITER ;
 
+-- Detecta cuando un beneficio fué adjudicado y agrega el estudiante a la tabla de beneficiarios --
 DROP TRIGGER IF EXISTS adjudicar_beneficio;
 DELIMITER $$
 CREATE TRIGGER adjudicar_beneficio AFTER UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
-	-- Detecta cuando un beneficio fué adjudicado y agrega el estudiante a la tabla de beneficiarios --
+	
 	FOR EACH ROW BEGIN
 		DECLARE periodo VARCHAR(6);
         DECLARE codigo_gen VARCHAR(50);
@@ -45,10 +49,10 @@ CREATE TRIGGER adjudicar_beneficio AFTER UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVO
     END $$
 DELIMITER ;
 
+-- Se encarga de agregar el nuevo beneficiario a la tabla de beneficio especifico a la que pertenece --
 DROP TRIGGER IF EXISTS clasificar_beneficiario;
 DELIMITER $$
-CREATE TRIGGER clasificar_beneficiario AFTER INSERT ON BENEFICIARIO_PROGRAMA_DE_GESTION
-	-- Se encarga de agregar el nuevo beneficiario a la tabla de beneficio especifico a la que pertenece -- 
+CREATE TRIGGER clasificar_beneficiario AFTER INSERT ON BENEFICIARIO_PROGRAMA_DE_GESTION 
 	FOR EACH ROW BEGIN
 		DECLARE codigo_general VARCHAR(50);
         DECLARE nombre_esp VARCHAR(100);
@@ -76,5 +80,33 @@ CREATE TRIGGER clasificar_beneficiario AFTER INSERT ON BENEFICIARIO_PROGRAMA_DE_
 			VALUES (70, NEW.ben_id);
 		END IF;
 
+    END $$
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- Salud
+-- -----------------------------------------------------
+
+-- Se encarga de borrar evento asociado a una cita indidual --
+DROP TRIGGER IF EXISTS eliminar_cita;
+DELIMITER $$
+CREATE TRIGGER eliminar_cita AFTER DELETE ON CITA_INDIVIDUAL
+	FOR EACH ROW BEGIN
+        -- Borrado de evento
+        DELETE FROM EVENTO_GENERAL WHERE eve_id = OLD.cit_eve_id;
+    END $$
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- Sistema de informacion
+-- -----------------------------------------------------
+
+-- Se encarga de borrar la reservacion asociada a un evento en especifico --
+DROP TRIGGER IF EXISTS eliminar_evento;
+DELIMITER $$
+CREATE TRIGGER eliminar_evento AFTER DELETE ON EVENTO_GENERAL
+	FOR EACH ROW BEGIN
+        -- Borrado de reservacion de espacio
+        DELETE FROM RESERVACION WHERE res_id = OLD.eve_res_id;
     END $$
 DELIMITER ;
