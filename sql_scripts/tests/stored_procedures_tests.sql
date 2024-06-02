@@ -37,3 +37,8 @@ SELECT * FROM CITA_INDIVIDUAL INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id I
 SELECT * FROM CITA_DE_ASESORIA INNER JOIN EVENTO_GENERAL ON cit_ase_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
 CALL agendar_cita_asesoria(111111110, 'TRAMITES', '2024-05-27 15:00:00');
 SELECT * FROM CITA_DE_ASESORIA INNER JOIN EVENTO_GENERAL ON cit_ase_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
+
+-- Prueba cancelacion cita asesoria
+SELECT * FROM CITA_DE_ASESORIA INNER JOIN EVENTO_GENERAL ON cit_ase_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;
+CALL cancelar_cita_asesoria(320);
+SELECT * FROM CITA_DE_ASESORIA INNER JOIN EVENTO_GENERAL ON cit_ase_eve_id = eve_id INNER JOIN RESERVACION ON eve_res_id = res_id;

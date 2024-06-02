@@ -84,6 +84,8 @@ GRANT EXECUTE ON PROCEDURE agendar_cita_individual TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE agendar_cita_asesoria TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE asignar_ganador_encuentro_deportivo TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE cancelar_cita_individual TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE cancelar_cita_asesoria TO 'funcionario_bienestar';
 
 
 -- -----------------------------------------------------
@@ -153,6 +155,7 @@ GRANT EXECUTE ON PROCEDURE agendar_cita_individual TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE agendar_cita_asesoria TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE cancelar_cita_individual TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE cancelar_cita_asesoria TO 'estudiante';
 
 
 -- -----------------------------------------------------

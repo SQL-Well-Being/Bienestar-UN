@@ -47,6 +47,15 @@ CREATE PROCEDURE agendar_cita_asesoria(est_DNI INT, tipo ENUM("CRISIS EMOCIONAL"
     END $$
 DELIMITER ;
 
+-- Se encarga de cancelar una cita de asesoria (la eliminacion de su evento asociado se encuentra implementada en un trigger) 
+DROP PROCEDURE IF EXISTS cancelar_cita_asesoria;
+DELIMITER $$
+CREATE PROCEDURE cancelar_cita_asesoria(id_evento INT)
+	BEGIN
+		DELETE FROM CITA_DE_ASESORIA WHERE cit_ase_eve_id = id_evento;
+    END $$
+DELIMITER ;
+
 
 -- -----------------------------------------------------
 -- Actividad Física y Deporte

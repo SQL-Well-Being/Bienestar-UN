@@ -41,8 +41,10 @@ INNER JOIN ESPACIO ON res_esp_id = esp_id
 INNER JOIN EDIFICIO ON esp_edi_id = edi_id
 WHERE res_fecha_inicial BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY);
 
-
---
+-- -----------------------------------------------------
+-- Salud
+-- -----------------------------------------------------
+-- Presenta informacion relevante sobre el perfil de salud de algun estudiante
 DROP VIEW IF EXISTS vw_info_salud_estudiante;
 CREATE VIEW vw_info_salud_estudiante AS
 SELECT est_per_DNI, perfsalud_peso, perfsalud_RH, perfsalud_estatura, perfsalud_discapacidades 
@@ -53,3 +55,15 @@ INNER JOIN (SELECT PERFIL_DE_SALUD.perfsalud_id, IFNULL(GROUP_CONCAT(dis_nombre 
 	     LEFT JOIN PERFIL_DE_SALUD_TIENE_DISCAPACIDAD ON PERFIL_DE_SALUD.perfsalud_id = PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.perfsalud_id
 	     LEFT JOIN DISCAPACIDAD ON PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.dis_id = DISCAPACIDAD.dis_id
             GROUP BY PERFIL_DE_SALUD.perfsalud_id) AS tab1 ON PERFIL_DE_SALUD.perfsalud_id = tab1.perfsalud_id;
+
+-- Permite ver informacion relevante sobre las citas individuales
+DROP VIEW IF EXISTS vw_info_cita_individual_salud;
+CREATE VIEW vw_info_cita_individual_salud
+	AS
+(SELECT cit_est_per_DNI, cit_tipo, eve_descripcion AS 'descripcion', DATE(res_fecha_inicial) AS 'fecha', 
+	DATE_FORMAT(res_fecha_inicial,  '%H:%i') AS 'hora_inicio',
+    DATE_FORMAT(res_fecha_fin, '%H:%i') AS 'hora_fin'
+    
+	FROM CITA_INDIVIDUAL 
+    INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id 
+    INNER JOIN RESERVACION ON eve_res_id = res_id);
