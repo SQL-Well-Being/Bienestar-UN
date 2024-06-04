@@ -15,7 +15,7 @@ GRANT 'funcionario_bienestar' TO 'usuario_funcionario'@'localhost';
 SET DEFAULT ROLE 'funcionario_bienestar' TO 'usuario_funcionario'@'localhost';
 
 -- Usuario para el rol 'estudiante'
-DROP USER IF EXISTS 'usuario_estudiante'@'localhost';
-CREATE USER 'usuario_estudiante'@'localhost' IDENTIFIED BY 'password';
-GRANT 'estudiante' TO 'usuario_estudiante'@'localhost';
-SET DEFAULT ROLE 'estudiante' TO 'usuario_estudiante'@'localhost';
+DROP USER IF EXISTS '111111101'@'localhost';
+CREATE USER '111111101'@'localhost' IDENTIFIED BY 'password';
+GRANT 'estudiante' TO '111111101'@'localhost';
+SET DEFAULT ROLE 'estudiante' TO '111111101'@'localhost';

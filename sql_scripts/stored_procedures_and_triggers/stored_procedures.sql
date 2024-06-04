@@ -183,6 +183,7 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fe
         SELECT CONCAT(per_primer_nombre, ' ', per_primer_apellido) INTO nombre_est FROM PERSONA WHERE per_DNI = est_DNI;
         SELECT esp_nombre INTO nombre_esp FROM ESPACIO WHERE esp_id = id_espacio;
         
+	START TRANSACTION;
         -- Creación reservación
         INSERT INTO RESERVACION(res_fecha_inicial, res_fecha_fin, res_esp_id)
 		VALUES (fecha, DATE_ADD(fecha, INTERVAL 30 MINUTE), id_espacio);
@@ -198,6 +199,8 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fe
         -- Creación cita
         INSERT INTO CITA_INDIVIDUAL(cit_tipo, cit_est_per_DNI, cit_eve_id)
 		VALUES (tipo_cita, est_DNI, id_evento);
+	
+    COMMIT;
     END $$
 DELIMITER ;
 
