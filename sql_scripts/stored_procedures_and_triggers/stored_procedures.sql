@@ -29,6 +29,7 @@ CREATE PROCEDURE agendar_cita_asesoria(est_DNI INT, tipo ENUM("CRISIS EMOCIONAL"
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No hay espacios disponibles en la fecha y hora solicitadas.';
         END IF;
         
+	START TRANSACTION;
         -- Creación reservacion
         INSERT INTO RESERVACION(res_fecha_inicial, res_fecha_fin, res_esp_id)
 		VALUES (fecha, DATE_ADD(fecha, INTERVAL 2 HOUR), id_espacio);
@@ -44,6 +45,7 @@ CREATE PROCEDURE agendar_cita_asesoria(est_DNI INT, tipo ENUM("CRISIS EMOCIONAL"
         -- Creación cita
         INSERT INTO bienestar_UN.CITA_DE_ASESORIA (cit_ase_eve_id, cit_ase_tipo, cit_ase_est_per_DNI) 
 		VALUES (id_evento, tipo, est_DNI);
+	COMMIT;
     END $$
 DELIMITER ;
 
@@ -213,6 +215,18 @@ CREATE PROCEDURE cancelar_cita_individual(id_evento INT)
     END $$
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS consultar_info_citas_individuales;
+DELIMITER $$
+CREATE PROCEDURE consultar_info_citas_individuales(est_DNI INT)
+	BEGIN
+		IF est_DNI IS NULL THEN
+			SELECT * FROM vw_info_cita_individual_salud;
+        ELSE
+			SELECT * FROM vw_info_cita_individual_salud WHERE cit_est_per_DNI = est_DNI;
+        END IF;
+    END $$
+DELIMITER ;
 
 
 -- -----------------------------------------------------
