@@ -134,27 +134,6 @@ DELIMITER ;
 -- Salud
 -- -----------------------------------------------------
 
--- Obtiene toda la info de salud de un estudiante en concreto
-DROP PROCEDURE IF EXISTS obtener_info_salud_estudiante;
-DELIMITER $$
-CREATE PROCEDURE obtener_info_salud_estudiante(DNI INT)
-    BEGIN
-		SELECT * FROM vw_info_salud_estudiante WHERE est_per_DNI = DNI;
-    END $$
-DELIMITER ;
-
-
--- Permite registrar una incapacidad medica en el sistema
-DROP PROCEDURE IF EXISTS cargar_incapacidad;
-DELIMITER $$
-CREATE PROCEDURE cargar_incapacidad(fecha_inicio DATE, fecha_fin DATE, DNI INT)
-	BEGIN
-		INSERT INTO INCAPACIDAD (inc_fecha_inicio, inc_fecha_fin, inc_est_per_DNI) 
-		VALUES (fecha_inicio, fecha_fin, DNI);
-    END $$
-DELIMITER ;
-
-
 -- Se encarga de agendar una cita, con su respectiva reservacion de espacio y evento
 DROP PROCEDURE IF EXISTS agendar_cita_individual;
 DELIMITER $$
@@ -206,15 +185,13 @@ CREATE PROCEDURE agendar_cita_individual(est_DNI INT, tipo_cita VARCHAR(120), fe
     END $$
 DELIMITER ;
 
--- Se encarga de cancelar una cita (la eliminacion de su evento asociada esta implementada en un trigger)
-DROP PROCEDURE IF EXISTS cancelar_cita_individual;
+DROP PROCEDURE IF EXISTS consultar_info_cita_individual_evento;
 DELIMITER $$
-CREATE PROCEDURE cancelar_cita_individual(id_evento INT)
+CREATE PROCEDURE consultar_info_cita_individual_evento(id_evento INT)
 	BEGIN
-		DELETE FROM CITA_INDIVIDUAL WHERE cit_eve_id=id_evento;
+		SELECT * FROM vw_info_cita_individual_salud WHERE cit_eve_id = id_evento;
     END $$
 DELIMITER ;
-
 
 DROP PROCEDURE IF EXISTS consultar_info_citas_individuales;
 DELIMITER $$
@@ -227,6 +204,51 @@ CREATE PROCEDURE consultar_info_citas_individuales(est_DNI INT)
         END IF;
     END $$
 DELIMITER ;
+
+
+-- Se encarga de cancelar una cita (la eliminacion de su evento asociada esta implementada en un trigger)
+DROP PROCEDURE IF EXISTS cancelar_cita_individual;
+DELIMITER $$
+CREATE PROCEDURE cancelar_cita_individual(id_evento INT)
+	BEGIN
+		DELETE FROM CITA_INDIVIDUAL WHERE cit_eve_id=id_evento;
+    END $$
+DELIMITER ;
+
+
+-- Obtiene toda la info de salud de un estudiante en concreto
+DROP PROCEDURE IF EXISTS obtener_info_salud_estudiante;
+DELIMITER $$
+CREATE PROCEDURE obtener_info_salud_estudiante(DNI INT)
+    BEGIN
+		SELECT * FROM vw_info_salud_estudiante WHERE est_per_DNI = DNI;
+    END $$
+DELIMITER ;
+
+
+-- Permite registrar una incapacidad medica en el sistema
+DROP PROCEDURE IF EXISTS cargar_incapacidad;
+DELIMITER $$
+CREATE PROCEDURE cargar_incapacidad(DNI INT, fecha_inicio DATE, fecha_fin DATE)
+	BEGIN
+		INSERT INTO INCAPACIDAD (inc_fecha_inicio, inc_fecha_fin, inc_est_per_DNI) 
+		VALUES (fecha_inicio, fecha_fin, DNI);
+    END $$
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS consultar_info_incapacidades;
+DELIMITER $$
+CREATE PROCEDURE consultar_info_incapacidades(est_DNI INT)
+	BEGIN
+		IF est_DNI IS NOT NULL THEN
+			SELECT * FROM INCAPACIDAD WHERE inc_est_per_DNI = est_DNI;
+        ELSE
+			SELECT * FROM INCAPACIDAD;
+        END IF;
+    END $$
+DELIMITER ;
+
 
 
 -- -----------------------------------------------------

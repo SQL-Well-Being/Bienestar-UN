@@ -112,18 +112,18 @@ VALUES
 INSERT INTO bienestar_UN.EVENTO_GENERAL 
     (eve_id, eve_descripcion, eve_res_id)
 VALUES
-    (300, 'Cita individual en consultorio A para Juan Pablo González Gómez a las 09:00 am', 300),
-    (301, 'Cita individual en consultorio A para María Isabel Martínez García a las 10:00 am', 301),
-    (302, 'Cita individual en consultorio A para Pedro Sánchez López a las 11:00 am', 302),
-    (303, 'Cita individual en consultorio B para Ana Lucía Gutiérrez Hernández a las 09:00 am', 303),
-    (304, 'Cita individual en consultorio B para Carlos Andrés Rodríguez Pérez a las 10:00 am', 304),
-    (305, 'Cita individual en consultorio B para Laura Díaz Ramírez a las 11:00 am', 305),
-    (306, 'Cita individual en consultorio C para Javier Martínez Suárez a las 09:00 am', 306),
-    (307, 'Cita individual en consultorio C para Paula Alejandra García Pérez a las 10:00 am', 307),
-    (308, 'Cita individual en consultorio C para Andrés Felipe López González a las 11:00 am', 308),
-    (309, 'Cita individual en consultorio D para Sofía Camila Hernández Muñoz a las 09:00 am', 309),
-    (310, 'Cita individual en consultorio D para Luis González Rodríguez a las 10:00 am', 310),
-    (311, 'Cita individual en consultorio D para Elena Pérez Martínez a las 11:00 am', 311);
+    (300, 'Cita individual en consultorio A para Juan Pablo González Gómez.', 300),
+    (301, 'Cita individual en consultorio A para María Isabel Martínez García.', 301),
+    (302, 'Cita individual en consultorio A para Pedro Sánchez López.', 302),
+    (303, 'Cita individual en consultorio B para Ana Lucía Gutiérrez Hernández.', 303),
+    (304, 'Cita individual en consultorio B para Carlos Andrés Rodríguez Pérez.', 304),
+    (305, 'Cita individual en consultorio B para Laura Díaz Ramírez.', 305),
+    (306, 'Cita individual en consultorio C para Javier Martínez Suárez.', 306),
+    (307, 'Cita individual en consultorio C para Paula Alejandra García Pérez.', 307),
+    (308, 'Cita individual en consultorio C para Andrés Felipe López González.', 308),
+    (309, 'Cita individual en consultorio D para Sofía Camila Hernández Muñoz.', 309),
+    (310, 'Cita individual en consultorio D para Luis González Rodríguez.', 310),
+    (311, 'Cita individual en consultorio D para Elena Pérez Martínez.', 311);
 
 INSERT INTO bienestar_UN.CITA_INDIVIDUAL 
     (cit_tipo, cit_est_per_DNI,  cit_eve_id)

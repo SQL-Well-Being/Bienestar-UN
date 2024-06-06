@@ -60,7 +60,7 @@ INNER JOIN (SELECT PERFIL_DE_SALUD.perfsalud_id, IFNULL(GROUP_CONCAT(dis_nombre 
 DROP VIEW IF EXISTS vw_info_cita_individual_salud;
 CREATE VIEW vw_info_cita_individual_salud
 	AS
-(SELECT cit_est_per_DNI, cit_tipo, eve_descripcion AS 'descripcion', DATE(res_fecha_inicial) AS 'fecha', 
+(SELECT cit_eve_id, cit_est_per_DNI, cit_tipo, eve_descripcion AS 'descripcion', DATE(res_fecha_inicial) AS 'fecha', 
 	DATE_FORMAT(res_fecha_inicial,  '%H:%i') AS 'hora_inicio',
     DATE_FORMAT(res_fecha_fin, '%H:%i') AS 'hora_fin'
     
