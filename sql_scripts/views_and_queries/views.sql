@@ -1,6 +1,21 @@
 USE bienestar_UN;
 
 -- -----------------------------------------------------
+-- Acompañamiento integral
+-- -----------------------------------------------------
+
+DROP VIEW IF EXISTS vw_info_cita_asesoria;
+CREATE VIEW vw_info_cita_asesoria
+	AS
+(SELECT cit_ase_eve_id, cit_ase_est_per_DNI, cit_ase_tipo, eve_descripcion AS 'descripcion', DATE(res_fecha_inicial) AS 'fecha', 
+	DATE_FORMAT(res_fecha_inicial,  '%H:%i') AS 'hora_inicio',
+    DATE_FORMAT(res_fecha_fin, '%H:%i') AS 'hora_fin'
+    
+	FROM CITA_DE_ASESORIA 
+    INNER JOIN EVENTO_GENERAL ON cit_ase_eve_id = eve_id 
+    INNER JOIN RESERVACION ON eve_res_id = res_id);
+
+-- -----------------------------------------------------
 -- Sistema de Información
 -- -----------------------------------------------------
 

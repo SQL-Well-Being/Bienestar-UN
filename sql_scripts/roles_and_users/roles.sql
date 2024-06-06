@@ -89,6 +89,7 @@ GRANT EXECUTE ON PROCEDURE cancelar_cita_asesoria TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_citas_individuales TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_incapacidades TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_cita_individual_evento TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_info_cita_asesoria_evento TO 'funcionario_bienestar';
 
 -- -----------------------------------------------------
 -- Estudiante
@@ -161,6 +162,7 @@ GRANT EXECUTE ON PROCEDURE cancelar_cita_asesoria TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_citas_individuales TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_incapacidades TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_cita_individual_evento TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_info_cita_asesoria_evento TO 'estudiante';
 
 
 
