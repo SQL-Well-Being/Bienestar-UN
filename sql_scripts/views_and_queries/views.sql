@@ -57,6 +57,26 @@ INNER JOIN EDIFICIO ON esp_edi_id = edi_id
 WHERE res_fecha_inicial BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY);
 
 -- -----------------------------------------------------
+-- Gestion y fomento socioeconomico
+-- -----------------------------------------------------
+
+DROP VIEW IF EXISTS vw_info_convocatorias_gestion;
+CREATE VIEW vw_info_convocatorias_gestion
+	AS
+(SELECT con_gen_codigo, con_gen_activa, con_gen_periodo_academico, con_gen_tipo, con_esp_id, con_esp_nombre, con_esp_descripcion, con_gen_horas_de_corresponsabilidad 
+	FROM CONVOCATORIA_GENERAL
+    INNER JOIN CONVOCATORIA_ESPECIFICA
+    ON con_gen_codigo = con_esp_con_gen_codigo
+    ORDER BY con_gen_periodo_academico DESC);
+
+DROP VIEW IF EXISTS vw_info_participaciones_convocatorias_gestion;
+CREATE VIEW vw_info_participaciones_convocatorias_gestion
+	AS
+(SELECT  ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id, est_per_DNI, con_gen_codigo, con_gen_activa, con_gen_periodo_academico, con_esp_nombre, con_esp_estado
+	FROM ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
+    INNER JOIN vw_info_convocatorias_gestion ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id = vw_info_convocatorias_gestion.con_esp_id);
+
+-- -----------------------------------------------------
 -- Salud
 -- -----------------------------------------------------
 -- Presenta informacion relevante sobre el perfil de salud de algun estudiante

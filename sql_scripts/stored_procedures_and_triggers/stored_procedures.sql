@@ -115,19 +115,42 @@ CREATE PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico(DN
 DELIMITER ;
 
 -- -----------------------------------------------------
--- Gestion y Fomento
+-- Gestion y Fomento socioeconomico
 -- -----------------------------------------------------
 
 -- Agrega un estudiante a la lista de participantes de una convocatoria en especifico
 DROP PROCEDURE IF EXISTS registrar_participacion_convocatoria_gestion;
 DELIMITER $$
-CREATE PROCEDURE registrar_participacion_convocatoria_gestion(id_convocatoria_especifica INT, DNI INT)
+CREATE PROCEDURE registrar_participacion_convocatoria_gestion(DNI INT, id_convocatoria_especifica INT)
 	BEGIN
 		INSERT INTO ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION (con_esp_id, est_per_DNI)
         VALUES (id_convocatoria_especifica, DNI);
 	END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion;
+DELIMITER $$
+CREATE PROCEDURE consultar_convocatorias_gestion(periodo_academico VARCHAR(6), solo_activas TINYINT)
+	BEGIN
+		IF solo_activas = 1 THEN
+			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND con_gen_activa = 1;
+        ELSE
+			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico;
+        END IF;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_participaciones_convocatorias_gestion;
+DELIMITER $$
+CREATE PROCEDURE consultar_participaciones_convocatorias_gestion(periodo_academico VARCHAR(6), est_DNI INT)
+	BEGIN
+		IF est_DNI IS NOT NULL THEN
+			SELECT * FROM vw_info_participaciones_convocatrias_gestion WHERE con_gen_periodo_academico = periodo_academico AND est_per_DNI = est_DNI;
+        ELSE
+			SELECT * FROM vw_info_participaciones_convocatrias_gestion WHERE con_gen_periodo_academico = periodo_academico;
+        END IF;
+    END $$
+DELIMITER ;
 
 /* 
 Permite cambiar el estado de una participacion en alguna convocatoria 
