@@ -128,9 +128,9 @@ CREATE PROCEDURE registrar_participacion_convocatoria_gestion(DNI INT, id_convoc
 	END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion;
+DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion_periodo;
 DELIMITER $$
-CREATE PROCEDURE consultar_convocatorias_gestion(periodo_academico VARCHAR(6), solo_activas TINYINT)
+CREATE PROCEDURE consultar_convocatorias_gestion_periodo(periodo_academico VARCHAR(6), solo_activas TINYINT)
 	BEGIN
 		IF solo_activas = 1 THEN
 			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND con_gen_activa = 1;
@@ -140,17 +140,42 @@ CREATE PROCEDURE consultar_convocatorias_gestion(periodo_academico VARCHAR(6), s
     END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS consultar_participaciones_convocatorias_gestion;
+DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion_id;
 DELIMITER $$
-CREATE PROCEDURE consultar_participaciones_convocatorias_gestion(periodo_academico VARCHAR(6), est_DNI INT)
+CREATE PROCEDURE consultar_convocatorias_gestion_id(esp_id INT, solo_activas TINYINT)
 	BEGIN
-		IF est_DNI IS NOT NULL THEN
-			SELECT * FROM vw_info_participaciones_convocatrias_gestion WHERE con_gen_periodo_academico = periodo_academico AND est_per_DNI = est_DNI;
+		IF solo_activas = 1 THEN
+			SELECT * FROM vw_info_convocatorias_gestion WHERE con_esp_id = esp_id AND con_gen_activa = 1;
         ELSE
-			SELECT * FROM vw_info_participaciones_convocatrias_gestion WHERE con_gen_periodo_academico = periodo_academico;
+			SELECT * FROM vw_info_convocatorias_gestion WHERE con_esp_id = esp_id;
         END IF;
     END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_participaciones_convocatorias_gestion_periodo;
+DELIMITER $$
+CREATE PROCEDURE consultar_participaciones_convocatorias_gestion_periodo(periodo_academico VARCHAR(6), est_DNI INT)
+	BEGIN
+		IF est_DNI IS NOT NULL THEN
+			SELECT * FROM vw_info_participaciones_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND est_per_DNI = est_DNI;
+        ELSE
+			SELECT * FROM vw_info_participaciones_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico;
+        END IF;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_participaciones_convocatorias_gestion_id;
+DELIMITER $$
+CREATE PROCEDURE consultar_participaciones_convocatorias_gestion_id(esp_id INT, est_DNI INT)
+	BEGIN
+		IF est_DNI IS NOT NULL THEN
+			SELECT * FROM vw_info_participaciones_convocatorias_gestion WHERE con_esp_id = esp_id AND est_per_DNI = est_DNI;
+        ELSE
+			SELECT * FROM vw_info_participaciones_convocatorias_gestion WHERE con_esp_id = esp_id;
+        END IF;
+    END $$
+DELIMITER ;
+
 
 /* 
 Permite cambiar el estado de una participacion en alguna convocatoria 

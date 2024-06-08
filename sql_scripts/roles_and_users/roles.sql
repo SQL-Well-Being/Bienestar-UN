@@ -90,8 +90,10 @@ GRANT EXECUTE ON PROCEDURE consultar_info_citas_individuales TO 'funcionario_bie
 GRANT EXECUTE ON PROCEDURE consultar_info_incapacidades TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_cita_individual_evento TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_cita_asesoria_evento TO 'funcionario_bienestar';
-GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion TO 'funcionario_bienestar';
-
+GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_periodo TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_id TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_periodo TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_id TO 'funcionario_bienestar';
 
 -- -----------------------------------------------------
 -- Estudiante
@@ -165,8 +167,10 @@ GRANT EXECUTE ON PROCEDURE consultar_info_citas_individuales TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_incapacidades TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_cita_individual_evento TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_cita_asesoria_evento TO 'estudiante';
-GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion TO 'estudiante';
-
+GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_periodo TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_id TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_periodo TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_id TO 'estudiante';
 
 -- -----------------------------------------------------
 -- Administrador
