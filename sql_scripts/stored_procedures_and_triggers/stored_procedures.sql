@@ -266,6 +266,18 @@ CREATE PROCEDURE consultar_info_citas_individuales(est_DNI INT)
     END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS consultar_info_proximas_citas_individuales;
+DELIMITER $$
+CREATE PROCEDURE consultar_info_proximas_citas_individuales(est_DNI INT)
+	BEGIN
+		IF est_DNI IS NULL THEN
+			SELECT * FROM vw_info_cita_individual_salud WHERE fecha >= NOW();
+        ELSE
+			SELECT * FROM vw_info_cita_individual_salud WHERE cit_est_per_DNI = est_DNI AND fecha >= NOW();
+        END IF;
+    END $$
+DELIMITER ;
+
 
 -- Se encarga de cancelar una cita (la eliminacion de su evento asociada esta implementada en un trigger)
 DROP PROCEDURE IF EXISTS cancelar_cita_individual;
