@@ -76,22 +76,22 @@ CREATE VIEW vw_info_participaciones_convocatorias_gestion
 	FROM ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
     INNER JOIN vw_info_convocatorias_gestion ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id = vw_info_convocatorias_gestion.con_esp_id);
 
-SELECT * FROM vw_info_participaciones_convocatorias_gestion;
 -- -----------------------------------------------------
 -- Salud
 -- -----------------------------------------------------
 -- Presenta informacion relevante sobre el perfil de salud de algun estudiante
 DROP VIEW IF EXISTS vw_info_salud_estudiante;
 CREATE VIEW vw_info_salud_estudiante AS
-SELECT est_per_DNI, perfsalud_peso, perfsalud_RH, perfsalud_estatura, perfsalud_discapacidades 
+SELECT est_per_DNI, PERFIL_DE_SALUD.perfsalud_id, perfsalud_peso, perfsalud_RH, perfsalud_estatura, perfsalud_discapacidades, perfsalud_id_discapacidades 
 FROM ESTUDIANTE 
 INNER JOIN PERFIL_DE_SALUD ON est_perfsalud_id = perfsalud_id
-INNER JOIN (SELECT PERFIL_DE_SALUD.perfsalud_id, IFNULL(GROUP_CONCAT(dis_nombre SEPARATOR ' - '), ' ') AS 'perfsalud_discapacidades' 
+INNER JOIN (SELECT PERFIL_DE_SALUD.perfsalud_id, GROUP_CONCAT(dis_nombre SEPARATOR ' - ') AS 'perfsalud_discapacidades',
+		GROUP_CONCAT(DISCAPACIDAD.dis_id SEPARATOR ',') AS 'perfsalud_id_discapacidades'
 	     FROM PERFIL_DE_SALUD
 	     LEFT JOIN PERFIL_DE_SALUD_TIENE_DISCAPACIDAD ON PERFIL_DE_SALUD.perfsalud_id = PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.perfsalud_id
 	     LEFT JOIN DISCAPACIDAD ON PERFIL_DE_SALUD_TIENE_DISCAPACIDAD.dis_id = DISCAPACIDAD.dis_id
             GROUP BY PERFIL_DE_SALUD.perfsalud_id) AS tab1 ON PERFIL_DE_SALUD.perfsalud_id = tab1.perfsalud_id;
-
+            
 -- Permite ver informacion relevante sobre las citas individuales
 DROP VIEW IF EXISTS vw_info_cita_individual_salud;
 CREATE VIEW vw_info_cita_individual_salud

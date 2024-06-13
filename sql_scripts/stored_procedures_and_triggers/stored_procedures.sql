@@ -322,6 +322,38 @@ CREATE PROCEDURE consultar_info_incapacidades(est_DNI INT)
 DELIMITER ;
 
 
+DROP PROCEDURE IF EXISTS agregar_discapacidad;
+DELIMITER $$
+CREATE PROCEDURE agregar_discapacidad(id_dis INT, id_perf INT)
+	BEGIN
+		INSERT INTO PERFIL_DE_SALUD_TIENE_DISCAPACIDAD(dis_id, perfsalud_id) VALUES (id_dis, id_perf);
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS remover_discapacidad;
+DELIMITER $$
+CREATE PROCEDURE remover_discapacidad(id_dis INT, id_perf INT)
+	BEGIN
+		DELETE FROM PERFIL_DE_SALUD_TIENE_DISCAPACIDAD WHERE dis_id = id_dis AND perfsalud_id = id_perf;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS discapacidades_perfil;
+DELIMITER $$
+CREATE PROCEDURE discapacidades_perfil(id INT)
+	BEGIN
+		SELECT perfsalud_id_discapacidades FROM vw_info_salud_estudiante WHERE perfsalud_id = id;
+    END $$
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS actualizar_perfil_salud;
+DELIMITER $$
+CREATE PROCEDURE actualizar_perfil_salud(id INT, peso DECIMAL(5,3), RH VARCHAR(4), estatura DECIMAL(4,3))
+	BEGIN
+		UPDATE PERFIL_DE_SALUD SET perfsalud_peso=peso, perfsalud_RH=RH, perfsalud_estatura=estatura WHERE perfsalud_id = id;
+    END $$
+DELIMITER ;
 
 -- -----------------------------------------------------
 -- Sistema de Información
