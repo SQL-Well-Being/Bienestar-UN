@@ -114,6 +114,62 @@ CREATE PROCEDURE obtener_convocatorias_GAI_estudiante_en_un_periodo_academico(DN
     END $$
 DELIMITER ;
 
+-- LLenar asistencia taller cultural
+DROP PROCEDURE IF EXISTS llenar_asistencia_taller_cultural;
+DELIMITER $$
+CREATE PROCEDURE llenar_asistencia_taller_cultural(DNI INT, eve_id INT)
+	BEGIN
+		INSERT INTO ESTUDIANTE_ASISTE_A_TALLER_CULTURAL
+			(tall_eve_id, est_per_DNI)
+		VALUES
+			(eve_id, DNI);
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_grupos_artisticos_institucionales;
+DELIMITER $$
+CREATE PROCEDURE obtener_grupos_artisticos_institucionales()
+	BEGIN
+		SELECT * FROM vw_info_gai;
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_talleres_culturales;
+DELIMITER $$
+CREATE PROCEDURE obtener_talleres_culturales()
+	BEGIN
+		SELECT * FROM vw_info_taller_cultural;
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_convocatorias_gai;
+DELIMITER $$
+CREATE PROCEDURE obtener_convocatorias_gai()
+	BEGIN
+		SELECT * FROM vw_info_convocatoria_gai;
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_estudiantes_pertenecen_gai;
+DELIMITER $$
+CREATE PROCEDURE obtener_estudiantes_pertenecen_gai(grupo_id INT)
+	BEGIN
+		SELECT * FROM vw_info_estudiantes_pertenecen_gai WHERE grupo_id = gru_id;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS obtener_estudiantes_asistieron_taller_cultural;
+DELIMITER $$
+CREATE PROCEDURE obtener_estudiantes_asistieron_taller_cultural(taller_id INT)
+	BEGIN
+		SELECT * FROM vw_info_estudiantes_asistencia_taller_cultural WHERE tall_eve_id = taller_id;
+    END $$
+DELIMITER ;
+
 -- -----------------------------------------------------
 -- Gestion y Fomento socioeconomico
 -- -----------------------------------------------------
