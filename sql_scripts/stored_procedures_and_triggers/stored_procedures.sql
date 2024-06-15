@@ -132,7 +132,7 @@ DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion_periodo;
 DELIMITER $$
 CREATE PROCEDURE consultar_convocatorias_gestion_periodo(periodo_academico VARCHAR(6), solo_abiertas TINYINT)
 	BEGIN
-		IF solo_activas = 1 THEN
+		IF solo_abiertas = 1 THEN
 			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND con_gen_abierta = 1;
         ELSE
 			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico;
