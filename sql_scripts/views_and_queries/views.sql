@@ -94,6 +94,7 @@ CREATE VIEW vw_info_beneficiarios_gestion
 -- -----------------------------------------------------
 -- Salud
 -- -----------------------------------------------------
+
 -- Presenta informacion relevante sobre el perfil de salud de algun estudiante
 DROP VIEW IF EXISTS vw_info_salud_estudiante;
 CREATE VIEW vw_info_salud_estudiante AS
@@ -118,3 +119,47 @@ CREATE VIEW vw_info_cita_individual_salud
 	FROM CITA_INDIVIDUAL 
     INNER JOIN EVENTO_GENERAL ON cit_eve_id = eve_id 
     INNER JOIN RESERVACION ON eve_res_id = res_id);
+    
+
+-- -----------------------------------------------------
+-- Cultura
+-- -----------------------------------------------------
+
+-- Permite ver la información de los talleres culturales
+DROP VIEW IF EXISTS vw_info_taller_cultural;
+CREATE VIEW vw_info_taller_cultural AS
+SELECT tall_eve_id, tall_nombre, per_primer_nombre, per_primer_apellido, res_fecha_inicial, res_fecha_fin, esp_nombre, edi_nombre
+FROM TALLER_CULTURAL
+INNER JOIN PERSONA ON doc_per_DNI_tallerista = per_dni
+INNER JOIN RESERVACION ON tall_eve_id = res_id
+INNER JOIN ESPACIO ON res_esp_id = esp_id
+INNER JOIN EDIFICIO ON esp_edi_id = edi_id;
+
+-- Permite ver la información de los grupos artísticos institucionales
+DROP VIEW IF EXISTS vw_info_gai;
+CREATE VIEW vw_info_gai AS
+SELECT gru_id, gru_nombre, per_primer_nombre, per_primer_apellido
+FROM GRUPO_ARTISTICO_INSTITUCIONAL
+INNER JOIN PERSONA ON gru_doc_per_DNI_director = per_dni;
+
+-- Permite ver la información de las convocatorias de los grupos artísticos institucionales
+DROP VIEW IF EXISTS vw_info_convocatoria_gai;
+CREATE VIEW vw_info_convocatoria_gai AS
+SELECT con_gai_codigo, con_gai_descripcion, con_gai_periodo_academico, gru_nombre
+FROM CONVOCATORIA_GAI
+INNER JOIN GRUPO_ARTISTICO_INSTITUCIONAL ON gru_id = con_gai_gru_id;
+
+-- Permite ver la información de los estudiantes que pertenecen a los grupos artísticos institucionales
+DROP VIEW IF EXISTS vw_info_estudiantes_pertenecen_gai;
+CREATE VIEW vw_info_estudiantes_pertenecen_gai AS
+SELECT grupo_artistico_institucional.gru_id, gru_nombre, est_per_DNI, per_primer_nombre, per_segundo_nombre, per_primer_apellido, per_segundo_apellido
+FROM grupo_artistico_institucional_tiene_estudiante
+INNER JOIN GRUPO_ARTISTICO_INSTITUCIONAL
+INNER JOIN PERSONA ON est_per_dni = per_dni;
+
+-- Permite ver la información de los estudiantes que asistieron a un taller cultural
+DROP VIEW IF EXISTS vw_info_estudiantes_asistencia_taller_cultural;
+CREATE VIEW vw_info_estudiantes_asistencia_taller_cultural AS
+SELECT tall_eve_id, est_per_DNI, per_primer_nombre, per_segundo_nombre, per_primer_apellido, per_segundo_apellido
+FROM estudiante_asiste_a_taller_cultural
+INNER JOIN PERSONA ON est_per_dni = per_dni;

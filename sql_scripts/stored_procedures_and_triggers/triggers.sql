@@ -107,6 +107,7 @@ CREATE TRIGGER clasificar_beneficiario AFTER INSERT ON BENEFICIARIO_PROGRAMA_DE_
     END $$
 DELIMITER ;
 
+
 -- -----------------------------------------------------
 -- Salud
 -- -----------------------------------------------------
@@ -121,6 +122,7 @@ CREATE TRIGGER eliminar_cita_individual AFTER DELETE ON CITA_INDIVIDUAL
     END $$
 DELIMITER ;
 
+
 -- -----------------------------------------------------
 -- Sistema de informacion
 -- -----------------------------------------------------
@@ -132,5 +134,26 @@ CREATE TRIGGER eliminar_evento AFTER DELETE ON EVENTO_GENERAL
 	FOR EACH ROW BEGIN
         -- Borrado de reservacion de espacio
         DELETE FROM RESERVACION WHERE res_id = OLD.eve_res_id;
+    END $$
+DELIMITER ;
+
+
+-- -----------------------------------------------------
+-- Cultura
+-- -----------------------------------------------------
+
+-- Detecta si un estudiante fue admitido a un grupo artístico y lo agrega
+DROP TRIGGER IF EXISTS agregar_estudiante_a_gai;
+DELIMITER $$
+CREATE TRIGGER agregar_estudiante_a_gai AFTER UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GAI
+	FOR EACH ROW BEGIN
+		DECLARE grupo_id INT;
+        SET grupo_id = obtener_gai_id(NEW.con_gai_id);
+
+		IF NEW.es_admitido = 1 AND OLD.es_admitido = 0 THEN
+			INSERT INTO GRUPO_ARTISTICO_INSTITUCIONAL_TIENE_ESTUDIANTE
+				(gru_id, est_per_DNI)
+			VALUES (grupo_id, NEW.est_per_DNI);
+		END IF;
     END $$
 DELIMITER ;
