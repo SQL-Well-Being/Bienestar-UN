@@ -27,9 +27,11 @@ CREATE TRIGGER validar_participacion_convocatoria_gestion BEFORE INSERT ON ESTUD
 		DECLARE msg VARCHAR(128);
         DECLARE es_activo TINYINT;
         DECLARE convocatoria_activa TINYINT;
+        DEClARE convocatoria_abierta TINYINT;
         DECLARE participaciones INT;
         
 		SELECT con_gen_activa INTO convocatoria_activa FROM vw_info_convocatorias_gestion WHERE con_esp_id = NEW.con_esp_id;
+        SELECT con_gen_abierta INTO convocatoria_activa FROM vw_info_convocatorias_gestion WHERE con_esp_id = NEW.con_esp_id;
         
         SELECT hist_es_activa INTO es_activo FROM vw_info_academica_estudiante WHERE est_per_DNI = NEW.est_per_DNI;
         
@@ -44,7 +46,7 @@ CREATE TRIGGER validar_participacion_convocatoria_gestion BEFORE INSERT ON ESTUD
 			SET msg = CONCAT('El estudiante con DNI ', NEW.est_per_DNI, ' ya participa en la convocatoria con id ', NEW.con_esp_id );
 			SIGNAL SQLSTATE '45000'
 				SET MESSAGE_TEXT = msg;
-		ELSEIF convocatoria_activa = 0 THEN
+		ELSEIF convocatoria_activa = 0 OR convocatoria_abierta = 0 THEN
 			SET msg = CONCAT('La convocatoria ya no se encuentra habilitada para participar');
 			SIGNAL SQLSTATE '45000'
 				SET MESSAGE_TEXT = msg;

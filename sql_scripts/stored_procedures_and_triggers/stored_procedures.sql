@@ -130,13 +130,41 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion_periodo;
 DELIMITER $$
-CREATE PROCEDURE consultar_convocatorias_gestion_periodo(periodo_academico VARCHAR(6), solo_activas TINYINT)
+CREATE PROCEDURE consultar_convocatorias_gestion_periodo(periodo_academico VARCHAR(6), solo_abiertas TINYINT)
 	BEGIN
 		IF solo_activas = 1 THEN
-			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND con_gen_activa = 1;
+			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND con_gen_abierta = 1;
         ELSE
 			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico;
         END IF;
+    END $$
+DELIMITER ;
+--
+DROP PROCEDURE IF EXISTS consultar_beneficios_estudiante;
+DELIMITER $$
+CREATE PROCEDURE consultar_beneficios_estudiante(DNI INT)
+	BEGIN
+		SELECT * FROM vw_info_beneficiarios_gestion WHERE ben_est_per_DNI = DNI;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_beneficiarios_convocatoria;
+DELIMITER $$
+CREATE PROCEDURE consultar_beneficiarios_convocatoria(con_id INT)
+	BEGIN
+		SELECT * FROM vw_info_beneficiarios_gestion WHERE con_esp_id = con_id;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_beneficiarios;
+DELIMITER $$
+CREATE PROCEDURE consultar_beneficiarios(solo_activas TINYINT)
+	BEGIN
+		IF solo_activas = 1 THEN
+			SELECT * FROM vw_info_beneficiarios_gestion WHERE con_gen_activa = 1;
+		ELSE
+			SELECT * FROM vw_info_beneficiarios_gestion;
+		END IF;
     END $$
 DELIMITER ;
 

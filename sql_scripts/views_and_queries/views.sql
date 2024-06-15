@@ -63,7 +63,7 @@ WHERE res_fecha_inicial BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY
 DROP VIEW IF EXISTS vw_info_convocatorias_gestion;
 CREATE VIEW vw_info_convocatorias_gestion
 	AS
-(SELECT con_esp_id, con_gen_codigo, con_gen_activa, con_gen_periodo_academico, con_gen_tipo, con_esp_nombre, con_esp_descripcion, con_gen_horas_de_corresponsabilidad 
+(SELECT con_esp_id, con_gen_codigo, con_gen_activa, con_gen_abierta, con_gen_periodo_academico, con_gen_tipo, con_esp_nombre, con_esp_descripcion, con_gen_horas_de_corresponsabilidad 
 	FROM CONVOCATORIA_GENERAL
     INNER JOIN CONVOCATORIA_ESPECIFICA
     ON con_gen_codigo = con_esp_con_gen_codigo
@@ -75,6 +75,15 @@ CREATE VIEW vw_info_participaciones_convocatorias_gestion
 (SELECT  ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id, est_per_DNI, con_gen_codigo, con_gen_activa, con_gen_periodo_academico, con_esp_nombre, con_esp_estado
 	FROM ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
     INNER JOIN vw_info_convocatorias_gestion ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id = vw_info_convocatorias_gestion.con_esp_id);
+
+DROP VIEW IF EXISTS vw_info_beneficiarios_gestion;
+CREATE VIEW vw_info_beneficiarios_gestion
+	AS
+(SELECT ben_id, ben_est_per_DNI, CONVOCATORIA_ESPECIFICA.con_esp_id, con_esp_con_gen_codigo, con_gen_activa, con_esp_nombre, ben_periodo_academico  
+	FROM BENEFICIARIO_PROGRAMA_DE_GESTION
+	INNER JOIN CONVOCATORIA_ESPECIFICA ON BENEFICIARIO_PROGRAMA_DE_GESTION.con_esp_id = CONVOCATORIA_ESPECIFICA.con_esp_id
+    INNER JOIN CONVOCATORIA_GENERAL ON con_esp_con_gen_codigo = con_gen_codigo);
+
 
 -- -----------------------------------------------------
 -- Salud

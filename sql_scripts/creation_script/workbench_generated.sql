@@ -382,6 +382,7 @@ CREATE TABLE IF NOT EXISTS bienestar_UN.CONVOCATORIA_GENERAL (
   con_gen_periodo_academico VARCHAR(6) NOT NULL COMMENT 'El periodo académico del cual la convocatoria hace parte.',
   con_gen_horas_de_corresponsabilidad INT NOT NULL COMMENT 'Las horas de corresponsabilidad las cuales los estudiantes beneficiarios deben cumplir.',
   con_gen_activa TINYINT NOT NULL DEFAULT 1,
+  con_gen_abierta TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (con_gen_codigo))
 
 COMMENT = 'Es el tipo de convocatoria que lanza la universidad, que a su vez puede tener convocatorias específicas en las que los estudiantes pueden participar.';

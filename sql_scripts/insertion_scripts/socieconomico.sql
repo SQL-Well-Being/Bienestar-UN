@@ -111,5 +111,5 @@ VALUES
     ( "2024-2", 111111107, 7),
     ( "2024-2", 111111108, 8);
 
-UPDATE CONVOCATORIA_GENERAL SET con_gen_activa = 0 WHERE con_gen_periodo_academico = '2024-1';
+UPDATE CONVOCATORIA_GENERAL SET con_gen_activa = 0, con_gen_abierta=0 WHERE con_gen_periodo_academico = '2024-1';
     

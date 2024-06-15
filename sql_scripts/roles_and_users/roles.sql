@@ -99,6 +99,9 @@ GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_periodo TO 'funcionar
 GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_id TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_periodo TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_id TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_beneficios_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_beneficiarios_convocatoria TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_beneficiarios TO 'funcionario_bienestar';
 
 -- -----------------------------------------------------
 -- Estudiante
@@ -177,6 +180,7 @@ GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_periodo TO 'estudiant
 GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_id TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_periodo TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_id TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_beneficios_estudiante TO 'estudiante';
 
 -- -----------------------------------------------------
 -- Administrador
