@@ -72,18 +72,24 @@ CREATE VIEW vw_info_convocatorias_gestion
 DROP VIEW IF EXISTS vw_info_participaciones_convocatorias_gestion;
 CREATE VIEW vw_info_participaciones_convocatorias_gestion
 	AS
-(SELECT  ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id, est_per_DNI, con_gen_codigo, con_gen_activa, con_gen_periodo_academico, con_esp_nombre, con_esp_estado
+(SELECT  ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id, est_per_DNI, 
+	CONCAT(per_primer_nombre, ' ', IFNULL(per_segundo_nombre, ''), ' ', per_primer_apellido, ' ', per_segundo_apellido) AS est_nombre, 
+    con_gen_codigo, con_gen_activa, con_gen_periodo_academico, con_esp_nombre, con_esp_estado
 	FROM ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
-    INNER JOIN vw_info_convocatorias_gestion ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id = vw_info_convocatorias_gestion.con_esp_id);
+    INNER JOIN vw_info_convocatorias_gestion ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION.con_esp_id = vw_info_convocatorias_gestion.con_esp_id
+	INNER JOIN PERSONA ON est_per_DNI = per_DNI);
+
 
 DROP VIEW IF EXISTS vw_info_beneficiarios_gestion;
 CREATE VIEW vw_info_beneficiarios_gestion
 	AS
-(SELECT ben_id, ben_est_per_DNI, CONVOCATORIA_ESPECIFICA.con_esp_id, con_esp_con_gen_codigo, con_gen_activa, con_esp_nombre, ben_periodo_academico  
+(SELECT ben_id, ben_est_per_DNI, 
+	CONCAT(per_primer_nombre, ' ', IFNULL(per_segundo_nombre, ''), ' ', per_primer_apellido, ' ', per_segundo_apellido) AS est_nombre, 
+	CONVOCATORIA_ESPECIFICA.con_esp_id, con_esp_con_gen_codigo, con_gen_activa, con_esp_nombre, ben_periodo_academico  
 	FROM BENEFICIARIO_PROGRAMA_DE_GESTION
 	INNER JOIN CONVOCATORIA_ESPECIFICA ON BENEFICIARIO_PROGRAMA_DE_GESTION.con_esp_id = CONVOCATORIA_ESPECIFICA.con_esp_id
-    INNER JOIN CONVOCATORIA_GENERAL ON con_esp_con_gen_codigo = con_gen_codigo);
-
+    INNER JOIN CONVOCATORIA_GENERAL ON con_esp_con_gen_codigo = con_gen_codigo
+    INNER JOIN PERSONA ON ben_est_per_DNI = per_DNI);
 
 -- -----------------------------------------------------
 -- Salud
