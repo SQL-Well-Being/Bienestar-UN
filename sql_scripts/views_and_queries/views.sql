@@ -46,6 +46,16 @@ INNER JOIN (SELECT asic_hist_codigo, SUM(asic_nota_final * asi_numero_de_credito
             INNER JOIN ASIGNATURA ON asic_asi_codigo = asi_codigo
             GROUP BY asic_hist_codigo) AS SUB3 ON hist_codigo = SUB3.asic_hist_codigo;
 
+DROP VIEW IF EXISTS vw_info_estudiante;
+CREATE VIEW vw_info_estudiante 
+	AS
+(SELECT ESTUDIANTE.est_per_DNI, 
+	   CONCAT(per_primer_nombre, ' ', IFNULL(per_segundo_nombre, ''), ' ', per_primer_apellido, ' ', per_segundo_apellido) AS est_nombre,
+       est_pbm, est_es_peama, est_es_paes, hist_es_activa, hist_codigo, pro_nombre
+ FROM
+	ESTUDIANTE 
+    INNER JOIN vw_info_academica_estudiante ON ESTUDIANTE.est_per_DNI = vw_info_academica_estudiante.est_per_DNI
+    INNER JOIN PERSONA ON estudiante.est_per_DNI = per_DNI);
 
 -- 
 DROP VIEW IF EXISTS vw_reservaciones_espacios_proxima_semana;
@@ -89,7 +99,8 @@ CREATE VIEW vw_info_beneficiarios_gestion
 	FROM BENEFICIARIO_PROGRAMA_DE_GESTION
 	INNER JOIN CONVOCATORIA_ESPECIFICA ON BENEFICIARIO_PROGRAMA_DE_GESTION.con_esp_id = CONVOCATORIA_ESPECIFICA.con_esp_id
     INNER JOIN CONVOCATORIA_GENERAL ON con_esp_con_gen_codigo = con_gen_codigo
-    INNER JOIN PERSONA ON ben_est_per_DNI = per_DNI);
+    INNER JOIN PERSONA ON ben_est_per_DNI = per_DNI
+    ORDER BY ben_periodo_academico DESC);
 
 -- -----------------------------------------------------
 -- Salud

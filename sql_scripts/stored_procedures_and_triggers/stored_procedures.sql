@@ -195,13 +195,17 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion_periodo;
 DELIMITER $$
-CREATE PROCEDURE consultar_convocatorias_gestion_periodo(periodo_academico VARCHAR(6), solo_abiertas TINYINT)
+CREATE PROCEDURE consultar_convocatorias_gestion_periodo(periodo_academico VARCHAR(6), activas TINYINT)
 	BEGIN
-		IF solo_abiertas = 1 THEN
-			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND con_gen_abierta = 1;
-        ELSE
-			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico;
-        END IF;
+			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_periodo_academico = periodo_academico AND con_gen_activa = activas;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS  consultar_convocatorias_inactivas_gestion;
+DELIMITER $$
+CREATE PROCEDURE consultar_convocatorias_inactivas_gestion()
+	BEGIN
+			SELECT * FROM vw_info_convocatorias_gestion WHERE con_gen_activa = 0;
     END $$
 DELIMITER ;
 --
@@ -235,9 +239,9 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS  consultar_convocatorias_gestion_id;
 DELIMITER $$
-CREATE PROCEDURE consultar_convocatorias_gestion_id(esp_id INT, solo_activas TINYINT)
+CREATE PROCEDURE consultar_convocatorias_gestion_id(esp_id INT, activas TINYINT)
 	BEGIN
-		IF solo_activas = 1 THEN
+		IF activas = 1 THEN
 			SELECT * FROM vw_info_convocatorias_gestion WHERE con_esp_id = esp_id AND con_gen_activa = 1;
         ELSE
 			SELECT * FROM vw_info_convocatorias_gestion WHERE con_esp_id = esp_id;
@@ -282,7 +286,6 @@ CREATE PROCEDURE actualizar_estado_participacion_convocatoria_gestion(id_convoca
 		WHERE con_esp_id = id_convocatoria_especifica AND est_per_DNI = DNI;
     END $$
 DELIMITER ;
-
 
 -- -----------------------------------------------------
 -- Salud

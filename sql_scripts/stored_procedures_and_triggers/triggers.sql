@@ -55,9 +55,9 @@ CREATE TRIGGER validar_participacion_convocatoria_gestion BEFORE INSERT ON ESTUD
 DELIMITER ;
 
 -- Detecta cuando un beneficio fué adjudicado y agrega el estudiante a la tabla de beneficiarios 
-DROP TRIGGER IF EXISTS adjudicar_beneficio;
+DROP TRIGGER IF EXISTS actualizar_estado_participacion;
 DELIMITER $$
-CREATE TRIGGER adjudicar_beneficio AFTER UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
+CREATE TRIGGER actualizar_estado_participacion AFTER UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVOCATORIA_GESTION
 	
 	FOR EACH ROW BEGIN
 		DECLARE periodo VARCHAR(6);
@@ -69,6 +69,8 @@ CREATE TRIGGER adjudicar_beneficio AFTER UPDATE ON ESTUDIANTE_PARTICIPA_EN_CONVO
 			INSERT INTO BENEFICIARIO_PROGRAMA_DE_GESTION
 				(ben_periodo_academico, ben_est_per_DNI, con_esp_id)
 			VALUES (periodo, NEW.est_per_DNI, NEW.con_Esp_id);
+		ELSEIF OLD.con_esp_estado = 'ADJUDICADO' AND NEW.con_esp_estado != 'ADJUDICADO' THEN
+			DELETE FROM BENEFICIARIO_PROGRAMA_DE_GESTION WHERE ben_est_per_DNI = NEW.est_per_DNI AND con_esp_id = NEW.con_esp_id;
         END IF;
     END $$
 DELIMITER ;
