@@ -73,6 +73,11 @@ GRANT SELECT, INSERT, UPDATE ON PERSONA TO 'funcionario_bienestar';
 GRANT SELECT ON vw_info_academica_estudiante TO 'funcionario_bienestar';
 GRANT SELECT ON vw_reservaciones_espacios_proxima_semana TO 'funcionario_bienestar';
 GRANT SELECT ON vw_info_salud_estudiante TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_taller_cultural TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_gai TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_convocatoria_gai TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_estudiantes_pertenecen_gai TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_estudiantes_asistencia_taller_cultural TO 'funcionario_bienestar';
 
 -- Procedimientos almacenados
 GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'funcionario_bienestar';
@@ -102,6 +107,13 @@ GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_id TO
 GRANT EXECUTE ON PROCEDURE consultar_beneficios_estudiante TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_beneficiarios_convocatoria TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_beneficiarios TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE llenar_asistencia_taller_cultural TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_grupos_artisticos_institucionales TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_talleres_culturales TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_convocatorias_gai TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_estudiantes_pertenecen_gai TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_estudiantes_asistieron_taller_cultural TO 'funcionario_bienestar';
+
 
 -- -----------------------------------------------------
 -- Estudiante
@@ -161,8 +173,11 @@ GRANT SELECT, INSERT ON PERSONA TO 'estudiante';
 -- Vistas
 GRANT SELECT ON vw_info_academica_estudiante TO 'estudiante';
 GRANT SELECT ON vw_info_salud_estudiante TO 'estudiante';
+GRANT SELECT ON vw_info_taller_cultural TO 'estudiante';
+GRANT SELECT ON vw_info_gai TO 'estudiante';
+GRANT SELECT ON vw_info_convocatoria_gai TO 'estudiante';
 
--- Procedimientos almacendados
+-- Procedimientos almacenados
 GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE registrar_participacion_convocatoria_gestion TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE obtener_info_salud_estudiante TO 'estudiante';
@@ -181,6 +196,10 @@ GRANT EXECUTE ON PROCEDURE consultar_convocatorias_gestion_id TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_periodo TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_participaciones_convocatorias_gestion_id TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_beneficios_estudiante TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE llenar_asistencia_taller_cultural TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_grupos_artisticos_institucionales TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_talleres_culturales TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_convocatorias_gai TO 'estudiante';
 
 -- -----------------------------------------------------
 -- Administrador
