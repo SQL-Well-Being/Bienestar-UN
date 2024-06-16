@@ -110,6 +110,7 @@ GRANT EXECUTE ON PROCEDURE consultar_beneficiarios TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE llenar_asistencia_taller_cultural TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE obtener_grupos_artisticos_institucionales TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE obtener_talleres_culturales TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_taller_cultural TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE obtener_convocatorias_gai TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE obtener_estudiantes_pertenecen_gai TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE obtener_estudiantes_asistieron_taller_cultural TO 'funcionario_bienestar';
@@ -199,6 +200,7 @@ GRANT EXECUTE ON PROCEDURE consultar_beneficios_estudiante TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE llenar_asistencia_taller_cultural TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE obtener_grupos_artisticos_institucionales TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE obtener_talleres_culturales TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_taller_cultural TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE obtener_convocatorias_gai TO 'estudiante';
 
 -- -----------------------------------------------------

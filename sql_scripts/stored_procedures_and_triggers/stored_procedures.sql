@@ -145,6 +145,15 @@ CREATE PROCEDURE obtener_talleres_culturales()
 DELIMITER ;
 
 --
+DROP PROCEDURE IF EXISTS obtener_taller_cultural;
+DELIMITER $$
+CREATE PROCEDURE obtener_taller_cultural(taller_id INT)
+	BEGIN
+		SELECT * FROM vw_info_taller_cultural WHERE taller_id = tall_eve_id;
+    END $$
+DELIMITER ;
+
+--
 DROP PROCEDURE IF EXISTS obtener_convocatorias_gai;
 DELIMITER $$
 CREATE PROCEDURE obtener_convocatorias_gai()
