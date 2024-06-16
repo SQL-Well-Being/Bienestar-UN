@@ -19,6 +19,34 @@ CREATE VIEW vw_info_cita_asesoria
 -- Sistema de Información
 -- -----------------------------------------------------
 
+DROP VIEW IF EXISTS vw_info_eventos_proximos;
+CREATE VIEW vw_info_eventos_proximos
+	AS
+	(((SELECT tall_nombre AS nombre,  eve_descripcion AS descripcion, 
+		DATE(res_fecha_inicial) AS fecha, DATE_FORMAT(res_fecha_inicial,  '%H:%i') AS hora_inicio ,DATE_FORMAT(res_fecha_fin,  '%H:%i') AS hora_fin,
+		('Area de acompañamiento integral') AS area
+		FROM TALLER_CULTURAL
+		INNER JOIN EVENTO_GENERAL ON tall_eve_id = eve_id
+		INNER JOIN RESERVACION ON eve_res_id = res_id)
+
+	UNION
+
+	(SELECT ses_taller_nombre AS nombre,  eve_descripcion AS descripcion, 
+		DATE(res_fecha_inicial) AS fecha, DATE_FORMAT(res_fecha_inicial,  '%H:%i') AS hora_inicio ,DATE_FORMAT(res_fecha_fin,  '%H:%i') AS hora_fin,
+		('Area de cultura') AS area
+		FROM SESION_DE_TALLER
+		INNER JOIN EVENTO_GENERAL ON ses_taller_eve_id = eve_id
+		INNER JOIN RESERVACION ON eve_res_id = res_id)
+
+	UNION
+
+	(SELECT ses_salud_nombre AS nombre,  eve_descripcion AS descripcion, 
+		DATE(res_fecha_inicial) AS fecha, DATE_FORMAT(res_fecha_inicial,  '%H:%i') AS hora_inicio ,DATE_FORMAT(res_fecha_fin,  '%H:%i') AS hora_fin,
+		('Area de salud') AS area
+		FROM SESION_EVENTO_SALUD
+		INNER JOIN EVENTO_GENERAL ON ses_salud_eve_id = eve_id
+		INNER JOIN RESERVACION ON eve_res_id = res_id)) ORDER BY fecha DESC);
+        
 -- 
 DROP VIEW IF EXISTS vw_info_academica_estudiante;
 CREATE VIEW vw_info_academica_estudiante AS

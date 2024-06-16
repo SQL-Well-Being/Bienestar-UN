@@ -116,6 +116,9 @@ GRANT EXECUTE ON PROCEDURE obtener_estudiantes_pertenecen_gai TO 'funcionario_bi
 GRANT EXECUTE ON PROCEDURE obtener_estudiantes_asistieron_taller_cultural TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_convocatorias_inactivas_gestion TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_estudiante TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_eventos_proximos TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_info_citas_asesoria TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE consultar_info_proximas_citas_asesoria TO 'funcionario_bienestar';
 
 
 -- -----------------------------------------------------
@@ -205,6 +208,9 @@ GRANT EXECUTE ON PROCEDURE obtener_talleres_culturales TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE obtener_taller_cultural TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE obtener_convocatorias_gai TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_estudiante TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_eventos_proximos TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_info_citas_asesoria TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE consultar_info_proximas_citas_asesoria TO 'estudiante';
 
 -- -----------------------------------------------------
 -- Administrador

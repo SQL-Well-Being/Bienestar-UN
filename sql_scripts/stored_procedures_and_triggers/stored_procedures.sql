@@ -71,6 +71,30 @@ CREATE PROCEDURE cancelar_cita_asesoria(id_evento INT)
     END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS consultar_info_citas_asesoria;
+DELIMITER $$
+CREATE PROCEDURE consultar_info_citas_asesoria(est_DNI INT)
+	BEGIN
+		IF est_DNI IS NULL THEN
+			SELECT * FROM vw_info_cita_asesoria;
+        ELSE
+			SELECT * FROM vw_info_cita_asesoria WHERE cit_est_per_DNI = est_DNI;
+        END IF;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_info_proximas_citas_asesoria;
+DELIMITER $$
+CREATE PROCEDURE consultar_info_proximas_citas_asesoria(est_DNI INT)
+	BEGIN
+		IF est_DNI IS NULL THEN
+			SELECT * FROM vw_info_cita_asesoria WHERE fecha >= CURDATE();
+        ELSE
+			SELECT * FROM vw_info_cita_asesoria WHERE cit_est_per_DNI = est_DNI AND fecha >= CURDATE();
+        END IF;
+    END $$
+DELIMITER ;
+
 
 -- -----------------------------------------------------
 -- Actividad Física y Deporte
@@ -484,5 +508,13 @@ DELIMITER $$
 CREATE PROCEDURE consultar_info_estudiante(DNI INT)
 	BEGIN
 		SELECT * FROM vw_info_estudiante WHERE est_per_DNI = DNI;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_eventos_proximos;
+DELIMITER $$
+CREATE PROCEDURE consultar_eventos_proximos()
+	BEGIN
+		SELECT * FROM vw_info_eventos_proximos;
     END $$
 DELIMITER ;
