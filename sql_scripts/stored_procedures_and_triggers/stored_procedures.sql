@@ -478,3 +478,11 @@ BEGIN
 	WHERE res_fecha_inicial < dia;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS consultar_info_estudiante;
+DELIMITER $$
+CREATE PROCEDURE consultar_info_estudiante(DNI INT)
+	BEGIN
+		SELECT * FROM vw_info_estudiante WHERE est_per_DNI = DNI;
+    END $$
+DELIMITER ;
