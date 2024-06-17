@@ -78,7 +78,7 @@ CREATE PROCEDURE consultar_info_citas_asesoria(est_DNI INT)
 		IF est_DNI IS NULL THEN
 			SELECT * FROM vw_info_cita_asesoria;
         ELSE
-			SELECT * FROM vw_info_cita_asesoria WHERE cit_est_per_DNI = est_DNI;
+			SELECT * FROM vw_info_cita_asesoria WHERE cit_ase_est_per_DNI = est_DNI;
         END IF;
     END $$
 DELIMITER ;
@@ -90,7 +90,7 @@ CREATE PROCEDURE consultar_info_proximas_citas_asesoria(est_DNI INT)
 		IF est_DNI IS NULL THEN
 			SELECT * FROM vw_info_cita_asesoria WHERE fecha >= CURDATE();
         ELSE
-			SELECT * FROM vw_info_cita_asesoria WHERE cit_est_per_DNI = est_DNI AND fecha >= CURDATE();
+			SELECT * FROM vw_info_cita_asesoria WHERE cit_ase_est_per_DNI = est_DNI AND fecha >= CURDATE();
         END IF;
     END $$
 DELIMITER ;
