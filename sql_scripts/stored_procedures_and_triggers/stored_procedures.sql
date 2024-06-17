@@ -120,6 +120,51 @@ CREATE PROCEDURE asignar_ganador_encuentro_deportivo(enc_evento_id INT, enc_equi
 	END $$
 DELIMITER ;
 
+--
+DROP PROCEDURE IF EXISTS obtener_selecciones_deportivas;
+DELIMITER $$
+CREATE PROCEDURE obtener_selecciones_deportivas()
+	BEGIN
+		SELECT * FROM vw_info_selecciones_deportivas;
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_seleccion_deportiva;
+DELIMITER $$
+CREATE PROCEDURE obtener_seleccion_deportiva(id_seleccion INT)
+	BEGIN
+		SELECT * FROM vw_info_selecciones_deportivas WHERE id_seleccion = sel_id;
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_convocatorias_selecciones_deportivas;
+DELIMITER $$
+CREATE PROCEDURE obtener_convocatorias_selecciones_deportivas()
+	BEGIN
+		SELECT * FROM vw_info_convocatorias_selecciones_deportivas;
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_entrenamientos_seleccion_deportiva;
+DELIMITER $$
+CREATE PROCEDURE obtener_entrenamientos_seleccion_deportiva(seleccion_id INT)
+	BEGIN
+		SELECT * FROM vw_info_entrenamientos_selecciones_deportivas WHERE sel_id = seleccion_id;
+    END $$
+DELIMITER ;
+
+--
+DROP PROCEDURE IF EXISTS obtener_torneos;
+DELIMITER $$
+CREATE PROCEDURE obtener_torneos()
+	BEGIN
+		SELECT * FROM vw_info_torneos;
+    END $$
+DELIMITER ;
+
 
 -- -----------------------------------------------------
 -- Cultura

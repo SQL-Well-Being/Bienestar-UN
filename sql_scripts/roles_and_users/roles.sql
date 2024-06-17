@@ -78,6 +78,10 @@ GRANT SELECT ON vw_info_gai TO 'funcionario_bienestar';
 GRANT SELECT ON vw_info_convocatoria_gai TO 'funcionario_bienestar';
 GRANT SELECT ON vw_info_estudiantes_pertenecen_gai TO 'funcionario_bienestar';
 GRANT SELECT ON vw_info_estudiantes_asistencia_taller_cultural TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_selecciones_deportivas TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_convocatorias_selecciones_deportivas TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_entrenamientos_selecciones_deportivas TO 'funcionario_bienestar';
+GRANT SELECT ON vw_info_torneos TO 'funcionario_bienestar';
 
 -- Procedimientos almacenados
 GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'funcionario_bienestar';
@@ -119,6 +123,11 @@ GRANT EXECUTE ON PROCEDURE consultar_info_estudiante TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_eventos_proximos TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_citas_asesoria TO 'funcionario_bienestar';
 GRANT EXECUTE ON PROCEDURE consultar_info_proximas_citas_asesoria TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_selecciones_deportivas TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_seleccion_deportiva TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_convocatorias_selecciones_deportivas TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_entrenamientos_seleccion_deportiva TO 'funcionario_bienestar';
+GRANT EXECUTE ON PROCEDURE obtener_torneos TO 'funcionario_bienestar';
 
 
 -- -----------------------------------------------------
@@ -182,6 +191,10 @@ GRANT SELECT ON vw_info_salud_estudiante TO 'estudiante';
 GRANT SELECT ON vw_info_taller_cultural TO 'estudiante';
 GRANT SELECT ON vw_info_gai TO 'estudiante';
 GRANT SELECT ON vw_info_convocatoria_gai TO 'estudiante';
+GRANT SELECT ON vw_info_selecciones_deportivas TO 'estudiante';
+GRANT SELECT ON vw_info_convocatorias_selecciones_deportivas TO 'estudiante';
+GRANT SELECT ON vw_info_entrenamientos_selecciones_deportivas TO 'estudiante';
+GRANT SELECT ON vw_info_torneos TO 'estudiante';
 
 -- Procedimientos almacenados
 GRANT EXECUTE ON PROCEDURE obtener_info_academica_estudiante TO 'estudiante';
@@ -211,6 +224,11 @@ GRANT EXECUTE ON PROCEDURE consultar_info_estudiante TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_eventos_proximos TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_citas_asesoria TO 'estudiante';
 GRANT EXECUTE ON PROCEDURE consultar_info_proximas_citas_asesoria TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_selecciones_deportivas TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_seleccion_deportiva TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_convocatorias_selecciones_deportivas TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_entrenamientos_seleccion_deportiva TO 'estudiante';
+GRANT EXECUTE ON PROCEDURE obtener_torneos TO 'estudiante';
 
 -- -----------------------------------------------------
 -- Administrador

@@ -202,3 +202,38 @@ CREATE VIEW vw_info_estudiantes_asistencia_taller_cultural AS
 SELECT tall_eve_id, est_per_DNI, per_primer_nombre, per_segundo_nombre, per_primer_apellido, per_segundo_apellido
 FROM estudiante_asiste_a_taller_cultural
 INNER JOIN PERSONA ON est_per_dni = per_dni;
+
+
+-- -----------------------------------------------------
+-- Deporte
+-- -----------------------------------------------------
+
+-- Permite ver la información de las selecciones deportivas
+DROP VIEW IF EXISTS vw_info_selecciones_deportivas;
+CREATE VIEW vw_info_selecciones_deportivas AS
+SELECT sel_id, sel_nombre, sel_categoria, per_primer_nombre, per_primer_apellido
+FROM SELECCION_DEPORTIVA
+INNER JOIN PERSONA ON sel_doc_per_DNI_entrenador = per_dni;
+
+-- Permite ver la informacion de la convocatorias de las selecciones deportivas
+DROP VIEW IF EXISTS vw_info_convocatorias_selecciones_deportivas;
+CREATE VIEW vw_info_convocatorias_selecciones_deportivas AS
+SELECT sel_nombre, sel_categoria, con_sel_descripcion, con_sel_periodo_academico
+FROM CONVOCATORIA_SELECCION_DEPORTIVA
+INNER JOIN SELECCION_DEPORTIVA ON con_sel_id = sel_id;
+
+-- Permite ver la informacion de los entrenamientos de las selecciones deportivas
+DROP VIEW IF EXISTS vw_info_entrenamientos_selecciones_deportivas;
+CREATE VIEW vw_info_entrenamientos_selecciones_deportivas AS
+SELECT sel_id, res_fecha_inicial, res_fecha_fin, esp_nombre, edi_nombre
+FROM ENTRENAMIENTO_SELECCION	
+INNER JOIN RESERVACION ON ent_sel_eve_id = res_id
+INNER JOIN ESPACIO ON res_esp_id = esp_id
+INNER JOIN EDIFICIO ON esp_edi_id = edi_id;
+
+-- Permite ver la informacion de los torneos
+DROP VIEW IF EXISTS vw_info_torneos;
+CREATE VIEW vw_info_torneos AS
+SELECT tor_id, tor_nombre, depo_nombre
+FROM TORNEO	
+INNER JOIN DEPORTE ON depo_id = tor_depo_id;
